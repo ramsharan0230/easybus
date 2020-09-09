@@ -4,73 +4,273 @@
 <section class="first_section">
 	<div class="container p_tb40">
 		<div class="row">
-			<div class="col-lg-4 col-md-6 col-sm-12">
-				<div class="counter-rgister-form">
-					<h3>Company Information</h3>
+			<div class="col-lg-12 col-md-12 col-sm-12 ">
+				<div class="height_manage box_shadow">
+					<form action="{{route('registerCounter')}}" method="post" class="form form-horizontal" enctype="multipart/form-data">
+						{{csrf_field()}}
+						<div class="row">
+							<div class="col-lg-4 col-sm-12 ">
+								<div class="row">
+									<div class="col-lg-12">
+										{{--
+										<ul class="why_register"> 
+											<h2  class="text-uppercase font_20">why signing up with bus ?</h2>
+											<li>
+												<i class="fa fa-check-circle"></i>
+											 To view  tickets history
+											</li>
+											<li>
+												<i class="fa fa-check-circle"></i>
+											 To view  personal profile
+											</li>
+											<li>
+												<i class="fa fa-check-circle"></i>
+											 Print your ticket anytime.
+											</li>
+											<li>
+												<i class="fa fa-check-circle"></i>
+											 Earn tickets while you travel
+											</li>
+										</ul>
+										--}}
 
-					<form action="" class="company-info-form">
-						<label for="">Company Name</label>
-						<input type="text" placeholder="">
-						<label for="">Address</label>
-						<input type="text" placeholder="">
-						<label for="">Contact Number</label>
-						<input type="text" placeholder="">
-						<label for="">Company Register Number</label>
-						<input type="text" placeholder="">
-						<label for="">Company Pan Number</label>
-						<input type="text" placeholder="">
-						<label for="">Company Register Document</label>
-						<input type="file" placeholder="">
-						<label for="">Company Pan Document</label>
-						<input type="file" placeholder="">
-						<button>Next</button> 
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-12 p_lr0 new_registration">
+										<h2 class="p_b40">Register as Counter</h2>
+										
+										@if(Session::has('message'))
+										<div class="alert alert-success alert-dismissible message">
+											<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+									      		<span aria-hidden="true">&times;</span>
+									    	</button>
+									    	{!! Session::get('message') !!}
+										</div>
+										@endif
+									@if (count($errors) > 0)
+									 <div class="alert alert-danger">
+									 	<ul>                  
+									 		@foreach($errors->all() as $error)
+									 		<li>{{$error}}</li>
+									 		@endforeach
+									 	</ul>
+									 </div>
+									 @endif
+									<!-- <div class="row">
+									 	<div class="col-12 text-center m_b25">
+											<nav class="register_account">
+											  	<div class="nav nav-tabs" id="nav-tab" role="tablist">
+												    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Step 1</a>
+
+												    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Step 2</a>
+												    <a class="nav-item nav-link" id="nav-personal-detail" data-toggle="tab" href="#personal-detail" role="tab">Step 3</a>
+											  	</div>
+											</nav>
+									 	</div>
+									</div> -->
+
+									<div class="row">
+										<div class="col-lg-4 col-md-6 col-sm-12">
+											<div class="counter-rgister-form">
+													<label>Full Name* :</label>
+													<div class="input-group">
+														<input type="text" name="name" class="form-control  border_radius0" placeholder="Full Name" value="{{old('name')}}">
+														<!-- <div class="input-group-prepend">
+															<span class=" input-group-text input_icon" id="basic-addon1"><i class="fa fa-user"></i></span>
+														</div> -->
+													</div>
+										
+
+													<label>Passport size image* (250*250) :</label>
+													<div class="input-group">
+														<input type="file" name="passport_image" class="form-control  border_radius0" placeholder="Company Reg. No" >
+														<!-- <div class="input-group-prepend">
+															<span class=" input-group-text input_icon" id="basic-addon1"><i class="fa fa-file"></i></span>
+														</div> -->
+													</div>
+											
+
+													<label>Email* :</label>
+														
+													<div class="input-group">
+														<input type="text" name="email" class="form-control  border_radius0" placeholder="Email Address" value="{{old('email')}}">
+														<!-- <div class="input-group-prepend">
+															<span class=" input-group-text input_icon" id="basic-addon1"><i class="fa fa-at"></i></span>
+														</div> -->
+													</div>
+													
+											
+
+													<label>Password* :</label>
+													<div class="input-group">
+														<input type="password" name="password" class="form-control  border_radius0" placeholder="password">
+														<!-- <div class="input-group-prepend">
+															<span class=" input-group-text input_icon" id="basic-addon1"><i class="fa fa-key"></i></span>
+														</div> -->
+													</div>
+													
+													<label>Re-password* :</label>
+													<div class="input-group">
+														<input type="password" name="password_confirmation" class="form-control  border_radius0" placeholder="">
+														<!-- <div class="input-group-prepend">
+															<span class=" input-group-text input_icon" id="basic-addon1"><i class="fa fa-key"></i></span>
+														</div> -->
+													</div>
+										
+													<button type="button" class="btn btn_nextone">NEXT</button>
+											</div>
+										</div>
+
+										<div class="col-lg-4 col-md-6 col-sm-12">
+											<div class="counter-rgister-form">
+												<label>Company Name* :</label>
+												<div class="input-group">
+													<input type="text" name="company_name" class="form-control  border_radius0" placeholder="Company Name" value="{{old('company_name')}}">
+													<!-- <div class="input-group-prepend">
+														<span class=" input-group-text input_icon" id="basic-addon1"><i class="fa fa-building"></i></span>
+													</div> -->
+												</div>
+								
+												<label>Company Address* :</label>
+												<div class="input-group">
+													<input type="text" name="address" class="form-control  border_radius0" placeholder="Company Addresss" value="{{old('address')}}">
+													<!-- <div class="input-group-prepend">
+														<span class=" input-group-text input_icon" id="basic-addon1"><i class="fa fa-map-marker"></i></span>
+													</div> -->
+												</div>
+									
+												<label>Company Phone* :</label>
+												<div class="input-group">
+													<input type="text" name="company_phone" class="form-control  border_radius0" placeholder="Company Phone" value="{{old('company_phone')}}">
+													<!-- <div class="input-group-prepend">
+														<span class=" input-group-text input_icon" id="basic-addon1"><i class="fa fa-phone"></i></span>
+													</div> -->
+												</div>
+										
+												<label>Company Reg. no.* :</label>
+												<div class="input-group">
+													<input type="text" name="company_reg_no" class="form-control  border_radius0" placeholder="Company Reg. No" value="{{old('company_reg_no')}}">
+													<!-- <div class="input-group-prepend">
+														<span class=" input-group-text input_icon" id="basic-addon1"><i class="fa fa-count"></i></span>
+													</div> -->
+												</div>
+									
+												<label>Upload Reg. Document* :</label>
+												<div class="input-group">
+													<input type="file" name="company_image" class="form-control  border_radius0" placeholder="Company Reg. No" >
+													<!-- <div class="input-group-prepend">
+														<span class=" input-group-text input_icon" id="basic-addon1"><i class="fa fa-file"></i></span>
+													</div> -->
+												</div>
+										
+
+												<label>  (PAN) Reg. no.*  :</label>
+												<div class="input-group">
+													<input type="text" name="pan" class="form-control  border_radius0" placeholder="PAN No." value="{{old('pan')}}">
+													<!-- <div class="input-group-prepend">
+														<span class=" input-group-text input_icon" id="basic-addon1"><i class="fa fa-count"></i></span>
+													</div> -->
+												</div>
+											
+												<label>Upload(PAN)* :</label>
+												<div class="input-group">
+													<input type="file" name="pan_image" class="form-control  border_radius0" placeholder="Company Reg. No">
+													<!-- <div class="input-group-prepend">
+														<span class=" input-group-text input_icon" id="basic-addon1"><i class="fa fa-file"></i></span>
+													</div> -->
+												</div>
+										
+												<!-- <button type="button" class="btn btn_prevone">PREV</button> -->
+												<button type="button" class="btn btn_nexttwo">NEXT</button>
+											</div>
+										</div>
+
+										<div class="col-lg-4 col-md-6 col-sm-12">
+											<div class="counter-rgister-form">
+												<label>Father's Name :</label>
+												<div class="input-group">
+													<input type="text" name="father_name" class="form-control  border_radius0" placeholder="Fathers Name" value="{{old('father_name')}}">
+												</div>
+								
+												<label>Mother's Name :</label>
+												<div class="input-group">
+													<input type="text" name="mother_name" class="form-control  border_radius0" placeholder="Mothers Name" value="{{old('mother_name')}}">
+												</div>
+									
+												<label>Phone No* :</label>
+												<div class="input-group">
+													<input type="text" name="phone" class="form-control  border_radius0" placeholder="Phone No" value="{{old('phone')}}">
+												</div>
+										
+												<label>Citizenship No* :</label>
+												<div class="input-group">
+													<input type="text" name="citizen_no" class="form-control  border_radius0" placeholder="Citizenship No" value="{{old('citizen_no')}}">
+												</div>
+										
+												<label>Front copy of Citizenship* :</label>
+												<div class="input-group">
+													<input type="file" name="citizen_front"  class="form-control  border_radius0" placeholder="Citizenship front copy" value="{{old('citizen_front')}}">
+														
+												</div>
+									
+												<label>Back copy of Citizenship* :</label>
+												<div class="input-group">
+													<input type="file" name="citizen_back"  class="form-control  border_radius0" placeholder="Citizenship front copy" value="{{old('citizen_back')}}">
+												</div>
+									
+												<!-- <button type="button" class="btn btn_prevtwo">PREV</button> -->
+												<button type="submit" class="btn register-btn border_radius0 text-uppercase"><i class="fa fa-paper-plane"></i> register</button>
+											</div>
+										</div>
+									</div>
+
+
+							
+									
+									
+
+								
+										</div>
+									</div>
+						
+							 
+							</div>
+							<!-- <div class="col-lg-4 col-md-4 col-sm-12">
+								<div class="create_account">
+									<div class=" owl-carousel  register_slider">
+										<div class="text_item">
+											<h2>
+												get your destination bus ticket from home
+											</h2>
+											<p>
+												never miss your destination 
+											</p>
+											<p>
+												get instant notice about bus
+											</p>
+										</div>
+										<div class="text_item">
+											<h2>
+												get your destination bus ticket from home
+											</h2>
+											<p>
+												never miss your destination 
+											</p>
+											<p>
+												never miss your destination 
+											</p>
+										</div>
+									</div>
+								</div>
+							</div> -->
+							
+							
+						</div>
 					</form>
 				</div>
 			</div>
-			<div class="col-lg-4 col-md-6 col-sm-12">
-				<div class="counter-rgister-form">
-					<h3>Owner Information</h3>
-
-					<form action="" class="company-info-form">
-						<label for="">Owner Full Name</label>
-						<input type="text" placeholder="">
-						<label for="">Permanent Address</label>
-						<input type="text" placeholder="">
-						<label for="">Phone Number</label>
-						<input type="text" placeholder="">
-						<label for="">Father Name</label>
-						<input type="text" placeholder="">
-						<label for="">Mother Name</label>
-						<input type="text" placeholder="">
-						<label for="">Citizenship Number</label>
-						<input type="text" placeholder="">
-						<label for="">Citizenship Card Document One Side</label>
-						<input type="file" placeholder="">
-						<label for="">Citizenship Card Document Other Side</label>
-						<input type="file" placeholder="">
-						<label for="">Owner Passport Size Photo</label>
-						<input type="file" placeholder="">
-						<button>Next</button> 
-					</form>
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-6 col-sm-12">
-				<div class="counter-rgister-form">
-					<h3>Account Information</h3>
-
-					<form action="" class="company-info-form" autocomplete="off">
-						<label for="">Email Address</label>
-						<input type="email" placeholder="" autocomplete="off">
-						<label for="">Username</label>
-						<input type="text" placeholder="" autocomplete="off">
-						<label for="">Password</label>
-						<input type="password" placeholder="" autocomplete="off">
-						<label for="">Re-inter Password</label>
-						<input type="password" placeholder="" autocomplete="off">
-						<button class="register-btn">Register</button> 
-					</form>
-				</div>
-			</div>
+			 
 		</div>
 	</div>
 </section>

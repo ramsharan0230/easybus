@@ -23,31 +23,63 @@
                         <!-- Default box -->
                         <div class="box">
 
-                           
+                            <div class="box-header">
+                                <!-- <a href="add-bus.php" class="btn btn-success">Add Bus</a> -->
+                                <div class="box-tools pull-right">
+                                    <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
+                                    title="Collapse">
+                                    <i class="fa fa-minus"></i></button>
+                                </div>
+                            </div>
                             <div class="box-body vendor-box">
                                 <table id="datatable" class="table vendor-table responsive table-hover dt-responsive nowrap bulk_action" >
                                     
                                     <thead class="vendor-head">
 
                                         <tr>
-                                            <th>Bus Name</th>
-                                            <th>Bus Number</th>
+                                            <th>SN</th>
+                                            <th><span class="fa fa-bus"></span> Bus Name</th>
+                                            <th><i class="fa fa-calendar"></i> Bus No.:</th>
+                                            <!-- <th><span class="fa fa-street-view"></span> Bus Station </th> -->
                                            
-                                            <th>Bus Type</th>
-                                            <th>Booking Status</th>
-                                            <th style="width:20%;">Action</th>
+                                            <th><i class="fa fa-bus"></i> Bus Layout</th>
+                                            <th><i class="fa fa-user-circle"></i> Assestant 1</th>
+                                            <th><i class="fa fa-user"></i> Assestant 2</th>
                                         </tr>
                                     </thead>
                                     <tbody class="text-uppercase">
                                         @php($i=1)
                                         @foreach($buses as $bus)
                                         <tr >
+                                            <td>1.</td>
                                             <td>{{$bus->bus_name}}</td>
                                            
                                             <td>{{$bus->bus_number}}</td>
-                                            <td>Deluxe</td>
-                                            <td>Booked</td>
-                                            <td class="buss-list-btn"><a href="#" class="btn vendor-busses">Booking Details</a><a href="#" class="btn vendor-busses">Ticket History</a></td>
+                                           
+                                            
+                                           
+                                            <td>
+                                                <a href="{{route('busView',$bus->id)}}" class="btn vendor-busses"> <span class="fa fa-bus"></span> Bus Layout</a>
+                                                <!-- <div class="btn  btn-danger">
+                                                    <form method= "post" action="" class="delete">
+                                                        <input type="hidden" name="_method" value="DELETE">
+                                                        <button type="submit" class="btn-delete" style="display:inline"><span class="fa fa-trash"></span> Delete</button>
+                                                    </form>
+                                                </div> -->
+                                            </td>
+                                            <td>
+                                                @if($bus->driver)
+                                                {{$bus->driver->name}} <br>
+                                                {{$bus->driver->phone}}
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if($bus->conductor)
+                                                {{$bus->conductor->name}} <br>
+                                                {{$bus->conductor->phone}}
+                                                @endif
+                                            </td>
+                                            
                                             
                                         </tr>
                                         @php($i++)

@@ -25,177 +25,188 @@
                             <img src="{{asset('images/main/'.$bus->image_2)}}" alt="">
                         </div>
 
+
+
+
+
+
+
                         
                         <div class="col-lg-12 col-sm-12 col-xs-12 m_t20">
                             <div class="row equal_height">
-                                <div class="col-md-3 col-sm-12 col-xs-12">
-                                    <div class="box box-info">
-                                        <div class="box-body box-profile">
-                                            <h3 class="profile-username">Bus Number</h3> 
-                                            <ul class="seat_info">
-                                                <li>
-                                                    <i class="fa fa-calendar"></i> <span> {{$bus->bus_number}} </span>
-                                                </li>
-                                            </ul>  
+                                <div class="col-lg-6 col-md-6 col-12 busview-wrapper">
+                                    <h2 class="box-header bus-info-title">Bus Information</h2>
+                                    <div class="">
+                                        <div class="box box-info">
+                                            <div class="box-body box-profile">
+                                                <h3 class="profile-username">Bus Number</h3> 
+                                                <ul class="seat_info">
+                                                    <li>
+                                                        <i class="fa fa-calendar"></i> <span> {{$bus->bus_number}} </span>
+                                                    </li>
+                                                </ul>  
+                                            </div>
                                         </div>
                                     </div>
+                                    <div class="">
+                                        <div class="box box-primary">
+                                            <div class="box-body box-profile">
+                                                <h3 class="profile-username">Bus Name</h3>
+                                                <ul class="seat_info">
+                                                    <li>
+                                                        <i class="fa fa-bus"></i>
+                                                        <span>{{$bus->bus_name}}</span>
+                                                    </li>
+                                                </ul> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="">
+                                        <div class="box box-primary">
+                                            <div class="box-body box-profile">
+                                                <h3 class="profile-username">Seat Limit</h3>
+                                                <ul class="seat_info">
+                                                    <li>
+                                                        <img src="{{asset('backend/assets/images/seat.png')}}" class="seat_icon1 free_seat" title="Available Seat">
+                                                        <span>{{$bus->seat_limit}}</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="">
+                                        <div class="box box-primary">
+                                            <div class="box-body box-profile">
+                                                <h3 class="profile-username">Made Year</h3>
+                                                <ul class="seat_info">
+                                                    <li>
+                                                        <i class="fa fa-calendar"></i>
+                                                        <span>{{$bus->made_year}}</span>
+                                                    </li>
+                                                </ul>   
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="">
+                                        <div class="box box-primary">
+                                            <div class="box-body box-profile">
+                                                <h3 class="profile-username">Bus Manufracturer</h3>
+                                                <ul class="seat_info">
+                                                    <li>
+                                                        <i class="fa fa-cgs"></i>
+                                                        <span>{{$bus->manufacturer}}</span>
+                                                    </li>
+                                                </ul>  
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="">
+                                        <div class="box box-primary">
+                                            <div class="box-body box-profile">
+                                                <h3 class="profile-username">Bus Model</h3>
+                                                <ul class="seat_info">
+                                                    <li>
+                                                        <i class="fa fa-bus"></i>
+                                                        <span>{{$bus->model}}</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="">
+                                        <div class="box box-primary">
+                                            <div class="box-body box-profile">
+                                                <h3 class="profile-username">Bus Colour</h3>
+                                                <ul class="seat_info">
+                                                    <li>
+                                                        COLOUR
+                                                        <span> {{$bus->color}}</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="col-md-3 col-sm-12 col-xs-12">
+                                        <div class="box box-primary">
+                                            <div class="box-body box-profile">
+                                                <h3 class="profile-username">Route</h3>
+                                                <ul class="seat_info">
+                                                    <li>
+                                                        <i class="fa fa-map-marker"></i>
+                                                        <span>{{$bus->from}} To {{$bus->to}}</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                    <!-- <div class="col-md-3 col-sm-12 col-xs-12">
+                                        <div class="box box-primary">
+                                            <div class="box-body box-profile">
+                                                <h3 class="profile-username">Shift</h3>
+                                                <ul class="seat_info">
+                                                    <li>
+                                                        <i class="fa fa-bus"></i>
+                                                        <span>{{$bus->service_type}}</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                    <div class="">
+                                        <div class="box box-primary">
+                                            <div class="box-body box-profile">
+                                                <h3 class="profile-username">Vendor</h3>
+                                                <ul class="seat_info">
+                                                    <li>
+                                                        <i class="fa fa-user"></i>
+                                                        <span>{{$bus->user->name}}</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @if($bus->driver)
+                                    <div class="">
+                                        <div class="box box-primary">
+                                            <div class="box-body box-profile">
+                                                <h3 class="profile-username">Assistant 1</h3>
+                                                <ul class="seat_info">
+                                                    <li>
+                                                        <i class="fa fa-user"></i>
+                                                        <span>{{$bus->driver->name}}</span>
+                                                    </li>
+                                                    <li>
+                                                        <i class="fa fa-phone"></i>
+                                                        <span>{{$bus->assistant_one_phone}}</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endif
+                                    @if($bus->conductor)
+                                    <div class="">
+                                        <div class="box box-primary">
+                                            <div class="box-body box-profile">
+                                                <h3 class="profile-username">Assistant 2</h3>
+                                                <ul class="seat_info">
+                                                    <li>
+                                                        <i class="fa fa-user"></i>
+                                                        <span>{{$bus->conductor->name}}</span>
+                                                    </li>
+                                                    <li>
+                                                        <i class="fa fa-phone"></i>
+                                                        <span>{{$bus->assistant_two_phone}}</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endif
                                 </div>
-                                <div class="col-md-3 col-sm-12 col-xs-12">
-                                    <div class="box box-primary">
-                                        <div class="box-body box-profile">
-                                            <h3 class="profile-username">Bus Name</h3>
-                                            <ul class="seat_info">
-                                                <li>
-                                                    <i class="fa fa-bus"></i>
-                                                    <span>{{$bus->bus_name}}</span>
-                                                </li>
-                                            </ul> 
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 col-sm-12 col-xs-12">
-                                    <div class="box box-primary">
-                                        <div class="box-body box-profile">
-                                            <h3 class="profile-username">Seat Limit</h3>
-                                            <ul class="seat_info">
-                                                <li>
-                                                    <img src="{{asset('backend/assets/images/seat.png')}}" class="seat_icon1 free_seat" title="Available Seat">
-                                                    <span>{{$bus->seat_limit}}</span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 col-sm-12 col-xs-12">
-                                    <div class="box box-primary">
-                                        <div class="box-body box-profile">
-                                            <h3 class="profile-username">Made Year</h3>
-                                            <ul class="seat_info">
-                                                <li>
-                                                    <i class="fa fa-calendar"></i>
-                                                    <span>{{$bus->made_year}}</span>
-                                                </li>
-                                            </ul>   
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 col-sm-12 col-xs-12">
-                                    <div class="box box-primary">
-                                        <div class="box-body box-profile">
-                                            <h3 class="profile-username">Bus Manufracturer</h3>
-                                            <ul class="seat_info">
-                                                <li>
-                                                    <i class="fa fa-cgs"></i>
-                                                    <span>{{$bus->manufacturer}}</span>
-                                                </li>
-                                            </ul>  
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 col-sm-12 col-xs-12">
-                                    <div class="box box-primary">
-                                        <div class="box-body box-profile">
-                                            <h3 class="profile-username">Bus Model</h3>
-                                            <ul class="seat_info">
-                                                <li>
-                                                    <i class="fa fa-bus"></i>
-                                                    <span>{{$bus->model}}</span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 col-sm-12 col-xs-12">
-                                    <div class="box box-primary">
-                                        <div class="box-body box-profile">
-                                            <h3 class="profile-username">Bus Colour</h3>
-                                            <ul class="seat_info">
-                                                <li>
-                                                    COLOUR
-                                                    <span> {{$bus->color}}</span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- <div class="col-md-3 col-sm-12 col-xs-12">
-                                    <div class="box box-primary">
-                                        <div class="box-body box-profile">
-                                            <h3 class="profile-username">Route</h3>
-                                            <ul class="seat_info">
-                                                <li>
-                                                    <i class="fa fa-map-marker"></i>
-                                                    <span>{{$bus->from}} To {{$bus->to}}</span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div> -->
-                                <!-- <div class="col-md-3 col-sm-12 col-xs-12">
-                                    <div class="box box-primary">
-                                        <div class="box-body box-profile">
-                                            <h3 class="profile-username">Shift</h3>
-                                            <ul class="seat_info">
-                                                <li>
-                                                    <i class="fa fa-bus"></i>
-                                                    <span>{{$bus->service_type}}</span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div> -->
-                                <div class="col-md-3 col-sm-12 col-xs-12">
-                                    <div class="box box-primary">
-                                        <div class="box-body box-profile">
-                                            <h3 class="profile-username">Vendor</h3>
-                                            <ul class="seat_info">
-                                                <li>
-                                                    <i class="fa fa-user"></i>
-                                                    <span>{{$bus->user->name}}</span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                @if($bus->driver)
-                                <div class="col-md-3 col-sm-12 col-xs-12">
-                                    <div class="box box-primary">
-                                        <div class="box-body box-profile">
-                                            <h3 class="profile-username">Assistant 1</h3>
-                                            <ul class="seat_info">
-                                                <li>
-                                                    <i class="fa fa-user"></i>
-                                                    <span>{{$bus->driver->name}}</span>
-                                                </li>
-                                                <li>
-                                                    <i class="fa fa-phone"></i>
-                                                    <span>{{$bus->assistant_one_phone}}</span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                @endif
-                                @if($bus->conductor)
-                                <div class="col-md-3 col-sm-12 col-xs-12">
-                                    <div class="box box-primary">
-                                        <div class="box-body box-profile">
-                                            <h3 class="profile-username">Assistant 2</h3>
-                                            <ul class="seat_info">
-                                                <li>
-                                                    <i class="fa fa-user"></i>
-                                                    <span>{{$bus->conductor->name}}</span>
-                                                </li>
-                                                <li>
-                                                    <i class="fa fa-phone"></i>
-                                                    <span>{{$bus->assistant_two_phone}}</span>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                @endif
-                                <div class="col-md-12 col-sm-12 col-xs-12">
+
+
+                                <div class="col-md-6 col-sm-12 col-xs-12">
                                     <!-- Default box -->
                                     <div class="box">
                                         <div class="box-header with-border">
@@ -247,8 +258,31 @@
                                         </div>
                                     </div>   
                                 </div>
+
+
                             </div>
                         </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                         <div class="col-lg-12 col-sm-12 col-xs-12 m_b20">
                             <div class="box-tools pull-right">
                                 <div class="input-group">
@@ -259,13 +293,13 @@
                                     @endphp
                                     @if($busrequest)
                                         @if($busrequest->acceptance_status==0)
-                                        <button class="btn btn-warning" disabled="">Request Sent</button>
+                                        <button class="btn vendor-busses" disabled="">Request Sent</button>
                                         @else
-                                        <button class="btn btn-warning" disabled="">Request Sent</button>
+                                        <button class="btn vendor-busses" disabled="">Request Sent</button>
                                         @endif
                                     
                                     @else
-                                    <button data-bus_id="{{$bus->id}}" data-vendor_id="{{$bus->user->id}}" data-user_id="{{Auth::user()->id}}" class="btn btn-success sendRequest"> <span class="fa fa-send"></span> Send Request</button>
+                                    <button data-bus_id="{{$bus->id}}" data-vendor_id="{{$bus->user->id}}" data-user_id="{{Auth::user()->id}}" class="btn vendor-busses sendRequest"> <span class="fa fa-send"></span> Send Request</button>
                                     @endif
                                 </div>
                             </div>

@@ -4023,8 +4023,14 @@ table.text-center th {
 }
 
 .profile-username {
-    font-size: 21px;
+    font-size: 16px;
     margin-top: 5px;
+    width: 160px;
+    display: inline-block;
+}
+
+ul.seat_info {
+    display: inline-block;
 }
 
 .post {
@@ -7906,7 +7912,7 @@ custom css */
 }
 
 .seat_icon1 {
-    width: 40px;
+    width: 20px;
     transform: rotate(90deg);
 }
 
@@ -7967,7 +7973,7 @@ custom css */
 }
 
 .seat_info li i {
-    font-size: 30px;
+    font-size: 14px;
 }
 
 
@@ -8772,7 +8778,7 @@ td.app-rej-wrapp {
 .bus-info-title {
 
     font-size: 18px;
-    color: #007bb6;
+    color: #fff;
     margin-bottom: 30px;
 }
 
@@ -8796,4 +8802,23 @@ td.app-rej-wrapp {
     font-size: 20px;
     font-weight: 600;
     color: #394950;
+}
+
+
+.busview-wrapper .box .profile-username,
+.busview-wrapper .box ul,
+.busview-wrapper .box ul li,
+.busview-wrapper .box {
+
+    margin-bottom: 0;
+}
+
+.busview-wrapper .box {
+    border: 1px solid #ececec;
+    border-bottom: none;
+}
+
+.busview-wrapper div:last-child .box {
+
+    border-bottom: 1px solid #ececec;
 }

@@ -68,7 +68,7 @@
                                                     </tbody>
                                                 </table>
                                           </div>
-                                            <div class="bus-info-side">
+                                            <!-- <div class="bus-info-side">
                                                 <h2>Bus Information</h2>
                                                 <ul class="bus-info-wrapp">
                                                     <li><p>Bus Number:</p><span>Ba 5 Kha 2052</span></li>
@@ -87,7 +87,7 @@
                                                     <li><p>Bus Photo:</p><span><img src="{{asset('backend/assets/images/bus2.jpg')}}" alt=""><img src="{{asset('backend/assets/images/bus2.jpg')}}" alt=""><img src="{{asset('backend/assets/images/bus2.jpg')}}" alt=""></span></li>
                                                     <li><p>Billbook Document:</p><span><img src="{{asset('backend/assets/images/bus2.jpg')}}" alt=""><img src="{{asset('backend/assets/images/bus2.jpg')}}" alt=""><img src="{{asset('backend/assets/images/bus2.jpg')}}" alt=""></span></li>
                                                 </ul>
-                                            </div>
+                                            </div> -->
                                        </div>
                                     </div>
                                    <!--  <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 m_b20">

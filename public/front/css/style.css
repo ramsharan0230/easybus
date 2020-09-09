@@ -2077,16 +2077,14 @@ a.nav-link {
     /*color: #ec8f8f99;*/
 }
 
-.first_section .form-control {
-    /*background-color: transparent;*/
+/* .first_section .form-control {
     font-size: 14px;
-    /*color: #ec8f8f99;*/
     border-top: 0;
     border-left: 0;
     border-right: 0;
     padding-left: 5px;
     border-radius: 0 !important;
-}
+} */
 
 .footer_menu h2 {
     border-bottom: 1px solid blue;
@@ -2108,6 +2106,8 @@ a.nav-link {
     /*background-color: red;*/
     text-transform: uppercase;
     font-weight: 600;
+    position: relative;
+    display: inline-block;
 }
 
 .logo_back::after {
@@ -2115,9 +2115,9 @@ a.nav-link {
     border-bottom: 2px solid blue;
     content: " ";
     left: 0;
+    top: 100%;
     right: 0;
-    display: block;
-    width: 15%;
+    width: 50%;
     margin: 0 auto;
     padding-bottom: 5px;
 }
@@ -2833,7 +2833,7 @@ ul.driver-info-wrapp li p {
 
 }
 
-.company-info-form label {
+.counter-rgister-form label {
 
     font-size: 12px;
     margin-bottom: 5px;
@@ -2841,29 +2841,29 @@ ul.driver-info-wrapp li p {
     font-weight: 600;
 }
 
-.company-info-form input,
-.company-info-form button {
+.counter-rgister-form input,
+.counter-rgister-form button {
 
     display: block;
     width: 100%;
     padding: 7px 10px;
-    /* border: none; */
     outline: none;
-    margin-bottom: 10px;
+    margin-bottom: 10px !important;
     font-size: 14px;
     background: #fff;
     border-radius: 3px;
     border: 1px solid #dae2e8;
+    height: inherit;
 
 }
 
-.company-info-form {
+.counter-rgister-form {
 
     display: inline-block;
     width: 100%;
 }
 
-.company-info-form button {
+.counter-rgister-form button {
     display: inline-block;
     float: right;
     width: 120px;
@@ -2888,7 +2888,7 @@ input:-internal-autofill-selected {
     border-color: #45cfc2 !important;
 }
 
-.company-info-form button:hover {
+.counter-rgister-form button:hover {
 
     background: #fff;
     color: #1a79bb;
@@ -2904,3 +2904,29 @@ input:-internal-autofill-selected {
 
 
 
+
+.register-btn {
+    min-width: 160px;
+}
+
+.register-btn i {
+
+    margin-right: 5px;
+}
+
+.new_registration h2 {
+    font-size: 25px;
+    text-align: center;
+    color: #1a79bb;
+}
+
+
+
+
+
+
+
+
+
+var videos=$(".post-entry p>iframe").addClass("embed-responsive-item");
+videos.parent().addClass("embed-responsive embed-responsive-16by9");

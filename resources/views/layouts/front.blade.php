@@ -90,26 +90,7 @@
 @yield('content')
 	<div class="container p_tb20 footer">
 		<div class="all_footer">
-			<div class="row">
-				<div class="col-lg-4 col-md-3 col-sm-12 text-capitalize">
-					<!-- <ul class="font_14 footer_menu">
-						<h2 class="font_18">legal</h2>
-						<li><a href="privacy_page.php">terms & conditions</a></li>
-						<li><a href="">FAQs</a></li>
-					</ul> --> 
-				</div>
-				<div class="col-lg-4 col-md-3 col-sm-12 text-capitalize">
-					<!-- <ul class="font_14 footer_menu">
-						<h2 class="font_18">about us</h2>
-						<li><a href="privacy_page.php">why easybus ?</a></li>
-						<li><a href="">FAQs</a></li>
-					</ul> -->
-				</div>
-				<div class="col-lg-4 col-md-3 col-sm-12 text-center p_t20 footer_border_top">
-					<h3 class="logo_back">easy<i class="fa fa-bus"></i><span class="">us</span></h3>
-				</div>
-				
-			</div>
+		
 			<div class="row">
 				<div class="col-lg-6 col-md-6 col-sm-6">
 					<p>
@@ -120,6 +101,7 @@
 					<a href="{{route('login')}}">Login</a>
 				</div>
 				<div class="col-lg-6 col-md-6 col-sm-6 webhouse_nepal">
+					<h3 class="logo_back">easy<i class="fa fa-bus"></i><span class="">us</span></h3>
 					<p>
 						<span class="copyrights-text font_13">
 							Designed & Developed by: <a href="https://webhousenepal.com" title="https://webhousenepal.com" target="_blank">webhousenepal.com</a>
