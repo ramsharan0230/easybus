@@ -92,7 +92,6 @@ a {
     }
     .box_shadow {
         /* box-shadow: 0 1px 4px #bf333366; */
-        background: #106666;
         padding: 30px !important;
     }
     .btn_nextone,
@@ -2924,3 +2923,43 @@ input:-internal-autofill-selected {
 
 
 
+@media (max-width:992px) {
+
+    .search_button {
+
+        position: static;
+    }
+
+    .total-section {
+
+        margin: 0;
+    }
+
+    .btn {
+
+        font-size: 14px;
+    }
+}
+
+@media (max-width:767px) {
+
+    .total-image img{
+
+        width: 60px;
+    }
+
+    .total-section {
+
+        flex-direction: column;
+    }
+
+    .webhouse_nepal {
+        margin-top: 30px;
+    }
+
+    .counter-rgister-form {
+
+        margin-bottom: 30px;
+    }
+
+}

@@ -92,7 +92,7 @@
 		<div class="all_footer">
 		
 			<div class="row">
-				<div class="col-lg-6 col-md-6 col-sm-6">
+				<div class="col-lg-6 col-md-6 col-sm-12">
 					<p>
 						<span class="copyrights-text font_13">© <?php  echo date('Y'); ?> Copyrights Reserved at EASYBUS</span>
 					</p>
@@ -100,7 +100,7 @@
 					<a href="{{route('vendorRegister')}}" class="btn btn-info">Vendor Register</a>
 					<a href="{{route('login')}}">Login</a>
 				</div>
-				<div class="col-lg-6 col-md-6 col-sm-6 webhouse_nepal">
+				<div class="col-lg-6 col-md-6 col-sm-12 webhouse_nepal">
 					<h3 class="logo_back">easy<i class="fa fa-bus"></i><span class="">us</span></h3>
 					<p>
 						<span class="copyrights-text font_13">
