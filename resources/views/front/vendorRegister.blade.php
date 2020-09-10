@@ -123,7 +123,7 @@
 														<span class=" input-group-text input_icon" id="basic-addon1"><i class="fa fa-key"></i></span>
 													</div> -->
 												</div>
-												<button type="button" class="btn btn_nextone">NEXT</button>
+												<!-- <button type="button" class="btn btn_nextone">NEXT</button> -->
 													
 											</div>
 										</div>
@@ -193,7 +193,7 @@
 												</div>
 										
 												<!-- <button type="button" class="btn btn_prevone">PREV</button> -->
-												<button type="button" class="btn btn_nexttwo">NEXT</button>
+												<!-- <button type="button" class="btn btn_nexttwo">NEXT</button> -->
 											</div>
 											
 										</div>

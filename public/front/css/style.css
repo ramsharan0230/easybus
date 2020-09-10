@@ -2924,9 +2924,3 @@ input:-internal-autofill-selected {
 
 
 
-
-
-
-
-var videos=$(".post-entry p>iframe").addClass("embed-responsive-item");
-videos.parent().addClass("embed-responsive embed-responsive-16by9");
