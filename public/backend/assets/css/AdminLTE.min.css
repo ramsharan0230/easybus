@@ -67,6 +67,7 @@ body {
     .main-footer {
         margin-left: 0;
     }
+
 }
 
 @media (min-width:768px) {
@@ -587,8 +588,8 @@ a:focus {
 
 .sidebar-menu>li>a {
     display: block;
-    ;
     padding: 12px 5px 12px 15px;
+    border-bottom: 1px solid #3e4c52;
 }
 
 .sidebar-menu>li>a>.fa,
@@ -1534,9 +1535,12 @@ a:focus {
 }
 
 .input-group .input-group-addon {
-    border-color: #d2d6de;
+    border-color: transparent;
     border-radius: 0;
-    background-color: #fff;
+    background-color: #3c8dbc;
+    width: 135px;
+    text-align: left;
+    color: #fff;
 }
 
 .btn-group-vertical .btn.btn-flat:first-of-type,
@@ -2054,6 +2058,14 @@ a:focus {
 
 .box-header.with-border {
     border-bottom: 1px solid #f4f4f4;
+    background: #3c8dbc;
+    padding: 10px;
+   
+}
+
+.box-header.with-border .box-title {
+
+    color: #fff !important;
 }
 
 .collapsed-box .box-header.with-border {
@@ -2959,17 +2971,17 @@ a:focus {
 .nav-tabs-custom {
     margin-bottom: 20px;
     border-radius: 3px;
-    ;
     background: #fff;
-    box-shadow: 0 1px 1px rgba(0, 0, 0, .1);
 }
 
 .nav-tabs-custom>.nav-tabs {
     margin: 0;
-    border-bottom-color: #f4f4f4;
-    border-top-left-radius: 3px;
-    ;
-    border-top-right-radius: 3px;
+    border: none;
+    padding: 5px;
+    background: #0086d4;
+    border-radius: 50px;
+    display: inline-block;
+
 }
 
 .nav-tabs-custom>.nav-tabs>li {
@@ -3010,7 +3022,7 @@ a:focus {
 }
 
 .nav-tabs-custom>.nav-tabs>li.active {
-    border-top-color: #3c8dbc;
+    border: none;
 }
 
 .nav-tabs-custom>.nav-tabs>li.active>a,
@@ -3023,7 +3035,6 @@ a:focus {
 .nav-tabs-custom>.nav-tabs>li.active>a {
     border-top-color: transparent;
     border-right-color: #f4f4f4;
-    ;
     border-left-color: #f4f4f4;
 }
 
@@ -3071,10 +3082,7 @@ a:focus {
 }
 
 .nav-tabs-custom>.tab-content {
-    padding: 10px;
-    border-bottom-right-radius: 3px;
-    border-bottom-left-radius: 3px;
-    ;
+
     background: #fff;
 }
 
@@ -5874,6 +5882,7 @@ ul.seat_info {
     content: ' ';
 }
 
+
 .user-block:after {
     clear: both;
 }
@@ -7809,10 +7818,10 @@ ul.seat_info {
 /* 
 custom css */
 
-.equal_height {
+/* .equal_height {
     display: flex;
     flex-wrap: wrap;
-}
+} */
 
 .height_manage {
     height: 100% !important;
@@ -8316,17 +8325,16 @@ button.btn.btn-link {
     font-weight: 600;
 }
 
-.register_account .nav-link {
-    border-radius: 0;
+.register_account .nav-link a {
+    border-radius:30px;
     background-color: #ff00006b;
     border: none;
+
 }
 
 .register_account .nav-link.active {
-    background: #325c6c;
-    border-radius: 0;
-    color: white;
-    border: 2px solid transparent;
+    background: transparent;
+    border-radius: inherit;
 }
 
 .bookmyseat {
@@ -8414,15 +8422,13 @@ button.btn.btn-link {
 .register_account .nav-link>a {
     border-radius: 0;
     background-color: #ff00006b;
-    border: 0 !important;
     padding: 10px 20px;
 }
 
 .register_account li.active.nav-item.nav-link>a {
-    background: #325c6c;
-    border-radius: 0;
+    background: #cdff4d !important;
     color: white;
-    border: 0 !important;
+    border: 2px solid #fff !important;
 }
 
 .display_inline li {
@@ -8444,9 +8450,9 @@ button.btn.btn-link {
     color: #fff;
 }
 
-.show {
+/* .show {
     background: #cfd1d0;
-}
+} */
 
 .seat-text {
     font-size: 14px !important;
@@ -8575,22 +8581,24 @@ button.btn.btn-link {
 .vendor-box {
 
     background: #f2f2f2;
-    padding: 0;
+    /* padding: 0; */
     border-radius: inherit;
 }
 
 .vendor-head {
 
-    background: #fff;
+    background: #3c8dbc;
 }
 
 .vendor-head tr th {
 
     font-size: 16px;
-    color: #3c8dbc;
+    /* color: #3c8dbc; */
+    color: #fff;
     font-weight: 600;
     
 }
+
 
 
 .vendor-table tbody tr td {
@@ -8646,7 +8654,12 @@ form.search input {
 
 .vendor-table tbody tr:nth-child(even) {
 
-    background: #f9f9f9;
+    background: #fdfeff;
+}
+
+.table-striped>tbody>tr:nth-of-type(odd) {
+
+    background: #c7eeff;
 }
 
 
@@ -8783,18 +8796,9 @@ td.app-rej-wrapp {
 }
 
 
-.table {
-
-    width: 100%;
-    overflow-x: scroll;
-    white-space: nowrap;
-
-}
-
-
 .box-header {
 
-    background-color: #222d32;
+    background-color: transparent;
     margin: 20px 0;
 }
 
@@ -8821,4 +8825,160 @@ td.app-rej-wrapp {
 .busview-wrapper div:last-child .box {
 
     border-bottom: 1px solid #ececec;
+}
+
+
+.skin-blue .wrapper, .skin-blue .main-sidebar, .skin-blue .left-side {
+
+    background: #040e15;
+}
+
+.skin-blue .sidebar-menu>li:hover>a, .skin-blue .sidebar-menu>li.active>a, .skin-blue .sidebar-menu>li.menu-open>a {
+    color: #fff;
+    background: #061927;
+}
+
+.skin-blue .sidebar-menu>li>.treeview-menu {
+    margin: 0 1px;
+    background: #061927;
+}
+
+.skin-blue .main-header .logo {
+    background-color: #040e15;
+
+}
+
+.skin-blue .sidebar-menu>li.header {
+    color: #b8c3c8;
+    background: #061927;
+}
+
+.counter-detail-wrapper .input-group {
+
+    width: 100%;
+}
+
+.counter-detail-wrapper .input-group input {
+
+    width: 100%;
+    background: #ffffff;
+    border: none;
+
+
+}
+
+.box-title {
+
+    color: #424242;
+}
+
+
+table {
+
+    white-space: nowrap;
+}
+
+.table-container {
+
+    width: 100%;
+    overflow-x: scroll;
+    
+}
+
+
+
+.vendor-tabs li {
+
+    background: transparent;
+    border: none !important;
+    margin: 0;
+
+
+}
+
+
+.vendor-tabs li a {
+
+    background: #ffffff !important;
+    color: #333 !important;
+    border-radius: 30px !important;
+    font-size: 14px;
+    min-width: 130px;
+    text-align: center;
+    font-weight: 600;
+    padding: 5px !important;
+    border: 2px solid #fff !important;
+}
+
+.table-container {
+    width: 100%;
+    display: block;
+    overflow-x: scroll;
+}
+
+.vendor-register-box {
+
+    padding: 0;
+}
+
+ul.nav.nav-tabs.vendor-tabs {
+    margin-bottom: 30px;
+}
+
+.register-content-wrapp label {
+
+    text-align: left;
+    font-size: 14px;
+}
+
+
+.register-content-wrapp input {
+
+    padding: 7px 10px;
+    height: inherit;
+    border: 1px solid #e4e4e4;
+}
+
+
+
+@media (max-width:480px) {
+
+    .all-table-manage .input-group {
+
+        display: block !important;
+    }
+}
+
+
+@media (max-width:767px)  {
+
+
+
+    .seat_info li span {
+
+        font-size: 14px;
+    }
+
+    .profile-username {
+        font-size: 14px;
+        width: 130px;
+    }
+
+    .vendor-tabs li a {
+
+        min-width: 100px;
+    }
+
+    .register-content-wrapp label {
+
+        display: block;
+        margin-bottom: 5px;
+    }
+}
+
+@media (max-width:480px) {
+
+    .vendor-tabs li a{
+        min-width: 80px;
+    }
 }

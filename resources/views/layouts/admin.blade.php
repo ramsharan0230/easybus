@@ -452,6 +452,15 @@
                 @endif
                 @if($role=='vendor')
                 <li class="header">VENDOR VIEW</li>
+                <li class="">
+                    <a href="{{route('vendorDashboard')}}">
+                        <i class="fa fa-edit"></i> <span> Dashboard</span>
+                        <span class="pull-right-container">
+                            
+                        </span>
+                    </a>
+                    
+                </li>
                 <li class="treeview">
                     <a href="#">
                         <i class="fa fa-edit"></i> <span>Update Info</span>
@@ -591,6 +600,15 @@
                 @if($role=='counter')
                 <li class="header">COUNTER VIEW</li>
                 
+                <li class="">
+                    <a href="{{route('counterDashboard')}}">
+                        <i class="fa fa-edit"></i> <span> Dashboard</span>
+                        <span class="pull-right-container">
+                            
+                        </span>
+                    </a>
+                    
+                </li>
                 <li class="treeview">
                     <a href="">
                         <i class="fa fa-edit"></i> <span> Update Information</span>
@@ -613,6 +631,7 @@
                         </li> --> 
                     </ul>
                 </li>
+
                 <li class="treeview">
                     <a href="">
                         <i class="fa fa-bus"></i> <span>Bus list</span>
@@ -812,6 +831,9 @@
 
 @stack('script')
 <script >
+    $(document).ready(function() {
+        $('.table').wrap( '<div class="table-container"></div>' );
+    })
 // $(".bod-picker").val();
 // $(".bod-picker").nepaliDatePicker({
 //     dateFormat: "%y-%m-%d",

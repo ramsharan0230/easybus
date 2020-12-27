@@ -57,7 +57,7 @@
                                             <!-- <td>2075 Chaitra 10 </td>
                                             <td>2075Chaitra 11 </td> -->
                                             <td>
-                                                <a href="{{route('busLayout',$bus->bus->id)}}" class="btn btn-info"> <span class="fa fa-bus"></span> Bus Layout</a>
+                                                <a href="{{route('busLayout',$bus->bus->id)}}" class="btn vendor-busses btn-info"> <span class="fa fa-bus"></span> Bus Layout</a>
                                                 <!-- <div class="btn  btn-danger">
                                                     <form method= "post" action="" class="delete">
                                                         <input type="hidden" name="_method" value="DELETE">

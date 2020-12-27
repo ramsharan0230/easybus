@@ -23,11 +23,11 @@ class Bus extends Model
     public function busBooking(){
         return $this->hasMany('App\Models\BusBooking','bus_id');
     }
-    public function bus_category(){
+    public function busCategory(){
         return $this->belongsTo('App\Models\BusCategory','bus_category');
     }
     public function busRoutine(){
-        return $this->hasMany('App\Models\BusRoutine');
+        return $this->hasMany('App\Models\BusRoutine','bus_id');
     }
     public function advertisements(){
         return $this->hasMany('App\Models\Advertisement');

@@ -30,9 +30,9 @@ All Assistants of vendor {{$details->name}}
                                 </div>
                             </div> -->
                             <div class="box-body ">
-                                <table id="example1" class="table table-bordered responsive table-hover dt-responsive nowrap bulk_action" >
+                                <table id="example1" class="table vendor-table responsive table-hover dt-responsive nowrap bulk_action" >
                                     
-                                    <thead>
+                                    <thead class="vendor-head">
                                     
                                         <tr>
                                             <th>SN</th>

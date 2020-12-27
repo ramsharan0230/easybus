@@ -9,22 +9,42 @@ use App\Repositories\Booking\BookingRepository;
 use App\Repositories\Bus\BusRepository;
 use App\Models\BusRequest;
 use App\Models\BookingPaymentDetails;
+use App\Repositories\nepalicalendar\nepali_date;
 use Auth;
 use Image;
 
 class VendorController extends Controller
 {
     private $user;
-    public function __construct(UserRepository $user,BookingRepository $booking,BusRepository $bus){
+    public function __construct(UserRepository $user,BookingRepository $booking,BusRepository $bus,nepali_date $calendar){
         $this->user=$user;
         $this->booking=$booking;
         $this->bus=$bus;
+        $this->calendar = $calendar;
     }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function vendorDashboard(){
+        $year_en = date("Y",time());
+        $month_en = date("m",time());
+        $day_en = date("d",time());
+        $date_ne = $this->calendar->get_nepali_date($year_en, $month_en, $day_en);
+        $check_date=$date_ne['y'].'-'.((strlen($date_ne['m']) == 2) ? $date_ne['m'] : "0".$date_ne['m']).'-'.$date_ne['d'];
+        $buses = Auth::user()->buses;
+        $routines = [];
+        foreach($buses as $bus){
+            $bus_routines = $bus->busRoutine()->where('date','>',$check_date)->get();
+            foreach($bus_routines as $routine){
+                array_push($routines,$routine);
+            }
+        }
+        
+        return view('admin.vendor.dashboard',compact('routines','check_date'));
+    }
     public function index()
     {
         $details=$this->user->orderBy('created_at','desc')->where('role','vendor')->where('publish',1)->get();
@@ -440,5 +460,19 @@ class VendorController extends Controller
     public function approvedBusLayout($id){
         $bus=$this->bus->findOrFail($id);
         return view('admin.vendor.busLayout',compact('bus'));
+    }
+    public function vendors_counter_view($id){
+        $data = $this->user->findOrFail($id);
+        
+        return view('admin.vendor.vendors_counter_view',compact('data'));
+    }
+    public function deleteAssistant($id){
+        $this->user->destroy($id);
+        return redirect()->back()->with('message','Assistant Deleted Successfully');
+    }
+    public function bookingHistory($id){
+        $bookings = $this->booking->where('vendor_id',$id)->orderBy('date','desc')->get();
+        return view('admin.vendor.bookingHistory',compact('bookings'));
+
     }
 }

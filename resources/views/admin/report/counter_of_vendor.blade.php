@@ -29,10 +29,10 @@
                                     <i class="fa fa-minus"></i></button>
                                 </div>
                             </div> -->
-                            <div class="box-body ">
-                                <table id="example1" class="table table-bordered responsive table-hover dt-responsive nowrap bulk_action" >
+                            <div class="box-body vendor-box">
+                                <table id="example1" class="table vendor-table responsive table-hover dt-responsive nowrap bulk_action" >
                                     
-                                    <thead>
+                                    <thead class="vendor-head">
                                         <tr>
                                             <th>SN</th>
                                             <th>Counter Name</th>
@@ -62,8 +62,8 @@
                                             <td>{{$detail->email}}</td>
                                             
                                             <td>
-                                                <a href="{{route('counterDetail',$detail->id)}}" class="btn btn-info"> <span class="fa fa-eye"></span> view</a>
-                                                <a href="{{route('counterTicketsIssued',$detail->id)}}" class="btn btn-warning"> <span class="fa fa-eye"></span> Ticket Issued</a>
+                                                <a href="{{route('counterDetail',$detail->id)}}" class="btn vendor-busses btn-info"> <span class="fa fa-eye"></span> view</a>
+                                                <a href="{{route('counterTicketsIssued',$detail->id)}}" class="btn vendor-busses btn-warning"> <span class="fa fa-eye"></span> Ticket Issued</a>
                                                 <!-- <div class="btn  btn-danger">
                                                     <form method= "post" action="" class="delete">
                                                         <input type="hidden" name="_method" value="DELETE">

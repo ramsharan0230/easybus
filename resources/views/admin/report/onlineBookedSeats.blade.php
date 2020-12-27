@@ -54,14 +54,14 @@
 			    </div>
 			</div>
 			<div class="box">
-				<a href="{{route('counterBookedSeats')}}" class="btn btn-success">Counter</a>
-				<a href="{{route('onlineBookedSeats')}}" class="btn btn-info">Online</a>
+				<a href="{{route('counterBookedSeats')}}" class="btn vendor-busses btn-success">Counter</a>
+				<a href="{{route('onlineBookedSeats')}}" class="btn vendor-busses btn-info">Online</a>
 				<div class="box-header">
 					<h3 class="box-title">Data Table</h3>
 				</div>
-				<div class="box-body appendData">
-					<table id="example1" class="table table-bordered table-striped">
-						<thead>
+				<div class="box-body vendor-box appendData">
+					<table id="example1" class="table vendor-table table-striped">
+						<thead class="vendor-head">
 							<tr>
 								<th>S.N.</th>
 								<th>Booked By</th>

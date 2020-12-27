@@ -51,14 +51,15 @@
                             <div class="box-body ">
                                 <form action="{{route('saveAssistant')}}" class="form form-horizontal form-responsive" method="post" enctype="multipart/form-data">
                                 	{{csrf_field()}}
-                                    <div class="row equal_height form-group">
+                                    <div class="row equal_height all-table-manage form-group">
                                         <div class="col-lg-12 col-sm-12 col-xs-12 m_b20">  
                                             <input type="text" name="name" id="full_name" class="form-control" placeholder="Assestant Full Name">
                                         </div>
                                         <div class="col-lg-12 col-sm-12 col-xs-12 m_b20">
                                             <div class="input-group">
                                                 <div class="input-group-addon">
-                                                    <i class="fa fa-phone"></i>
+                                                    <!-- <i class="fa fa-phone"></i> -->
+                                                    Phone
                                                 </div>
                                                 <input type="text" name="phone" id="phone" class="form-control" data-inputmask='"mask": "(999) 999-9999"' data-mask='"mask": "(999) 999-9999"'  placeholder="Contact No">
                                             </div>
@@ -66,7 +67,9 @@
                                         <div class="col-lg-12 col-sm-12 col-xs-12 m_b20">
                                             <div class="input-group">
                                                 <div class="input-group-addon">
-                                                    <i class="fa fa-street-view"></i>
+                                                    <!-- <i class="fa fa-street-view"></i> -->
+                                                    Address
+
                                                 </div>
                                                 <input type="text" name="address" id="address" class="form-control" placeholder="Address">
                                             </div>
@@ -134,7 +137,8 @@
                                         <div class="col-lg-12 col-sm-12 col-xs-12 m_b20">
                                             <div class="input-group">
                                                 <div class="input-group-addon">
-                                                    <i class="fa fa-key"></i>
+                                                    <!-- <i class="fa fa-key"></i> -->
+                                                    Password
                                                 </div>
                                                 <input type="password" id="password" name="password" class="form-control" placeholder="Password">
                                             </div>
@@ -142,7 +146,8 @@
                                         <div class="col-lg-12 col-sm-12 col-xs-12 m_b20">
                                             <div class="input-group">
                                                 <div class="input-group-addon">
-                                                    <i class="fa fa-key"></i>
+                                                    <!-- <i class="fa fa-key"></i> -->
+                                                    Re-type Password
                                                 </div>
                                                 <input type="password" class="form-control" id="re_password" name="password_confirmation" placeholder="Password">
                                             </div>

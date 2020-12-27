@@ -133,6 +133,7 @@
     
     $("#example1").DataTable({
         "pageLength": 100
+       
     });
     $(".bod-picker").nepaliDatePicker({
         dateFormat: "%y-%m-%d",

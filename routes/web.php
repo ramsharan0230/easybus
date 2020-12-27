@@ -100,7 +100,7 @@ Route::group(['namespace'=>'Admin','middleware'=>['auth'],'prefix'=>'admin'],fun
 	//vendor
 	Route::resource('vendor','VendorController');
 	Route::group(['middleware'=>['Vendor']],function(){
-		
+		Route::get('vendor-dashboard','VendorController@vendorDashboard')->name('vendorDashboard');
 		Route::get('edit-vendor-info','VendorController@editVendorInfo')->name('editVendorInfo');
 		Route::post('update-vendor-info','VendorController@updateVendorInfo')->name('updateVendorInfo');
 		Route::get('edit-personal-info','VendorController@editPersonalInfo')->name('editPersonalInfo');
@@ -108,8 +108,10 @@ Route::group(['namespace'=>'Admin','middleware'=>['auth'],'prefix'=>'admin'],fun
 		Route::post('accept-request','VendorController@acceptRequest')->name('acceptRequest');
 		Route::post('change-seat-name','BusController@changeSeatName')->name('changeSeatName');
 		Route::get('bus-booking-detail/{id}','BusController@bookingDetail')->name('busBookingDetail');
+		Route::get('booking-detail-by-date/{id}','BusController@bookingDetailByDate')->name('bookingDetailByDate');
 		Route::get('approved-bus/{id}','VendorController@approvedBus')->name('approvedBus');
 		Route::get('request-sender-view/{id}','VendorController@requestSenderView')->name('requestSenderView');
+		Route::get('vendor-booking-history/{id}','VendorController@bookingHistory')->name('vendorBookingHistory');
 		
 		
 		Route::resource('bus','BusController');
@@ -135,6 +137,7 @@ Route::group(['namespace'=>'Admin','middleware'=>['auth'],'prefix'=>'admin'],fun
 		Route::get('add-assistant','VendorController@addAssistant')->name('addAssistant');
 		Route::post('save-assistant','VendorController@saveAssistant')->name('saveAssistant');
 		Route::get('vendor-assistant','VendorController@allAssistant')->name('allAssistant');
+		Route::delete('delete-assistant/{id}','VendorController@deleteAssistant')->name('deleteAssistant');
 		Route::get('edit-assistant/{id}','VendorController@editAssistant')->name('editAssistant');
 		Route::post('update-assistant/{id}','VendorController@updateAssistant')->name('updateAssistant');
 		Route::get('assistant-detail/{id}','VendorController@assistantDetail')->name('assistantDetail');
@@ -146,6 +149,10 @@ Route::group(['namespace'=>'Admin','middleware'=>['auth'],'prefix'=>'admin'],fun
 	
 	//counter
 	Route::group(['middleware'=>['Counter']],function(){
+		Route::get('counter-dashboard','CounterController@counterDashboard')->name('counterDashboard');
+		Route::get('passenger-list-by-bus/{id}','CounterController@passengerListByBus')->name('passengerListByBus');
+		Route::get('booking-history-by-bus/{id}','CounterController@bookingHistoryByBus')->name('bookinghistoryByBus');
+		Route::get('booked-view/{id}','CounterController@bookedView')->name('bookedView');
 		Route::get('bookSeat','CounterController@bookSeat')->name('bookSeat');
 		Route::get('counterBusSearch','CounterController@counterBusSearch')->name('counterBusSearch');
 		Route::post('counterSelectBusByCategory','CounterController@counterSelectBusByCategory')->name('counterSelectBusByCategory');

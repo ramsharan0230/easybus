@@ -20,6 +20,7 @@ use App\Models\BookingPaymentDetails;
 use Auth;
 use Image;
 use Session;
+use DB;
 
 class CounterController extends Controller
 {
@@ -33,6 +34,16 @@ class CounterController extends Controller
         $this->busroutine=$busroutine;
         
 	}
+    public function counterDashboard(){
+        $allBuses=Auth::user()->counter_bus()->where('acceptance_status',1)->where('reject_status',0)->get();
+        
+        $year_en = date("Y",time());
+        $month_en = date("m",time());
+        $day_en = date("d",time());
+        $date_ne = $this->calendar->get_nepali_date($year_en, $month_en, $day_en);
+        $check_date=$date_ne['y'].'-'.((strlen($date_ne['m']) == 2) ? $date_ne['m'] : "0".$date_ne['m']).'-'.$date_ne['d'];
+        return view('admin.counter.dashboard',compact('allBuses','check_date'));
+    }
     public function busSearchView(){
         
     	$destinations=$this->destination->get();
@@ -122,8 +133,18 @@ class CounterController extends Controller
     }
     public function busList(){
         $allBuses=Auth::user()->counter_bus()->where('acceptance_status',1)->where('reject_status',0)->get();
+
         
         return view('admin.counter.allBusList',compact('allBuses'));
+    }
+    public function bookedView($id){
+        $bus=$this->bus->findOrFail($id);
+        $year_en = date("Y",time());
+        $month_en = date("m",time());
+        $day_en = date("d",time());
+        $date_ne = $this->calendar->get_nepali_date($year_en, $month_en, $day_en);
+        $check_date=$date_ne['y'].'-'.((strlen($date_ne['m']) == 2) ? $date_ne['m'] : "0".$date_ne['m']).'-'.$date_ne['d'];
+        return view('admin.counter.bookedView',compact('bus','check_date'));
     }
     public function pendingBusList(){
         $allBuses=Auth::user()->counter_bus()->where('acceptance_status',0)->get();
@@ -325,13 +346,13 @@ class CounterController extends Controller
         $todaysNepaliDate=$nepali_date['y'].'-'.((strlen($nepali_date['m']) == 2) ? $nepali_date['m'] : "0".$nepali_date['m']).'-'.((strlen($nepali_date['d']) == 2) ? $nepali_date['d'] : "0".$nepali_date['d']);
         $this->validate($request,['name'=>'required','phone'=>'required','pickup_station'=>'required','drop_station'=>'required']);
         
-
+        DB::beginTransaction();
         $id=Session::get('id');
         $routine=$this->busroutine->find($id);
         $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyz';
         $randomNumber=substr(str_shuffle($permitted_chars), 0, 10);
         $sub_destination=Session::get('sub_destination');
-                
+        
         $check_routine_id='';
         $sub_destination_price='';
         $sub_destination_name='';
@@ -386,6 +407,7 @@ class CounterController extends Controller
                                 $data['price']=$routine->price;
                                 $data['sub_destination']=null;
                                 $data['online_payment']=0;
+                                $data['drop_station']=$request->drop_station;
                                 if($sub_destination_price){
 
                                     if($check_routine_id==$id){
@@ -418,7 +440,7 @@ class CounterController extends Controller
                         	    $data['routine_id']=$routine->id;
                                 $data['vendor_id']=$routine->bus->user->id;
                         	    // dd($data['date']);
-                                
+                                //dd($data);
                         	    $result=$this->booking->create($data);
                                 $payment['booking_id']=$result->id;
                                 $payment['vendor_id']=$result->vendor_id;
@@ -440,42 +462,49 @@ class CounterController extends Controller
                      
                  }
             }
-            if($seat_name){
-                $response=$this->sendSmsAfterBooking($randomNumber,$seat_name);
-                if($response){
-                    if($response->response_code==200){
-                        session()->forget('date');
-                        session()->forget('id');
-                        session()->forget('jointable');
-                        return redirect()->route('counterBusSearch')->with('message','seat booked successfully');
-                    }else{
-                        $booking=$this->booking->where('token',$randomNumber)->first();
-                        $this->booking->destroy($booking->id);
-                        session()->forget('date');
-                        session()->forget('id');
-                        session()->forget('jointable');
-                        return redirect()->route('counterBusSearch')->with('message','something went wrong');
-                    }
-                }else{
-                    $booking=$this->booking->where('token',$randomNumber)->first();
-                    $this->booking->destroy($booking->id);
-                    session()->forget('date');
-                    session()->forget('id');
-                    session()->forget('jointable');
-                    return redirect()->route('counterBusSearch')->with('message','something went wrong');
-                }
+            // if($seat_name){
+            //     $response=$this->sendSmsAfterBooking($randomNumber,$seat_name);
+            //     if($response){
+            //         if($response->response_code==200){
+            //             session()->forget('date');
+            //             session()->forget('id');
+            //             session()->forget('jointable');
+            //             DB::commit();
+            //             return redirect()->route('counterBusSearch')->with('message','seat booked successfully');
+            //         }else{
+            //             $booking=$this->booking->where('token',$randomNumber)->first();
+            //             $this->booking->destroy($booking->id);
+            //             session()->forget('date');
+            //             session()->forget('id');
+            //             session()->forget('jointable');
+            //             DB::commit();
+            //             return redirect()->route('counterBusSearch')->with('message','something went wrong');
+            //         }
+            //     }else{
+            //         $booking=$this->booking->where('token',$randomNumber)->first();
+            //         $this->booking->destroy($booking->id);
+            //         session()->forget('date');
+            //         session()->forget('id');
+            //         session()->forget('jointable');
+            //         DB::commit();
+            //         return redirect()->route('counterBusSearch')->with('message','something went wrong');
+            //     }
                 
 
-            }
+            // }
             
             session()->forget('date');
             session()->forget('id');
             session()->forget('jointable');
+            session::forget('sub_destination');
+            DB::commit();
             return redirect()->route('counterBusSearch')->with('message','seat booked successfully');
         }else{
             session()->forget('date');
             session()->forget('id');
             session()->forget('jointable');
+            session()->forget('sub_destination');
+            DB::commit();
             return redirect()->route('counterBusSearch')->with('message','Something went wrong');
         } 
         // $value=Session::get('jointable');
@@ -545,7 +574,8 @@ class CounterController extends Controller
             session()->put('check_date',$request->date); 
             session()->put('from',$request->from); 
             session()->put('to',$request->to); 
-            session()->put('shift',$request->shift);  
+            session()->put('shift',$request->shift); 
+            session()->forget('sub_destination'); 
             $session_date_set=session()->get('check_date');
             if($session_date_set!=null){
                 // dd($request->shift);
@@ -610,7 +640,12 @@ class CounterController extends Controller
     }
     public function vendorBuses($id){
         $buses=$this->bus->where('user_id',$id)->get();
-        return view('admin.counter.vendorBuses',compact('buses'));
+        $year_en = date("Y",time());
+        $month_en = date("m",time());
+        $day_en = date("d",time());
+        $date_ne = $this->calendar->get_nepali_date($year_en, $month_en, $day_en);
+        $check_date=$date_ne['y'].'-'.((strlen($date_ne['m']) == 2) ? $date_ne['m'] : "0".$date_ne['m']).'-'.$date_ne['d'];
+        return view('admin.counter.vendorBuses',compact('buses','check_date'));
     }
     public function paidBookings(){
         
@@ -662,6 +697,24 @@ class CounterController extends Controller
         $vendors=$this->user->orderBy('created_at','desc')->where('role','vendor')->where('publish',1)->get();
         
         return view('admin.counter.bookingToVendors',compact('paymentDetails','from','to','searchedVendor','total','payment_status','id'));
+    }
+    public function bookingHistoryByBus($id){
+        $bus = $this->bus->findOrFail($id);
+        $counter = Auth::user()->id;
+        
+        $bookings = $bus->busBooking()->where('counter_id',$counter)->get();
+        return view('admin.counter.bookingByBus',compact('bookings','bus'));
+    }
+    public function passengerListByBus($id){
+        $bus = $this->bus->findOrFail($id);
+        $year_en = date("Y",time());
+        $month_en = date("m",time());
+        $day_en = date("d",time());
+        $date_ne = $this->calendar->get_nepali_date($year_en, $month_en, $day_en);
+        $check_date=$date_ne['y'].'-'.((strlen($date_ne['m']) == 2) ? $date_ne['m'] : "0".$date_ne['m']).'-'.$date_ne['d'];
+        $bookings = $bus->busBooking()->where('date',$check_date)->get();
+        
+        return view('admin.counter.passengerListByBus',compact('check_date','bookings','bus'));
     }
 }
 

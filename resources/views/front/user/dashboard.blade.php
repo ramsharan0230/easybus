@@ -1,11 +1,12 @@
 @extends('layouts.front')
 @section('content')
-<section class="">
-	<div class="container p_tb40 user_dash">
+<section class="user-dashboard-wrapp">
+	<div class="container user_dash">
 		<div class="row">
 			<div class="col-lg-12 col-md-12 col-sm-12 ">
-				<div class="height_manage box_shadow">
+				<div class="height_manage user-dash-page box_shadow">
 					<div class="row">
+						<?php /*
 						<div class="col-lg-12">
 			  				<div class="row form-group">
 			  					<label class="col-lg-12 col-sm-12 ">
@@ -15,17 +16,20 @@
 			  						<!-- <a href="edit_profile.php" class="btn btn-info btn-sm border_radius0 float-right"><i class="fa fa-edit"></i> edit profile</a> -->
 			  					</label>
 			  				</div>
-			  			</div>
+						  </div>
+						  */?>
+
 					  	<div class="col-lg-2 col-sm-12">
 						    @include('front.include.sidemenu')
 					  	</div>
 					  	<div class="col-lg-9 col-sm-12">
-					  		
-					  		<div class="row">
-					  			<div class="col-12">
-					  				
+					  		<div class="padding-manager">
+							  	<div class="row">
+									<div class="col-12">
+										
+									</div>
 					  			</div>
-					  		</div>
+							</div>
 					  	</div>
 					</div>
 				</div>

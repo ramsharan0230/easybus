@@ -36,7 +36,7 @@
                                     <thead class="vendor-head">
                                         <tr>
                                             <th>Vendor Name</th>
-                                            <th>Owner Name</th>
+                                            <th>Vendor Address</th>
                                             <th>Contact Number.</th>
                                             <th style="width:20%;">Action</th>
 

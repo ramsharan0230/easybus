@@ -1,5 +1,5 @@
-<table id="example1" class="table table-bordered table-striped">
-                        <thead>
+<table id="example1" class="table vendor-table table-striped">
+                        <thead class="vendor-head">
                             <tr>
                                 <th>S.N.</th>
                                 <th>Booked By</th>

@@ -1,6 +1,18 @@
 @extends('layouts.admin')
 @section('title','Counter Detail')
 @section('content')
+
+<style>
+
+label.font_25 {
+
+    margin-bottom:30px;
+    text-align:left;
+    font-weight:600;
+}
+
+
+</style>
 <!-- Content Header (Page header) -->
             <section class="content-header">
                 <h1>Counter<small>EASYBUS</small></h1>
@@ -34,24 +46,103 @@
                                     <a href="{{route('adminCounter')}}" class="btn btn-success">All Counters</a>
                                 </div>
                             </div>
-                            <div class="box-body ">
+                            <div class="box-body vendor-box">
                                 
-                                <!-- <div class="row">
-                                    <div class="col-lg-12 col-sm-12 col-xs-12 m_b20">
-                                        <div class="box-tools pull-right">
-                                            <a href="add-vendor.php" class="btn btn-primary">Edit Vendor</a>
-                                        </div>
-                                    </div>
-                                </div> -->
-
-
+                    
                                 <div class="row equal_height">
-                                    <div class="col-lg-4 col-md-4 col-sm-3 col-xs-12 m_b20">
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 m_b20">
                                         <img src="{{asset('document/'.$data->passport_image)}}" alt="" class="vendor_image"><br>
 
                                         <label class="text-center  m_t20 font_25">{{$data->name}}</label>
+                                        <div class="row equal_height form-group counter-detail-wrapper"> 
+                                            <div class="col-lg-12 col-sm-12 m_b20">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <!-- <i class="fa fa-user"></i> -->
+                                                        Name
+                                                    </div>
+                                                    <input type="text" name="full_name" id="full_name" class="form-control" value="{{$data->name}}" readonly="">
+                                                </div>
+                                            </div>
+
+                                            <div class="col-lg-12 col-sm-12 m_b20">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <!-- <i class="fa fa-phone"></i> -->
+                                                        Phone
+                                                    </div>
+                                                    <input type="text" name="company_phone" id="phone" class="form-control" data-inputmask='"mask": "(999) 999-9999"' data-mask='"mask": "(999) 999-9999"'  placeholder="Contact No" value="{{$data->phone}}" readonly="">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12 col-sm-12 m_b20">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        Pan No
+                                                    </div>
+                                                    <input type="text" name="company_phone" id="phone" class="form-control" data-inputmask='"mask": "(999) 999-9999"' data-mask='"mask": "(999) 999-9999"'  placeholder="Contact No" value="{{$data->pan}}" readonly="">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12 col-sm-12 m_b20">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        Company Reg No
+                                                    </div>
+                                                    <input type="text" name="company_phone" id="phone" class="form-control" data-inputmask='"mask": "(999) 999-9999"' data-mask='"mask": "(999) 999-9999"'  placeholder="Contact No" value="{{$data->company_reg_no}}" readonly="">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12 col-sm-12 m_b20">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        Company Phone
+                                                    </div>
+                                                    <input type="text" name="company_phone" id="phone" class="form-control" data-inputmask='"mask": "(999) 999-9999"' data-mask='"mask": "(999) 999-9999"'  placeholder="Contact No" value="{{$data->company_phone}}" readonly="">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12 col-sm-12 m_b20">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        Company Address
+                                                    </div>
+                                                    <input type="text" name="company_phone" id="phone" class="form-control" data-inputmask='"mask": "(999) 999-9999"' data-mask='"mask": "(999) 999-9999"'  placeholder="Contact No" value="{{$data->address}}" readonly="">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12 col-sm-12 m_b20">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        Father's name
+                                                    </div>
+                                                    <input type="text" name="father_name" id="phone" class="form-control" data-inputmask='"mask": "(999) 999-9999"' data-mask='"mask": "(999) 999-9999"'  placeholder="Contact No" value="{{$data->father_name}}" readonly="">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12 col-sm-12 m_b20">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        Mother's name
+                                                    </div>
+                                                    <input type="text" name="company_phone" id="phone" class="form-control" data-inputmask='"mask": "(999) 999-9999"' data-mask='"mask": "(999) 999-9999"'  placeholder="Contact No" value="{{$data->mother_name}}" readonly="">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12 col-sm-12 m_b20">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        Citizenship No
+                                                    </div>
+                                                    <input type="text" name="citizen_no" id="phone" class="form-control" data-inputmask='"mask": "(999) 999-9999"' data-mask='"mask": "(999) 999-9999"'  placeholder="Contact No" value="{{$data->citizen_no}}" readonly="">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-12 col-sm-12 m_b20">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        <!-- <i class="fa fa-at"></i> -->
+                                                        Email
+                                                       </div>
+                                                    <input type="email" name="email" id="email" class="form-control" placeholder="Email Address" value="{{$data->email}}" readonly="">
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                                    <?php /*
                                         <div class="row equal_height form-group"> 
                                             <div class="col-lg-6 col-sm-6 m_b20">
                                                 <div class="input-group">
@@ -175,6 +266,9 @@
                                                 </div>
                                             </div> -->
                                         </div>
+
+                                        */?>
+
                                         <div class="row">
                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 m_b20">
                                                 <label class="font_25">Pan Image</label>

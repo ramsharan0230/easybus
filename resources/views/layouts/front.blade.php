@@ -132,7 +132,7 @@
 							<div class="input-group mb-3">
 								<input type="text" name="email" class="form-control  border_radius0" placeholder="username or Email Address" value="">
 								<div class="input-group-prepend">
-							    	<span class="input-group-text" id="basic-addon1"><i class="fa fa-user"></i></span>
+							    	<!-- <span class="input-group-text" id="basic-addon1"><i class="fa fa-user"></i></span> -->
 							  	</div>
 							</div>
 						</div>
@@ -142,7 +142,7 @@
 							<div class="input-group mb-3">
 								<input type="password" name="password" class="form-control  border_radius0" placeholder="Password" value="">
 								<div class="input-group-prepend">
-							    	<span class="input-group-text" id="basic-addon1"><i class="fa fa-key"></i></span>
+							    	<!-- <span class="input-group-text" id="basic-addon1"><i class="fa fa-key"></i></span> -->
 							  	</div>
 							</div>
 						</div>

@@ -54,7 +54,8 @@
                                             <td>
                                                 <a href="{{route('editAssistant',$assistant->id)}}" class="btn vendor-busses"> <span class="fa fa-edit"></span> edit</a>
                                                 <div class="btn vendor-busses">
-                                                    <form method= "post" action="" class="delete">
+                                                    <form method= "post" action="{{route('deleteAssistant',$assistant->id)}}" class="delete">
+                                                        {{csrf_field()}}
                                                         <input type="hidden" name="_method" value="DELETE">
                                                         <button type="submit" class="btn-delete" style="display:inline"><span class="fa fa-trash"></span> Delete</button>
                                                     </form>

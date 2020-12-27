@@ -9,16 +9,20 @@ use App\Repositories\Destination\DestinationRepository;
 use App\Repositories\User\UserRepository;
 use App\Repositories\BusCategory\BusCategoryRepository;
 use App\Repositories\Booking\BookingRepository;
+use App\Repositories\BusRoutine\BusRoutineRepository;
+use App\Repositories\nepalicalendar\nepali_date;
 use Image;
 use Auth;
 
 class BusController extends Controller
 {
-    public function __construct(BusRepository $bus,DestinationRepository $destination,BusCategoryRepository $category,BookingRepository $booking){
+    public function __construct(BusRepository $bus,DestinationRepository $destination,BusCategoryRepository $category,BookingRepository $booking,nepali_date $calendar,BusRoutineRepository $routine){
         $this->bus=$bus;
         $this->destination=$destination;    
         $this->category=$category;
         $this->booking=$booking;
+        $this->calendar = $calendar;
+        $this->routine = $routine;
     }
     /**
      * Display a listing of the resource.
@@ -28,9 +32,14 @@ class BusController extends Controller
     public function index()
     {
         $user=Auth::user();
+        $year_en = date("Y",time());
+        $month_en = date("m",time());
+        $day_en = date("d",time());
+        $date_ne = $this->calendar->get_nepali_date($year_en, $month_en, $day_en);
+        $check_date=$date_ne['y'].'-'.((strlen($date_ne['m']) == 2) ? $date_ne['m'] : "0".$date_ne['m']).'-'.$date_ne['d'];
         $details=$this->bus->orderBy('created_at','desc')->where('user_id',$user->id)->get();
         
-        return view('admin.bus.list',compact('details'));
+        return view('admin.bus.list',compact('details','check_date'));
     }
 
     /**
@@ -211,9 +220,34 @@ class BusController extends Controller
         return view('admin.vendor.rejectedBusList',compact('bus_request'));
     }
     public function bookingDetail($id){
+        $year_en = date("Y",time());
+        $month_en = date("m",time());
+        $day_en = date("d",time());
+        $date_ne = $this->calendar->get_nepali_date($year_en, $month_en, $day_en);
+        $check_date=$date_ne['y'].'-'.((strlen($date_ne['m']) == 2) ? $date_ne['m'] : "0".$date_ne['m']).'-'.$date_ne['d'];
+        $bookings=$this->booking->where('bus_id',$id)->where('date',$check_date)->orderBy('date','desc')->get();
+        
+        if($bookings){
+            $booked = $bookings->count();
+            // dd($booking);
+        }else{
+            $booked = 0;
+        }   
 
-        $bookings=$this->booking->where('bus_id',$id)->orderBy('date','desc')->get();
+        if($bus_seat = $this->bus->find($id)->busseat){
+            $available = count($bus_seat)-$booked;
+        }else{
+            $available = 0;
+        }
 
-        return view('admin.bus.bookingDetail',compact('bookings'));
+        
+
+        return view('admin.bus.bookingDetail',compact('bookings','booked','available'));
+    }
+    public function bookingDetailByDate($id){
+        $routine = $this->routine->findOrFail($id);
+        $bookings = $this->booking->where('bus_id',$routine->bus_id)->where('date',$routine->date)->get();
+        return view('admin.vendor.bookingDetailByDate',compact('bookings'));
+
     }
 }

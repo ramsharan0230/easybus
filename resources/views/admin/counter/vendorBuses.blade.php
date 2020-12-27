@@ -40,24 +40,45 @@
                                             <th>SN</th>
                                             <th><span class="fa fa-bus"></span> Bus Name</th>
                                             <th><i class="fa fa-calendar"></i> Bus No.:</th>
+                                            <th>Bus Type</th>
+                                            <th>Seats Availability</th>
                                             <!-- <th><span class="fa fa-street-view"></span> Bus Station </th> -->
                                            
                                             <th><i class="fa fa-bus"></i> Bus Layout</th>
-                                            <th><i class="fa fa-user-circle"></i> Assestant 1</th>
-                                            <th><i class="fa fa-user"></i> Assestant 2</th>
+                                            <th><i class="fa fa-user-circle"></i> Assistants</th>
+                                            <th><i class="fa fa-user-circle"></i> Passenger List</th>
+                                            <th><i class="fa fa-user-circle"></i> History</th>
+                                            
                                         </tr>
                                     </thead>
                                     <tbody class="text-uppercase">
                                         @php($i=1)
                                         @foreach($buses as $bus)
+                                        <?php
+
+                                        if($bus->busBooking){
+                                            $booked=count($bus->busBooking()->where('date',$check_date)->get());
+                                        }else{
+                                            $booked=0;
+                                        }
+                                        if($bus->busseat){
+                                            $available=count($bus->busseat)-$booked;
+                                        }else{
+                                            $available=0;
+                                        }
+                                        
+                                        ?>
                                         <tr >
                                             <td>1.</td>
                                             <td>{{$bus->bus_name}}</td>
                                            
                                             <td>{{$bus->bus_number}}</td>
                                            
-                                            
-                                           
+                                            <td>{{$bus->busCategory->name}}</td>
+                                            <td>
+                                                Booked:{{$booked}}<br>
+                                                Available:{{$available}}
+                                            </td>
                                             <td>
                                                 <a href="{{route('busView',$bus->id)}}" class="btn vendor-busses"> <span class="fa fa-bus"></span> Bus Layout</a>
                                                 <!-- <div class="btn  btn-danger">
@@ -69,16 +90,20 @@
                                             </td>
                                             <td>
                                                 @if($bus->driver)
+                                                <u>Driver</u>
                                                 {{$bus->driver->name}} <br>
-                                                {{$bus->driver->phone}}
+                                                {{$bus->driver->phone}}<br>
+
                                                 @endif
-                                            </td>
-                                            <td>
                                                 @if($bus->conductor)
+                                                <u>Conductor</u>
                                                 {{$bus->conductor->name}} <br>
-                                                {{$bus->conductor->phone}}
+                                                {{$bus->conductor->phone}}<br>
                                                 @endif
                                             </td>
+                                            <td><a href="{{route('passengerListByBus',$bus->id)}}" class="btn btn-info">Passenger List</a></td>
+                                            <td><a href="{{route('bookinghistoryByBus',$bus->id)}}" class="btn btn-warning">History</a></td>
+                                            
                                             
                                             
                                         </tr>

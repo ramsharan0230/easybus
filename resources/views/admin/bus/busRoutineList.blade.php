@@ -61,12 +61,12 @@
 
 				            	?>
 				            	@if(count($bookings)==0)
-				            	<a class="btn btn-info edit" href="{{route('editBusRoutine',$detail->id)}}" title="Edit">Edit</a>
+				            	<a class="btn vendor-busses btn-info edit" href="{{route('editBusRoutine',$detail->id)}}" title="Edit">Edit</a>
 								@endif
 								@if(count($bookings)==0)
-				            	<a class="btn btn-danger" href="{{route('deleteRoutine',$detail->id)}}" title="Edit" onclick="return confirm('Are you sure?')">Delete</a>
+				            	<a class="btn vendor-busses btn-danger" href="{{route('deleteRoutine',$detail->id)}}" title="Edit" onclick="return confirm('Are you sure?')">Delete</a>
 				            	@endif
-				            	<a class="btn btn-warning" href="{{route('smsView',$detail->id)}}" title="Edit" >SendSms</a>
+				            	<a class="btn vendor-busses btn-warning" href="{{route('smsView',$detail->id)}}" title="Edit" >SendSms</a>
 				            	
                				   
 				            </td>

@@ -61,7 +61,7 @@
                                                     {{csrf_field()}}
                                                     <input type="hidden" name="id" value="{{$user->id}}">
                                                     
-                                                        <button type="submit" class="btn-delete vendor-busses" style="display:inline" ><span class="fa fa-check"></span> Approve</button>
+                                                        <button type="submit" class="btn-delete " style="display:inline" ><span class="fa fa-check"></span> Approve</button>
                                                     </form>
 
                                                    

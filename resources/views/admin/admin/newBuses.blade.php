@@ -26,9 +26,9 @@
 				<div class="box-header">
 					<h3 class="box-title">Data Table</h3>
 				</div>
-				<div class="box-body">
-					<table id="example1" class="table table-bordered table-striped">
-						<thead>
+				<div class="box-body vendor-box">
+					<table id="example1" class="table vendor-table table-striped">
+						<thead class="vendor-head">
 							<tr>
 								<th>S.N.</th>
 								<th>Bus No</th>
@@ -54,11 +54,11 @@
 
 				            <td>{{$detail->bus_name}}</td>
 				            <td>{{$detail->status}}</td>
-				            <td><a class="btn btn-warning edit" href="{{route('busDetail',$detail->id)}}" title="Edit">Bus Layout</a></td>
+				            <td><a class="btn vendor-busses btn-warning edit" href="{{route('busDetail',$detail->id)}}" title="Edit">Bus Layout</a></td>
 				            <!-- <td>{{$detail->publish==1? 'active':'inactive'}}</td> -->
 				            <td>
-				            	<a class="btn btn-info edit" href="{{route('approveBus',$detail->id)}}" title="Edit">Approve</a>
-				            	<a class="btn btn-danger edit" href="{{route('rejectBus',$detail->id)}}" title="Edit">Reject</a>
+				            	<a class="btn vendor-busses btn-info edit" href="{{route('approveBus',$detail->id)}}" title="Edit">Approve</a>
+				            	<a class="btn vendor-busses btn-danger edit" href="{{route('rejectBus',$detail->id)}}" title="Edit">Reject</a>
 				            	
 				            	
 				            </td>

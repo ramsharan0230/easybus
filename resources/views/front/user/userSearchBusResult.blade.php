@@ -1,6 +1,6 @@
 @extends('layouts.front')
 @section('content')
-<section class="">
+<section class="user-bus-search">
  
 	<div class="container p_tb40 user_dash">
 		<div class="row">
@@ -76,8 +76,8 @@
 					  	<div class="col-lg-12 col-md-12 col-12 text-capitalize ">
 					  		<div class="row">
 					  			<div class="col-lg-12 col-md-12 col-12 p_tb40">
-									<div class="category-list-wrapper">
-										<ul class="category_option">
+									<div class="category-list-wrapper usersearch-wrapp">
+										<ul class="category_option bus-search-cate">
 											@foreach($busCategories as $category)
 											<li>
 												<button class="btn category_button bus_category" data-id={{$category->id}}>{{$category->name}}</button>

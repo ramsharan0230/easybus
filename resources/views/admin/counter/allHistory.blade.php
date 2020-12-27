@@ -30,7 +30,7 @@
                                     <thead class="vendor-head">
                                         <tr>
                                             <th>Sn</th>
-                                            <th>Booking No.:</th>
+                                            <th>Seat No.:</th>
                                             <th>
                                                 <span class="fa fa-user"></span> Passenger Name & No.
                                             </th>
@@ -58,9 +58,10 @@
                                     <tbody class="text-uppercase">
                                         @php($i=1)
                                         @foreach($bookings as $booking)
+                                        
                                         <tr >
                                             <td>{{$i}}</td>
-                                            <td>{{$booking->book_no}}</td>
+                                            <td>{{$booking->seat->seat_name}}</td>
                                             <td>{{$booking->name}} <br> 
                                                 <small>{{$booking->phone}}</small></td>
                                             <td>{{$booking->bus->bus_number}}</td>

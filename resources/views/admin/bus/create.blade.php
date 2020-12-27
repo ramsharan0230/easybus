@@ -58,7 +58,8 @@
                                     <div class="col-lg-6 col-sm-6 col-xs-12 m_b20">
                                         <div class="input-group">
                                             <div class="input-group-addon">
-                                                <i class="fa fa-calendar"></i>
+                                                <!-- <i class="fa fa-calendar"></i> -->
+                                                Bus No.
                                             </div>
                                             <input type="text" name="bus_number" id="bus_no" class="form-control"   placeholder="Example: BA 1 KH 1020"  value="{{old('bus_number')}}">
                                         </div>
@@ -66,7 +67,8 @@
                                     <div class="col-lg-6 col-sm-6 col-xs-12 m_b20">
                                         <div class="input-group">
                                             <div class="input-group-addon">
-                                                <i class="fa fa-bus"></i>
+                                                <!-- <i class="fa fa-bus"></i> -->
+                                                Bus Name
                                             </div>
                                             <input type="text" name="bus_name" id="bus_name" class="form-control"   placeholder="Bus Name" value="{{old('bus_name')}}">
                                         </div>
@@ -75,7 +77,8 @@
                                     <div class="col-lg-6 col-sm-6 col-xs-12 m_b20">
                                         <div class="input-group">
                                             <div class="input-group-addon">
-                                                <i class="fa fa-users"></i>
+                                                <!-- <i class="fa fa-users"></i> -->
+                                                Seat Limit
                                             </div>
                                             <input type="number" id="seat_limit" name="seat_limit" class="form-control" placeholder="Seat Limit EX. 23" value="{{old('seat_limit')}}">
                                         </div>
@@ -83,7 +86,8 @@
                                     <div class="col-lg-6 col-sm-6 col-xs-12 m_b20">
                                         <div class="input-group">
                                             <div class="input-group-addon">
-                                                <i class="fa fa-calendar"></i>
+                                                <!-- <i class="fa fa-calendar"></i> -->
+                                                Made Year
                                             </div>
                                             <input type="text" id="made_year" name="made_year" class="form-control" placeholder="Made Year" value="{{old('made_year')}}">
                                         </div>
@@ -91,7 +95,8 @@
                                     <div class="col-lg-6 col-sm-6 col-xs-12 m_b20">
                                         <div class="input-group">
                                             <div class="input-group-addon">
-                                                <i class="fa fa-cogs"></i>
+                                                <!-- <i class="fa fa-cogs"></i> -->
+                                                Manufracturer
                                             </div>
                                             <input type="text" id="company" name="manufacturer" class="form-control" placeholder="Manufracturer" value="{{old('manufacturer')}}">
                                         </div>
@@ -100,7 +105,7 @@
                                         <div class="input-group">
                                             <div class="input-group-addon">
                                                 <!-- <i class="fa fa-users"></i> -->
-                                                MODEL
+                                                Model
                                             </div>
                                             <input type="text" id="model" name="model" class="form-control" placeholder="Model" value="{{old('model')}}">
                                         </div>
@@ -132,7 +137,8 @@
                                     <div class="col-lg-6 col-sm-6 col-xs-12 m_b20">
                                         <div class="input-group">
                                             <div class="input-group-addon">
-                                                <i class="fa fa-user"></i>
+                                                <!-- <i class="fa fa-user"></i> -->
+                                                Driver
                                             </div>
                                             <select class="form-control" name="assistant_1">
                                                 <option value="">Select Driver</option>
@@ -146,7 +152,8 @@
                                     <div class="col-lg-6 col-sm-6 col-xs-12 m_b20">
                                         <div class="input-group">
                                             <div class="input-group-addon">
-                                                <i class="fa fa-calendar"></i>
+                                                <!-- <i class="fa fa-calendar"></i> -->
+                                                Driver No.
                                             </div>
                                             <input type="text" name="assistant_one_phone" id="driver_name" class="form-control" placeholder="Driver mobile no" value="{{old('assistant_one_phone')}}">
                                         </div>
@@ -154,7 +161,8 @@
                                     <div class="col-lg-6 col-sm-6 col-xs-12 m_b20">
                                         <div class="input-group">
                                             <div class="input-group-addon">
-                                                <i class="fa fa-user"></i>
+                                                <!-- <i class="fa fa-user"></i> -->
+                                                Conductor
                                             </div>
                                             <select class="form-control" name="assistant_2">
                                                 <option value="">Select Conductor</option>
@@ -168,7 +176,8 @@
                                     <div class="col-lg-6 col-sm-6 col-xs-12 m_b20">
                                         <div class="input-group">
                                             <div class="input-group-addon">
-                                                <i class="fa fa-user"></i>
+                                                <!-- <i class="fa fa-user"></i> -->
+                                                Conductor No.
                                             </div>
                                             <input type="text" id="conductor_phone" name="assistant_two_phone" class="form-control" placeholder="Conductor Phone" value="{{old('conductor_phone')}}">
                                         </div>
@@ -206,7 +215,8 @@
                                     <div class="col-lg-6 col-sm-6 col-xs-12 m_b20">
                                         <div class="input-group">
                                             <div class="input-group-addon">
-                                                <i class="fa fa-bus"> Category</i>
+                                                <!-- <i class="fa fa-bus"> </i> -->
+                                                Category
                                             </div>
                                             <select name="bus_category" class="form-control">
                                                 @foreach($categories as $category)

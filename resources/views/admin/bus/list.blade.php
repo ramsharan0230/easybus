@@ -36,13 +36,30 @@
 								<th>Bus Name</th>
 								<!-- <th>Date</th> -->
 								<th>Status</th>
+								<th>Driver</th>
+								<th>Booking Status</th>
 								<th>Action</th>
+								<th>Ticket History</th>
                                 <!-- <th>Action</th> -->
 							</tr>
 						</thead>
 						<tbody>
 						@php($i=1)
                         @foreach($details as $detail)
+                        <?php
+
+                        if($detail->busBooking){
+                            $booked=count($detail->busBooking()->where('date',$check_date)->get());
+                        }else{
+                            $booked=0;
+                        }
+                        if($detail->busseat){
+                            $available=count($detail->busseat)-$booked;
+                        }else{
+                            $available=0;
+                        }
+                        
+                        ?>
                         <tr>
                         	<td>{{$i++}}</td>
 				            <td>{{$detail->bus_number}}</td>
@@ -54,7 +71,11 @@
 				            </td> -->
 				            <td>{{$detail->bus_name}}</td>
 				            <td>{{$detail->status}}</td>
-				            <!-- <td>{{$detail->publish==1? 'active':'inactive'}}</td> -->
+				            <td>{{@$detail->driver->name}}</td>
+				            <td>
+				            	Booked:{{$booked}}<br>
+				            	Available:{{$available}}
+				            </td>
 				            <td>
 				            	<ul class="display_inline">
 				            		<li>
@@ -79,8 +100,9 @@
 				            		</li>
 
                				    </ul>
-               				   
+               				  
 				            </td>
+				            <td><a href="{{route('vendorBookingHistory',$detail->user_id)}}" class="btn btn-success">Ticket History</a></td>
 				            
                         </tr>
                         @php($i++)

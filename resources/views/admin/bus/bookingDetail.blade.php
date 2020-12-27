@@ -6,7 +6,8 @@
 @section('content')
  <!-- Content Header (Page header) -->
             <section class="content-header">
-                <h1>All Bookings<small>EASYBUS</small></h1>
+
+                <h1>All Bookings<small>EASYBUS</small> Booked:{{$booked}} </br> Available:{{$available}}</h1>
                 <ol class="breadcrumb">
                     <li><a href="./"><i class="fa fa-dashboard"></i> Home</a></li>
                     <li><a href="#">Vendor</a></li>
@@ -30,7 +31,7 @@
                                     <thead class="vendor-head">
                                         <tr>
                                             <th>Sn</th>
-                                            <th>Booking No.:</th>
+                                            <th>Seat No.:</th>
                                             <th>
                                                 <span class="fa fa-user"></span> Passenger Name & No.
                                             </th>
@@ -69,7 +70,7 @@
                                             </td> -->
                                             <td>{{$booking->date}}</td>
                                             <td>
-                                                From: {{$booking->pickup_station}} <br> To: {{$booking->drop_station}}
+                                                From: {{$booking->from}} <br> To: {{$booking->sub_destination?$booking->sub_destination:$booking->to}}
                                             </td>
                                            
                                             <!-- <td>

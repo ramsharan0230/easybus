@@ -28,10 +28,12 @@ class DashboardController extends Controller
             return redirect()->route('passengerList');
         }
         if($user->role=='counter'){
-            return redirect()->route('counterBusSearch');
+            //return redirect()->route('counterBusSearch');
+            return redirect()->route('counterDashboard');
         }
         if($user->role=='vendor'){
-            return redirect()->route('bus.index');
+            return redirect()->route('vendorDashboard');
+            // return redirect()->route('bus.index');
         }
         
         return view('admin.dashboard');

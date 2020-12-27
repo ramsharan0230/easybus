@@ -1,10 +1,10 @@
 @extends('layouts.front')
 @section('content')
 <section class="">
-	<div class="container p_tb40 user_dash">
+	<div class="container user_dash">
 		<div class="row">
 			<div class="col-lg-12 col-md-12 col-sm-12 ">
-				<div class="height_manage box_shadow">
+				<div class="height_manage user-dash-page box_shadow">
 					<div class="row">
 					  	<div class="col-lg-2 col-sm-12">
 						     @include('front.include.sidemenu')

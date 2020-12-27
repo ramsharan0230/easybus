@@ -29,7 +29,9 @@ a {
 
 @media (max-width:992px) {
     .main_info {
-        column-count: 2;
+        width: 100%;
+        overflow-x: scroll;
+        white-space: nowrap;
     }
     .main_info li {
         margin-bottom: 10px !important;
@@ -107,9 +109,9 @@ a {
     .why_register li {
         color: #ffffff;
     }
-    .why_register h2 {
+    /* .why_register h2 {
         color: #00ff49 !important;
-    }
+    } */
     .register_account .nav-link {
         padding: 7px 25px;
         margin: 0 5px;
@@ -2146,12 +2148,12 @@ a.nav-link {
 }
 
 .why_register h2 {
-    color: #ec7979;
-    font-weight: 600;
+    color: #dcb600;
+    font-weight: 400;
 }
 
 .why_register li {
-    /*color: #cec5c5;*/
+    color: #1a79bb;
     line-height: 40px;
 }
 
@@ -2203,6 +2205,8 @@ a.nav-link {
 .login_account .btn.btn-primary {
     width: 100%;
     border-radius: 0;
+    background:#1a79bb;
+    border:none;
 }
 
 .login_account .row {
@@ -2213,9 +2217,9 @@ a.nav-link {
     margin-right: 0;
 }
 
-.user_dash {
+/* .user_dash {
     background-color: #11687f;
-}
+} */
 
 .nav-pills .nav-link.active,
 .nav-pills .show>.nav-link {
@@ -2293,7 +2297,8 @@ a.nav-link {
 }
 
 .form-group label {
-    font-weight: 600 !important;
+    font-weight: 400 !important;
+    font-size: 14px;
 }
 
 .search_back {
@@ -2534,7 +2539,9 @@ button.btn.btn-link {
 }
 
 .input-group-prepend {
-    padding: 8px;
+    padding: 0;
+    margin-left: 15px;
+
 }
 
 .card-header button {
@@ -2689,11 +2696,6 @@ ul.driver-info-wrapp li p {
     border: 2px solid white;
 }
 
-@media (max-width:992px) {
-    .main_info {
-        display: inline-block;
-    }
-}
 
 @media (max-width:767px) {
     .counter_bus_seat_view tbody {
@@ -2920,14 +2922,197 @@ input:-internal-autofill-selected {
 }
 
 
+.user-register-form {
+
+    padding: 40px 20px;
+    max-width: 400px;
+    margin: 0 auto;
+    background: #dde9f1;
+    text-align: center;
+}
+
+.user-register-form .input-group {
+
+    display: block;
+    width: 100%;
+}
+
+.user-register-form .input-group input {
+
+    display: block;
+    width: 100%;
+    margin-bottom: 15px;
+    border: none;
+    font-size: 13px;
+    padding: 10px;
+
+}
+
+.user-register-form .input-group input::placeholder {
+
+    color: #b1b1b1;
+    font-size: 12px;
+    font-weight: 300;
+}
+
+.user-register-form h3 {
+
+    font-size: 25px;
+    margin-bottom: 30px;
+    color: #1a79bb;
+}
+
+.user-register-form button {
+
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background: #1a79bb;
+    border: none;
+    font-size: 14px;
+    text-transform: none;
+}
+
+.why_register li i  {
+
+    font-size: 14px;
+    font-weight: 300;
+    margin-right: 15px;
+}
+
+.why_register h2 {
+    color: #dcb600;
+    font-weight: 400;
+    margin-bottom: 30px;
+}
+
+
+.user-dashboard-wrapp,
+.user-bus-search {
+
+    background:#f7f7f7;
+}
+
+
+.bus-search-cate .category_button {
+
+    color: #1a79bb;
+    border-color: #1a79bb;
+}
+
+.bus-search-cate .category_button:hover {
+
+    background: #1a79bb;
+    color: #fff;
+}
+
+
+.category-list-wrapper {
+    background: #1a79bb;
+    padding: 20px;
+}
+
+.user-dash-page {
+
+    padding: 0;
+}
+
+.user-side-menu {
+
+    background: #1a79bb;
+    padding: 40px 0;
+}
+
+.user-side-menu a.nav-link {
+
+    color: #d5eeff;
+    border-bottom: 1px solid #589ece;
+    border-radius: inherit;
+}
+
+.user-side-menu a.nav-link i {
+
+    margin-right: 10px;
+    font-size: 12px;
+}
+
+
+.user-side-menu .nav-link:hover,
+.user-side-menu .nav-link:focus,
+.user-side-menu .nav-link.active, 
+.user-side-menu .show>.nav-link {
+    color: #fff;
+    background-color: #45cfc2;
+    border-color: #45cfc2;
+}
+
+.padding-manager {
+
+    padding: 40px 0;
+}
+
+
+.usersearch-wrapp {
+
+    background: transparent;
+}
+
 
 
 
 @media (max-width:992px) {
 
+    table {
+
+        display: block;
+        width: 100%;
+        overflow-x: scroll;
+        white-space: nowrap;
+    }
+
+    .user-side-menu {
+        background: transparent;
+        display: block;
+        width: 100%;
+        overflow-x: scroll;
+        white-space: nowrap;
+    }
+
+    .user-side-menu a {
+        display: inline-block;
+        border: 1px solid #333;
+        color: #1a79bb !important;
+        border-color: #1a79bb;
+        margin: 0 5px;
+        font-size: 13px;
+        border-radius: 3px !important;
+    }
+
+    .user-side-menu .nav-link:hover, .user-side-menu .nav-link:focus, .user-side-menu .nav-link.active, .user-side-menu .show>.nav-link {
+        color: #fff !important;
+        background-color: #1a79bb;
+        border-color: #1a79bb;
+    }
+
+    .ticket_notice {
+        font-size: 12px;
+        padding: 0;
+        display: inline-block;
+        background: transparent !important;
+        border: none;
+        color: #ff8b00;
+        margin-left: 10px;
+    }
+
     .search_button {
 
         position: static;
+    }
+
+    .user-side-menu {
+
+        padding: 0;
+        margin: 40px 0;
     }
 
     .total-section {
@@ -2939,6 +3124,22 @@ input:-internal-autofill-selected {
 
         font-size: 14px;
     }
+
+    .user-side-menu::-webkit-scrollbar {
+        height: 3px;
+      }
+      
+    /* Track */
+    .user-side-menu::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    }
+    
+    /* Handle */
+    .user-side-menu::-webkit-scrollbar-thumb {
+    background: #888;
+    }
+    
+ 
 }
 
 @media (max-width:767px) {
@@ -2963,3 +3164,4 @@ input:-internal-autofill-selected {
     }
 
 }
+

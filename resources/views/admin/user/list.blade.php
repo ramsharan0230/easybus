@@ -61,11 +61,11 @@
                                             <td>{{$detail->email}}</td>
                                             
                                             <td>
-                                                <a href="{{route('user.edit',$detail->id)}}" class="btn btn-info"> <span class="fa fa-edit"></span> Edit</a>
-                                                <form method= "post" action="{{route('user.destroy',$detail->id)}}" class="delete btn  btn-danger">
+                                                <a href="{{route('user.edit',$detail->id)}}" class="btn vendor-busses btn-info"> <span class="fa fa-edit"></span> Edit</a>
+                                                <form method= "post" action="{{route('user.destroy',$detail->id)}}" class="delete btn vendor-busses  btn-danger">
                 								{{csrf_field()}}
                 								<input type="hidden" name="_method" value="DELETE">
-               									<button type="submit" class="btn-delete vendor-busses" style="display:inline">Delete</button>
+               									<button type="submit" class="btn-delete" style="display:inline">Delete</button>
                				    				</form>
                                             </td>
                                         </tr>

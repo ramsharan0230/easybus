@@ -31,8 +31,8 @@
 					<h3 class="box-title">Data Table</h3>
 				</div>
 				<div class="box-body appendData">
-					<table id="example1" class="table table-bordered table-striped">
-						<thead>
+					<table id="example1" class="table vendor-table table-striped">
+						<thead class="vendor-head">
 							<tr>
 								<th>S.N.</th>
 								<th>Booked By</th>

@@ -55,13 +55,13 @@
                                             <td>
                                                 <!-- <a href="vendor-detail.php" class="btn btn-info"> <span class="fa fa-eye"></span> View</a> -->
                                                  
-                                                <div class="btn  btn-success">
+                                                <div class="btn vendor-busses btn-success">
                                                    
                                                     <form method= "post" action="{{route('approveVendorRequest')}}" class="delete">
                                                     {{csrf_field()}}
                                                     <input type="hidden" name="id" value="{{$user->id}}">
                                                     
-                                                        <button type="submit" class="btn-delete vendor-busses" style="display:inline" ><span class="fa fa-check"></span> Approve</button>
+                                                        <button type="submit" class="btn-delete" style="display:inline" ><span class="fa fa-check"></span> Approve</button>
                                                     </form>
 
                                                    

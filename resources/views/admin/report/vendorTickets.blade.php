@@ -26,14 +26,14 @@
 		<div class="col-xs-12">
 			
 			<div class="box">
-				<a href="" class="btn btn-success counter" data-vendor_id="{{$details->id}}">Counter</a>
-				<a href="" class="btn btn-info online" data-vendor_id="{{$details->id}}">Online</a>
+				<a href="" class="btn vendor-busses btn-success counter" data-vendor_id="{{$details->id}}">Counter</a>
+				<a href="" class="btn vendor-busses btn-info online" data-vendor_id="{{$details->id}}">Online</a>
 				<div class="box-header">
 					<h3 class="box-title">Data Table</h3>
 				</div>
 				<div class="box-body appendData">
-					<table id="example1" class="table table-bordered table-striped">
-						<thead>
+					<table id="example1" class="vendor-table table table-striped">
+						<thead class="vendor-head">
 							<tr>
 								<th>S.N.</th>
 								<th>Booked By</th>
@@ -115,6 +115,7 @@
   $(function () {
     $("#example1").DataTable({
     	"pageLength": 100
+
     });
   });
 
