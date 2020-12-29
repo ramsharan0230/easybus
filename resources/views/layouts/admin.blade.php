@@ -449,6 +449,17 @@
                         
                     </ul>
                 </li>
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-dollar"></i> <span>Clients</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="{{route('client.index')}}"><i class="fa fa-plus"></i>All Clients</a></li>
+                    </ul>
+                </li>
                 @endif
                 @if($role=='vendor')
                 <li class="header">VENDOR VIEW</li>

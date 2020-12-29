@@ -24,7 +24,7 @@ class AdminController extends Controller
     	return view('admin.admin.allCounters',compact('details'));
     }
     public function allAssistants(){
-    	$details=$this->user->orderBy('created_at','desc')->where('role','assistant')->get();
+        $details=$this->user->orderBy('created_at','desc')->where('role','assistant')->get();
     	return view('admin.admin.allAssistants',compact('details'));
     }
     public function allPassengers(){

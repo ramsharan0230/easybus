@@ -37,5 +37,9 @@ class Client extends Authenticatable
     public function products(){
         return $this->belongsToMany('App\Models\Detail','user_products','client_id','detail_id');
     }
+
+    public function bookings(){
+        return $this->hasMany('App\Models\BusBooking');
+    }
     
 }

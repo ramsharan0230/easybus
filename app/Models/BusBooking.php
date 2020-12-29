@@ -18,4 +18,8 @@ class BusBooking extends Model
     public function counter(){
     	return $this->belongsTo('App\User','counter_id');
     }
+
+    public function client(){
+        return $this->belongsTo('App\Models\Client');
+    }
 }

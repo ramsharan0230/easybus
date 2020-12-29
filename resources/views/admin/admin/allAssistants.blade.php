@@ -44,9 +44,7 @@
                                     </thead>
                                     <tbody class="text-uppercase">
                                     	@php($i=1)
-                                        @if($details->assitants)
-                                            @foreach($details->assistants as $detail)
-                                            
+                                            @foreach($details as $detail)
                                             <tr>
                                                 <td>{{$i}}.</td>
                                                 <td> {{$detail->name}}</td>
@@ -54,8 +52,6 @@
                                                 <td>{{$detail->address}}</td>
                                                 <!-- <td>ba 7 kh 2354</td> -->
                                                 <td>{{$detail->vendoreRelatedToAssistant->name}}</td>
-                                                 
-                                                
                                                 <!-- <td>
                                                     <a href="assestent-detail.php" class="btn btn-info"> <span class="fa fa-eye"></span> view</a>
                                                     <div class="btn  btn-danger">
@@ -68,9 +64,6 @@
                                             </tr>
                                             @php($i++)
                                             @endforeach
-                                        @endif
-                                    	
-                                       
                                     </tbody>
                                 </table> 
                             </div>  
