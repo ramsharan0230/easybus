@@ -8,8 +8,10 @@ use App\Repositories\User\UserRepository;
 use App\Repositories\Booking\BookingRepository;
 use App\Repositories\Bus\BusRepository;
 use App\Repositories\Advertisement\AdvertisementRepository;
+use MilanTarami\NepaliCalendar\Facades\NepaliCalendar;
 use App\Models\Client;
 use Auth;
+use Carbon\Carbon;
 
 class AdminController extends Controller
 {
@@ -65,11 +67,29 @@ class AdminController extends Controller
         $details=$this->bus->where('status','rejected')->orderBy('created_at','desc')->get();
         return view('admin.admin.rejectedBus',compact('details'));
     }
+    public function suspendedBus(){
+        $details=$this->bus->where('status','suspended')->orderBy('created_at','desc')->get();
+        return view('admin.admin.suspendedBus',compact('details'));
+    }
     public function rejectBus($id){
         $bus=$this->bus->findOrFail($id);
         $bus->status='rejected';
         $bus->save();
         return redirect()->back()->with('message','Bus Rejected');
+    }
+    public function busTicketHistory($id){
+        // dd(Carbon::now());
+        // dd(NepaliCalendar::today());
+        // $bsDate = NepaliCalendar::BS2AD('20-10-2076', [
+        //     'date_format' => 'DD-MM-YYYY'
+        // ]);
+        // dd($bsDate);
+        // dd(Carbon::now());
+        $bus = $this->bus->findOrFail($id);
+        $bookingTicketHistories = $bus->busBooking()->where('bus_id', $bus->id)
+        ->where('booked_on', '<=', NepaliCalendar::today())->get();
+
+        return view('admin.admin.ticketHistory', compact('bookingTicketHistories'));
     }
     public function busAdvertisement($bus_id){
         $busid=$bus_id;

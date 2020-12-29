@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a9c7e8daf5bff1521d5a50d07a23c8b1",
+    "content-hash": "7928a18d9ebfc52f819b0d56c0106f11",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1288,6 +1288,50 @@
             ],
             "description": "Mime-type detection for Flysystem",
             "time": "2020-08-09T10:34:01+00:00"
+        },
+        {
+            "name": "milantarami/nepali-calendar",
+            "version": "v1.2.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/milantarami/nepali-calendar.git",
+                "reference": "22b3c33a8316425385ddaa053dcc4c8b2fe8fa4b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/milantarami/nepali-calendar/zipball/22b3c33a8316425385ddaa053dcc4c8b2fe8fa4b",
+                "reference": "22b3c33a8316425385ddaa053dcc4c8b2fe8fa4b",
+                "shasum": ""
+            },
+            "require-dev": {
+                "orchestra/testbench": "^4.0",
+                "phpunit/phpunit": "^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "MilanTarami\\NepaliCalendar\\NepaliCalendarServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "MilanTarami\\NepaliCalendar\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "milantarami",
+                    "email": "milantarami.dev@gmail.com"
+                }
+            ],
+            "description": "ok",
+            "time": "2020-03-03T16:40:45+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -5912,5 +5956,6 @@
     "platform": {
         "php": "^7.1.3"
     },
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "1.1.0"
 }

@@ -175,6 +175,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        MilanTarami\NepaliCalendar\NepaliCalendarServiceProvider::class
 
     ],
 
@@ -225,7 +226,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Image' => Intervention\Image\Facades\Image::class,
-
+        'NepaliCalendar' => MilanTarami\NepaliCalendar\Facades\NepaliCalendar::class,
     ],
 
      

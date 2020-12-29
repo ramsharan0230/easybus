@@ -38,7 +38,7 @@ class CreateBusesTable extends Migration
             $table->string('row')->nullable();
             $table->string('column')->nullable();
             $table->text('notice')->nullable();
-            $table->enum('status',['new','approved','rejected'])->default('new');
+            $table->enum('status',['new','approved','rejected', 'suspended'])->default('new');
             $table->string('boarding_point')->nullable();
             
             $table->timestamps();

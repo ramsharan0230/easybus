@@ -60,6 +60,8 @@ Route::group(['namespace'=>'Admin','middleware'=>['auth'],'prefix'=>'admin'],fun
 		Route::get('advertisement-list/{bus_id}','AdminController@advertisementList')->name('advertisementList');
 		Route::delete('delete-advertisement/{bus_id}','AdminController@advertisementList')->name('deleteAdvertisement');
 		Route::get('rejected-bus','AdminController@rejectedBus')->name('rejectedBus');
+		Route::get('suspended-bus','AdminController@suspendedBus')->name('suspendedBus');
+		Route::get('bus/{id}/ticketHistory','AdminController@busTicketHistory')->name('bus.ticketHistory');
 		Route::get('counter-tickets-issued/{id}','AdminController@counterTicketIssued')->name('counterTicketsIssued');
 		Route::get('counter-detail/{id}','AdminController@counterDetail')->name('counterDetail');
 		Route::get('assistants','AdminController@allAssistants')->name('adminAssistant');

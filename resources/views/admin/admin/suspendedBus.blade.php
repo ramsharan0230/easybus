@@ -1,12 +1,12 @@
 @extends('layouts.admin')
-@section('title','Approved Bus List')
+@section('title','Suspended Bus List')
 
 @section('content')
 <section class="content-header">
-	<h1>Approved Bus<small>List</small></h1>
+	<h1>Suspended Bus<small>List</small></h1>
 	<ol class="breadcrumb">
 		<li><a href=""><i class="fa fa-dashboard"></i>Dashboard</a></li>
-		<li><a href="">Approved Bus</a></li>
+		<li><a href="">Suspended Bus</a></li>
 		<li><a href="">list</a></li>
 	</ol>
 </section>
@@ -24,7 +24,7 @@
 		<div class="col-xs-12">
 			<div class="box">
 				<div class="box-header">
-					<h3 class="box-title">Data Table(total number of buses = {{count($details)}})</h3>
+					<h3 class="box-title">Data Table</h3>
 				</div>
 				<div class="box-body vendor-box">
 					<table id="example1" class="table vendor-table table-striped">
@@ -42,7 +42,7 @@
 						@php($i=1)
                         @foreach($details as $detail)
                         <tr>
-                        	<td>{{$i}}</td>
+                        	<td>{{$i++}}</td>
 				            <td>{{$detail->bus_number}}</td>
 				            <!-- <td>@if($detail->image)
 								<img src="{{asset('images/listing/'.$detail->image)}}">
@@ -57,11 +57,10 @@
 				            	<a class="btn vendor-busses edit" href="{{route('busDetail',$detail->id)}}" title="Edit">Bus Layout</a>
 				            </td>
 				            <td>
-				            	<a class="btn vendor-busses edit" href="{{route('rejectBus',$detail->id)}}" title="Edit">Suspend</a>
-				            	<a class="btn vendor-busses edit" href="{{route('busAdvertisemet',$detail->id)}}" title="Edit">Advertisement</a>
-								<a class="btn vendor-busses edit" href="{{route('bus.ticketHistory',$detail->id)}}" title="Edit">Ticket History</a>
-								<a class="btn vendor-busses edit" href="{{route('bus.ticketHistory',$detail->id)}}" title="Edit">Bookings</a>
+				            	<a class="btn vendor-busses edit" href="#" title="Edit" disabled="true">Rejected</a>
+				            	<a class="btn vendor-busses edit" href="{{route('approveBus',$detail->id)}}" title="Edit">Approve</a>
 				            </td>
+				            
                         </tr>
                         @php($i++)
                         @endforeach
