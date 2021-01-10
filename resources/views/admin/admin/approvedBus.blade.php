@@ -27,6 +27,23 @@
 					<h3 class="box-title">Data Table(total number of buses = {{count($details)}})</h3>
 				</div>
 				<div class="box-body vendor-box">
+
+					<form class="form-inline pull-right" method="GET" action="{{ route('approvedBuses') }}">
+						<div class="form-group mb-2">
+							<label for="staticEmail2" class="sr-only">Email</label>
+							<select name="bus-type" id="bus-type" class="form-control">
+								<option value="">Select Bus Type</option>
+								@forelse ($busCategories as $category)
+									<option value="{{ $category->id }}">{{ $category->name }}</option>	
+								@empty
+									<option value="">No Bus Category Found!</option>
+								@endforelse
+								<option value=""></option>
+							</select>
+						</div>
+						<button type="submit" class="btn btn-primary btn-sm">Filter</button>
+					</form>
+
 					<table id="example1" class="table vendor-table table-striped">
 						<thead class="vendor-head">
 							<tr>
@@ -34,6 +51,7 @@
 								<th>Bus No</th>
 								<th>Bus Name</th>
 								<th>Bus Layout</th>
+								<th>Bus Category</th>
 								<th>Status</th>
                                 <!-- <th>Action</th> -->
 							</tr>
@@ -55,12 +73,13 @@
 				            <!-- <td>{{$detail->publish==1? 'active':'inactive'}}</td> -->
 				            <td>
 				            	<a class="btn vendor-busses edit" href="{{route('busDetail',$detail->id)}}" title="Edit">Bus Layout</a>
-				            </td>
+							</td>
+							<td>{{ $detail->busCategory->name }}</td>
 				            <td>
 				            	<a class="btn vendor-busses edit" href="{{route('rejectBus',$detail->id)}}" title="Edit">Suspend</a>
 				            	<a class="btn vendor-busses edit" href="{{route('busAdvertisemet',$detail->id)}}" title="Edit">Advertisement</a>
 								<a class="btn vendor-busses edit" href="{{route('bus.ticketHistory',$detail->id)}}" title="Edit">Ticket History</a>
-								<a class="btn vendor-busses edit" href="{{route('bus.ticketHistory',$detail->id)}}" title="Edit">Bookings</a>
+								<a class="btn vendor-busses edit" href="{{route('bus.bookings',$detail->id)}}" title="Edit">Bookings</a>
 				            </td>
                         </tr>
                         @php($i++)
@@ -74,6 +93,7 @@
 </div>
 @endsection
 @push('script')
+	
   <script >
   	$.ajaxSetup({
         headers: {

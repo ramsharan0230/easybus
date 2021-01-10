@@ -8,8 +8,11 @@ use App\Repositories\User\UserRepository;
 use App\Repositories\Booking\BookingRepository;
 use App\Repositories\Bus\BusRepository;
 use App\Repositories\Advertisement\AdvertisementRepository;
+use App\Repositories\BusCategory\BusCategoryRepository;
 use MilanTarami\NepaliCalendar\Facades\NepaliCalendar;
+use Illuminate\Support\Facades\Input;
 use App\Models\Client;
+use App\Models\BusCategory;
 use Auth;
 use Carbon\Carbon;
 
@@ -56,9 +59,16 @@ class AdminController extends Controller
         return redirect()->back()->with('message','Bus Approved');
     }
     public function approvedBuses(){
-        $details=$this->bus->where('status','approved')->orderBy('created_at','desc')->get();
-        return view('admin.admin.approvedBus',compact('details'));
+        if(Input::get('bus-type')==null)
+            $details=$this->bus->where('status','approved')->orderBy('created_at','desc')->get();
+        else
+            $details=$this->bus->where('status','approved')->where('bus_category', Input::get('bus-type'))->orderBy('created_at','desc')->get();
+
+        $busCategories = BusCategory::orderBy('created_at','desc')->get();
+
+        return view('admin.admin.approvedBus',compact('details', 'busCategories'));
     }
+    
     public function busDetail($id){
         $bus=$this->bus->findOrFail($id);
         return view('admin.admin.busLayout',compact('bus'));
@@ -91,6 +101,15 @@ class AdminController extends Controller
 
         return view('admin.admin.ticketHistory', compact('bookingTicketHistories'));
     }
+
+    public function busBookings($id){
+        $bus = $this->bus->findOrFail($id);
+        $bookingTicketHistories = $bus->busBooking()->where('bus_id', $bus->id)
+        ->where('booked_on', '>=', NepaliCalendar::today())->get();
+
+        return view('admin.admin.ticketHistory', compact('bookingTicketHistories'));
+    }
+
     public function busAdvertisement($bus_id){
         $busid=$bus_id;
         return view('admin.admin.advertCreate',compact('busid'));
