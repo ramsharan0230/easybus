@@ -52,13 +52,14 @@ class ReportController extends Controller
     	return view('admin.report.vendorReport');
     }
     public function incomeReport(){
-    	$week_days=$this->dates_of_week();
+        $week_days=$this->dates_of_week();
     	$month_days=$this->dates_of_month();
     	// dd($month_days);
     	$weekly_income_total=[];
     	$monthly_income_total=[];
     	foreach($week_days['date'] as $date){
-    		$tickets=$this->booking->whereDate('created_at',$date)->get();
+            $tickets=$this->booking->whereDate('created_at',$date)->get();
+           print_r($tickets);
     		$sum=0;
     		foreach($tickets as $ticket){
     			$sum+=$ticket->bus->price;
@@ -71,8 +72,9 @@ class ReportController extends Controller
     		foreach($tickets as $ticket){
     			$sum+=$ticket->bus->price;
     		}
-    		array_push($weekly_income_total, $sum);
-    	}
+    		array_push($monthly_income_total, $sum);
+        }
+        
     	return view('admin.report.incomeReport',compact('week_days','month_days','weekly_income_total','monthly_income_total'));
     }
     public function dates_of_week(){

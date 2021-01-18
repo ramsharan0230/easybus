@@ -27,22 +27,26 @@
 					<h3 class="box-title">Data Table(total number of buses = {{count($details)}})</h3>
 				</div>
 				<div class="box-body vendor-box">
-
-					<form class="form-inline pull-right" method="GET" action="{{ route('approvedBuses') }}">
-						<div class="form-group mb-2">
-							<label for="staticEmail2" class="sr-only">Email</label>
-							<select name="bus-type" id="bus-type" class="form-control">
-								<option value="">Select Bus Type</option>
-								@forelse ($busCategories as $category)
-									<option value="{{ $category->id }}">{{ $category->name }}</option>	
-								@empty
-									<option value="">No Bus Category Found!</option>
-								@endforelse
-								<option value=""></option>
-							</select>
+					<div class="row">
+						<div class="col-sm-3"></div>
+						<div class="col-sm-8">
+							<form class="form-inline" method="GET" action="{{ route('approvedBuses') }}">
+								<div class="form-group mb-2">
+									<label for="staticEmail2" class="sr-only">Email</label>
+									<select name="bus-type" id="bus-type" class="form-control">
+										<option value="">Select Bus Type</option>
+										@forelse ($busCategories as $category)
+											<option value="{{ $category->id }}">{{ $category->name }}</option>	
+										@empty
+											<option value="">No Bus Category Found!</option>
+										@endforelse
+										<option value=""></option>
+									</select>
+								</div>
+								<button type="submit" class="btn btn-primary btn-sm">Filter</button>
+							</form>
 						</div>
-						<button type="submit" class="btn btn-primary btn-sm">Filter</button>
-					</form>
+					</div>
 
 					<table id="example1" class="table vendor-table table-striped">
 						<thead class="vendor-head">
