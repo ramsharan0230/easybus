@@ -1,12 +1,12 @@
 @extends('layouts.admin')
-@section('title','Approved Bus List')
+@section('title','All Bus List')
 
 @section('content')
 <section class="content-header">
-	<h1>Approved Bus<small>List</small></h1>
+	<h1>Bus<small>List</small></h1>
 	<ol class="breadcrumb">
 		<li><a href=""><i class="fa fa-dashboard"></i>Dashboard</a></li>
-		<li><a href="">Approved Bus</a></li>
+		<li><a href="">All Bus</a></li>
 		<li><a href="">list</a></li>
 	</ol>
 </section>
@@ -56,7 +56,8 @@
 								<th>Bus Name</th>
 								<th>Bus Layout</th>
 								<th>Bus Category</th>
-								<th>Status</th>
+                                <th>Status</th>
+                                <th>Actions</th>
                                 <!-- <th>Action</th> -->
 							</tr>
 						</thead>
@@ -78,13 +79,22 @@
 				            <td>
 				            	<a class="btn vendor-busses edit" href="{{route('busDetail',$detail->id)}}" title="Edit">Bus Layout</a>
 							</td>
-							<td>{{ $detail->busCategory->name }}</td>
+                            <td>{{ $detail->busCategory->name }}</td>
+                            <td>
+                                <strong>{{ ucfirst($detail->status) }}</strong>
+                            </td>
 				            <td>
-				            	<a class="btn vendor-busses edit" href="{{route('suspendBus',$detail->id)}}" title="Suspend">Suspend</a>
+                                @if($detail->status =='approved')
+                                <a class="btn vendor-busses edit" href="{{route('suspendBus', $detail->id)}}" title="Suspend">Suspend</a>
+                                <a class="btn vendor-busses edit" href="{{route('rejectBus', $detail->id)}}" title="Reject">Reject</a>
+                                @endif
+                                @if($detail->status !='approved')
+                                <a class="btn vendor-busses edit" href="{{route('approveBus', $detail->id)}}" title="Approve">Approve</a>
+                                @endif
 				            	<a class="btn vendor-busses edit" href="{{route('busAdvertisemet',$detail->id)}}" title="Advertise">Advertisement</a>
 								<a class="btn vendor-busses edit" href="{{route('bus.ticketHistory',$detail->id)}}" title="Ticket History">Ticket History</a>
 								<a class="btn vendor-busses edit" href="{{route('bus.bookings',$detail->id)}}" title="Bookings">Bookings</a>
-				            </td>
+                            </td>
                         </tr>
                         @php($i++)
                         @endforeach

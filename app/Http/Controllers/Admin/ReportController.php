@@ -52,30 +52,43 @@ class ReportController extends Controller
     	return view('admin.report.vendorReport');
     }
     public function incomeReport(){
-        $week_days=$this->dates_of_week();
+    	$week_days=$this->dates_of_week();
     	$month_days=$this->dates_of_month();
-    	// dd($month_days);
     	$weekly_income_total=[];
-    	$monthly_income_total=[];
+        $monthly_income_total=[];
+        
+        $currentDate = \Carbon\Carbon::now();
+        $agoDate = $currentDate->subDays($currentDate->dayOfWeek)->subWeek();
+        $agoDate->format('Y-m-d');
+        $dateOneMonthAgo = Carbon\Carbon::now()->subMonth()->format('Y-m-d');
+
     	foreach($week_days['date'] as $date){
-            $tickets=$this->booking->whereDate('created_at',$date)->get();
-           print_r($tickets);
+            $weeklyTickets=$this->booking->where('created_at', '>=', $agoDate->format('Y-m-d'))->get();
+            // dd('week_data', $weekTickets);
     		$sum=0;
-    		foreach($tickets as $ticket){
-    			$sum+=$ticket->bus->price;
+    		foreach($weeklyTickets as $ticket){
+                $sum+=$ticket->price;
     		}
     		array_push($weekly_income_total, $sum);
     	}
     	foreach($month_days['date'] as $date){
-    		$tickets=$this->booking->whereDate('created_at',$date)->get();
-    		$sum=0;
-    		foreach($tickets as $ticket){
-    			$sum+=$ticket->bus->price;
+            $monthlyTickets=$this->booking->where('created_at','>=', $dateOneMonthAgo)->get();
+            $sum=0;
+    		foreach($monthlyTickets as $ticket){
+                $sum+=$ticket->price;
     		}
     		array_push($monthly_income_total, $sum);
         }
-        
-    	return view('admin.report.incomeReport',compact('week_days','month_days','weekly_income_total','monthly_income_total'));
+
+        return view('admin.report.incomeReport',compact('week_days','month_days','weekly_income_total','monthly_income_total', 'monthlyTickets', 'weeklyTickets'));
+    }
+
+    public function weekwiseReport($date){
+        dd($date);
+    }
+
+    public function monthlyReport($date){
+        dd($date);
     }
     public function dates_of_week(){
     	$date = Carbon\Carbon::today();
