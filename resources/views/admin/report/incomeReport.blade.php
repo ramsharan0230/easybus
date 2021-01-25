@@ -1,5 +1,6 @@
 @extends('layouts.admin')
 @section('title','Income Report')
+
 @section('content')
   <!-- Content Header (Page header) -->
             <section class="content-header">
@@ -20,11 +21,8 @@
                             <div class="box-header">
                                 <div class="box-title"> Income In This Week</div>
                                 <div class="box-title pull-right"> 
-                                    <form action="{{route('weekwise-report')}}" method="post">
+                                    <form action="{{route('income-reports.weekly-income-reports')}}" method="GET">
                                         {{csrf_field()}}
-                                   <div class="row">
-
-                                   </div>
                                     <div class="col-lg-4 col-md-4 col-sm-6">
                                         <input type="text" id="nepaliDate1" class="bod-picker form-control" name="from" autocomplete="off" placeholder="from date(yyyy-mm-dd)">
                                     </div>
@@ -72,8 +70,8 @@
                                     </tbody>
                                     <tfoot>
                                         <tr>
-                                            <td colspan="8">Total</td>
-                                            <td>Total</td>
+                                            <td colspan="8"><strong>Total</strong></td>
+                                            <td><strong>{{ 'Rs'.'. '.$sumWeekly }}</strong></td>
                                         </tr>
                                     </tfoot>
                                 </table>
@@ -116,6 +114,12 @@
                                     </tr>
                                     @endforeach
                                     </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="8"><strong>Total</strong></td>
+                                            <td><strong>{{ 'Rs'.'. '.$sumMonthly }}</strong></td>
+                                        </tr>
+                                    </tfoot>
                                 </table>
                             </div>  
                         </div>

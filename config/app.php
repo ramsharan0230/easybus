@@ -175,7 +175,8 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
-        MilanTarami\NepaliCalendar\NepaliCalendarServiceProvider::class
+        MilanTarami\NepaliCalendar\NepaliCalendarServiceProvider::class,
+        Barryvdh\DomPDF\ServiceProvider::class,
 
     ],
 
@@ -227,6 +228,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Image' => Intervention\Image\Facades\Image::class,
         'NepaliCalendar' => MilanTarami\NepaliCalendar\Facades\NepaliCalendar::class,
+        'PDF' => Barryvdh\DomPDF\Facade::class,
     ],
 
      
