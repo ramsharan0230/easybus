@@ -51,7 +51,7 @@
                                                 <?php //dd($detail) ?>
                                                 <td>{{$i}}.</td>
                                                 <td> {{$detail->name}}</td>
-                                                <td>{{  $detail->role }}</td>
+                                                <td>{{  $detail->category }}</td>
                                                 <td>{{$detail->phone}}</td>
                                                 <td>{{ $detail->email }}</td>
                                                 <td>{{$detail->address}}</td>
