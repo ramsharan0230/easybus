@@ -63,7 +63,7 @@
                                             <td>
                                                 <a href="{{route('vendor.show',$vendor->id)}}" class="btn vendor-busses">View</a>
                                                 
-                                                <a href="{{route('bookingTovendors',$vendor->id)}}" class="btn vendor-busses"> <span class="fa fa-edit"></span> Bookings</a>
+                                                <a href="{{route('bookingTovendors', $vendor->id)}}" class="btn vendor-busses"> <span class="fa fa-edit"></span> Bookings</a>
                                                 <!-- <a href="{{route('ticketSale',$vendor->id)}}" class="btn btn-warning"> <span class="fa fa-edit"></span>Ticket Sale</a> -->
                                                 <!-- <div class="btn  btn-danger">
                                                     <form method= "post" action="" class="delete">

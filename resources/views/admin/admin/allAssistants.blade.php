@@ -35,7 +35,9 @@
                                         <tr>
                                             <th>SN</th>
                                             <th>Assistant Full Name</th> 
+                                            <th><i class="fa fa-user"></i> Role</th>
                                             <th><i class="fa fa-mobile"></i> Contact No.</th>
+                                            <th><i class="fa fa-envelope"></i> Email</th>
                                             <th><i class="fa fa-map-marker"></i> Address</th>
                                             <!-- <th><i class="fa fa-bus"></i> Bus No.:</th> -->
                                             <th><i class="fa fa-bus"></i> Vendor Name</th>
@@ -46,9 +48,12 @@
                                     	@php($i=1)
                                             @foreach($details as $detail)
                                             <tr>
+                                                <?php //dd($detail) ?>
                                                 <td>{{$i}}.</td>
                                                 <td> {{$detail->name}}</td>
+                                                <td>{{  $detail->role }}</td>
                                                 <td>{{$detail->phone}}</td>
+                                                <td>{{ $detail->email }}</td>
                                                 <td>{{$detail->address}}</td>
                                                 <!-- <td>ba 7 kh 2354</td> -->
                                                 <td>{{$detail->vendoreRelatedToAssistant->name}}</td>

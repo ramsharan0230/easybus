@@ -25,7 +25,8 @@ class AdminController extends Controller
         $this->advertisement=$advertisement;
 	}
     public function allCounters(){
-    	$details=$this->user->orderBy('created_at','desc')->where('role','counter')->where('publish',1)->get();
+        $details=$this->user->orderBy('created_at','desc')->where('role','counter')->where('publish',1)->get();
+        // dd($details);
     	return view('admin.admin.allCounters',compact('details'));
     }
     public function allAssistants(){

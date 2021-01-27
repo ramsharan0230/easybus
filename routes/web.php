@@ -100,6 +100,7 @@ Route::group(['namespace'=>'Admin','middleware'=>['auth'],'prefix'=>'admin'],fun
 		Route::get('vendor-of-counter/{id}','ReportController@vendor_of_counters')->name('vendorOfCounter');
 		Route::get('counter-bus-list/{id}','ReportController@counter_bus_list')->name('counterBusList');
 		Route::get('counter-bus-tickets/{id}','ReportController@counterBusTickets')->name('counterBusTickets');
+		Route::get('booking-to-vendors/{id}','ReportController@bookingToVendors')->name('bookingTovendors');
 		// income reports
 		Route::get('income-reports/weekly-income-reports', 'ReportController@weeklyIncomeReport')->name('income-reports.weekly-income-reports');
 		Route::get('income-reports/monthly-income-reports', 'ReportController@monthlyIncomeReport')->name('income-reports.monthly-income-reports');
@@ -186,7 +187,7 @@ Route::group(['namespace'=>'Admin','middleware'=>['auth'],'prefix'=>'admin'],fun
 		
 		Route::get('booked-tickets','CounterController@bookedTicketsView')->name('bookedTicketsView');
 		Route::get('booking-list/{id}','CounterController@bookingList')->name('bookingList');
-		Route::get('booking-to-vendors/{id}','CounterController@bookingToVendors')->name('bookingTovendors');
+		// Route::get('booking-to-vendors/{id}','CounterController@bookingToVendors')->name('bookingTovendors');
 		Route::get('searchBookingPaymentDetail','CounterController@searchBookingPaymentDetail')->name('searchBookingPaymentDetail');
 		Route::get('booked-bus-layout/{id}','CounterController@bookedbusLayout')->name('bookedBusLayout');
 		Route::get('bus-search-counter','CounterController@busSearchCounter')->name('busSearchCounter');
