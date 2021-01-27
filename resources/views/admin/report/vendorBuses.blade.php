@@ -37,7 +37,6 @@
 								<th>Bus Name</th>
 								<th>Status</th>
 								<th>Bus Layout</th>
-								
 							</tr>
 						</thead>
 						<tbody>
@@ -57,13 +56,12 @@
 				            <td>{{$detail->status}}</td>
 				            <!-- <td>{{$detail->publish==1? 'active':'inactive'}}</td> -->
 				            <td>
-				            	<a class="btn btn-warning edit" href="{{route('busDetail',$detail->id)}}" title="Edit">Bus Layout</a>
-				            	<a class="btn btn-info edit" href="{{route('vendorBusTickets',$detail->id)}}" title="Edit">Tickets</a>
-				            	
-				            	
+								<?php //dd($detail) ?>
+				            	<a class="btn btn-warning edit" href="{{route('bus-detail',$detail->id)}}" title="Edit">Bus Layout</a>
+								{{-- <a class="btn btn-info edit" href="{{route('vendorBusTickets', $detail->id)}}" title="Edit">Tickets</a> --}}
+								<a class="btn vendor-busses edit" href="{{route('bus.ticketHistory',$detail->id)}}" title="Ticket History">Ticket History</a>
+								<a class="btn vendor-busses edit" href="{{route('bus.bookings',$detail->id)}}" title="Bookings">Bookings</a>
 				            </td>
-				           
-				            
                         </tr>
                         @php($i++)
                         @endforeach

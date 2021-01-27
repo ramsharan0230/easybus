@@ -300,7 +300,6 @@ class ReportController extends Controller
         $details=User::with(['buses'=>function($query){
             $query->where('status','approved')->get();
         }])->findOrFail($id);
-        
         return view('admin.report.vendorBuses',compact('details'));
     }
     public function vendorBusTickets($id){
@@ -316,7 +315,6 @@ class ReportController extends Controller
         $detail=User::with(['assistants'=>function($query){
             $query->get();
         }])->findOrFail($id);
-
         return view('admin.report.vendorsAssistant',compact('detail'));
     }
     public function vendorTickets($id){

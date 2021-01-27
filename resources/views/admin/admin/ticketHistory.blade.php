@@ -66,12 +66,17 @@
 								<th>S.N.</th>
 								<th>Booked By</th>
 								<th>Bus</th>
+								<th>Seat Number</th>
 								<th>From</th>
 								<th>To</th>
+								<th>Pick up</th>
+								<th>Drop</th>
 								<th>Price</th>
 								<th>Date</th>
 								<th>Shift</th>
 								<th>Booked On</th>
+								<th>Paid</th>
+								<th>Payment Method</th>
 								
                                 <!-- <th>Action</th> -->
 							</tr>
@@ -80,12 +85,14 @@
 							@php($i=1)
 							@foreach($bookingTicketHistories as $history)
 							<tr>
+								<?php //dd($history) ?>
 								<td>{{$i}}</td>
 								<td>
 									{{$history->name}}<br>
 									({{$history->phone}})
 								</td>
 								<td>{{$history->bus->bus_name}}({{$history->bus->bus_number}})</td>
+								<td>{{ $history->seat->seat_name }}</td>
 								<td>{{$history->from}}</td>
 								<td>@if($history->sub_destination)
 									{{$history->sub_destination}}
@@ -93,10 +100,14 @@
 									{{$history->to}}
 									@endif
 								</td>
+								<td>{{ $history->pickup_station }}</td>
+								<td>{{ $history->drop_station }}</td>
 								<td>{{$history->price}}</td>
 								<td>{{$history->date}}</td>
 								<td>{{$history->shift}}</td>
 								<td>{{$history->booked_on}}</td>
+								<td>{{$history->paid?"Paid":"Not Paid"}}</td>
+								<td>{{$history->online_payment?"Online":"Counter/Manual"}}</td>
 							</tr>
 							@php($i++)
 							@endforeach

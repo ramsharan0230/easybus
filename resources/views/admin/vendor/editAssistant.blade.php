@@ -71,6 +71,17 @@
                                                 <input type="email" name="email" id="email" class="form-control" placeholder="Email Address" value="{{$data->email}}">
                                             </div>
                                         </div>
+
+                                        <div class="col-lg-12 col-sm-12 col-xs-12 m_b20">
+                                            <div class="input-group">
+                                                <div class="input-group-addon">
+                                                    Citizenship Number
+                                                </div>
+                                                <input type="citizen_no" name="citizen_no" id="citizen_no" class="form-control" placeholder="Citizenship Number..." value="{{$data->citizen_no}}">
+                                            </div>
+                                        </div>
+
+
                                         <div class="col-lg-12 col-sm-12 col-xs-12 m_b20">
                                             <div class="input-group">
                                                 <div class="input-group-addon">
