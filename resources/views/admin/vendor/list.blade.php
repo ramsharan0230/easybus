@@ -72,13 +72,11 @@
                                                     <a href="{{route('vendorBusesReport',$detail->id)}}" class="btn vendor-busses">Buses</a>
                                                     <a href="{{route('counterOfVendor',$detail->id)}}" class="btn vendor-busses">Counters</a>
                                                     <a href="{{route('vendorsAssistant',$detail->id)}}" class="btn vendor-busses">Assistants</a>
-                                                    <a href="{{route('vendorsTickets',$detail->id)}}" class="btn vendor-busses">Tickets</a>
+                                                       
                                                 </td>
                                             </tr>
                                             @php($i++)
                                            @endforeach
-
-                                          
                                         </tbody>
                                     </table> 
                                 </div>

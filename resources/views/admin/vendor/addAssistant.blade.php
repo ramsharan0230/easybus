@@ -102,6 +102,19 @@
                                                 <input type="file" name="passport_image" id="image" class="form-control" placeholder="Profile Image">
                                             </div>
                                         </div>
+
+                                        <div class="col-lg-12 col-sm-12 col-xs-12 m_b20">
+                                            <div class="input-group">
+                                                <div class="input-group-addon">
+                                                    <!-- <i class="fa fa-street-view"></i> -->
+                                                    citizen_no
+
+                                                </div>
+                                                <input type="text" name="citizen_no" id="citizen_no" class="form-control" placeholder="Citizenship Number...">
+                                            </div>
+                                        </div>
+
+
                                         <div class="col-lg-12 col-sm-12 col-xs-12 m_b20">
                                             <div class="input-group">
                                                 <div class="input-group-addon">

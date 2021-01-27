@@ -40,6 +40,7 @@ All Assistants of vendor {{$detail->name}}
                                             <th><i class="fa fa-mobile"></i> Contact No.</th>
                                             <th><i class="fa fa-map-marker"></i> Address</th>
                                             <th><i class="fa fa-list"></i> Role</th>
+                                            <th><i class="fa fa-list"></i> Citizenship No.</th>
                                             <th><i class="fa fa-list"></i> Citizenship</th>
                                             <!-- <th><i class="fa fa-bus"></i> Bus No.:</th> -->
                                             
@@ -49,13 +50,13 @@ All Assistants of vendor {{$detail->name}}
                                     <tbody class="text-uppercase">
                                         @if(isset($detail->assistants))
                                                 @foreach($detail->assistants as $key=>$asdetail)
-                                                <tr>
-                                                     <?php //dd($asdetail) ?>
+                                                    <tr>
                                                     <td>{{$key +1}}.</td>
                                                     <td> {{$asdetail->name}}</td>
                                                     <td>{{$asdetail->phone}}</td>
                                                     <td>{{$asdetail->address}}</td>
-                                                    <td>{{$asdetail->role}}</td>
+                                                    <td>{{$asdetail->category}}</td>
+                                                    <td>{{$asdetail->citizen_no }}</td>
                                                     <td>
                                                         <img src="{{ asset('citizen_front/').$asdetail->citizen_front }}" alt="" srcset=""> 
                                                         <img src="{{ asset('citizen_front/').$asdetail->citizen_back }}" alt="" srcset=""> 

@@ -102,6 +102,15 @@
                                                     <input type="email" name="email" id="email" class="form-control" placeholder="Email Address" value="{{$data->email}}" readonly="">
                                                 </div>
                                             </div>
+
+                                            <div class="col-lg-6 col-sm-6 m_b20">
+                                                <div class="input-group">
+                                                    <div class="input-group-addon">
+                                                        Citizenship Number
+                                                    </div>
+                                                    <input type="text" name="citizen_no" id="citizen_no" class="form-control" placeholder="Citizenship Number" value="{{$data->citizen_no}}" readonly="">
+                                                </div>
+                                            </div>
                                             <!-- <div class="col-lg-6 col-sm-6 m_b20">
                                                 <div class="input-group">
                                                     <div class="input-group-addon">
