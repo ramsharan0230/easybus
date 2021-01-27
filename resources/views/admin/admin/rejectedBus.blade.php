@@ -30,7 +30,7 @@
 					<table id="example1" class="table vendor-table table-striped">
 						<thead class="vendor-head">
 							<tr>
-								<th>S.N.</th>
+								<th>S.N. jkhfdhskldfasbjfdohsadfjh ijsadhfhjgasd</th>
 								<th>Bus No</th>
 								<th>Bus Name</th>
 								<th>Status</th>
