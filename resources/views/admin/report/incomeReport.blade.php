@@ -1,5 +1,6 @@
 @extends('layouts.admin')
 @section('title','Income Report')
+
 @section('content')
   <!-- Content Header (Page header) -->
             <section class="content-header">
@@ -17,38 +18,111 @@
                     <div class="col-lg-12">
                         <!-- Default box -->
                         <div class="box">
-
-                            <!-- <div class="box-header">
-                                <a href="add-destination.php" class="btn btn-success">Add New Tikets</a>
-                            </div> -->
-                            <div class="box-body ">
-                                <div class="row">
-                                    <div class="col-lg-12">
-                                        <div class="x_panel height_manage">
-                                            <div class="x_title">
-                                                <h2>Income In This Week</h2>
-                                                <div class="clearfix"></div>
-                                            </div>
-                                            <div class="x_content">
-                                                <canvas id="total_passengers_week"></canvas>
-                                            </div>
-                                        </div>
+                            <div class="box-header">
+                                <div class="box-title"> Income In This Week</div>
+                                <div class="box-title pull-right"> 
+                                    <form action="{{route('income-reports.weekly-income-reports')}}" method="GET">
+                                        {{csrf_field()}}
+                                    <div class="col-lg-4 col-md-4 col-sm-6">
+                                        <input type="text" id="nepaliDate1" class="bod-picker form-control" name="from" autocomplete="off" placeholder="from date(yyyy-mm-dd)">
                                     </div>
-                                    <div class="col-lg-12">
-                                        <div class="x_panel height_manage">
-                                            <div class="x_title">
-                                                <h2>Income In This Month</h2>
-                                                <div class="clearfix"></div>
-                                            </div>
-                                            <div class="x_content">
-                                                <canvas id="total_passengers"></canvas>
-                                            </div>
-                                        </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-6">
+                                        <input type="text" id="nepaliDate2" class="bod-picker form-control" name="to" autocomplete="off" placeholder="to date(yyyy-mm-dd)">
                                     </div>
-                                </div> 
+                                    
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <button class="form-control btn btn-success" name="submit" value="">Submit</button>
+                                    </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="box-body">
+                                <table id="example1" class="table vendor-table table-striped">
+                                    <thead class="vendor-head">
+                                        <tr>
+                                            <th>S.N.</th>
+                                            <th>Bus Name</th>
+                                            <th>Bus No</th>
+                                            <th>Seat No. </th>
+                                            <th>Booked By/Phone</th>
+                                            <th>Booked Date</th>
+                                            <th>From</th>
+                                            <th>To</th>
+                                            <th>Price</th>
+                                            <!-- <th>Action</th> -->
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($weeklyTickets as $key=>$weeklyTicket)
+                                    <tr>
+                                        <?php //dd($weeklyTicket) ?>
+                                        <td>{{ $key+1 }}</td>
+                                        <td>{{ $weeklyTicket->bus->bus_name }}</td>
+                                        <td>{{ $weeklyTicket->bus->bus_number }}</td>
+                                        <td>{{ $weeklyTicket->seat_id }}</td>
+                                        <td>{{ $weeklyTicket->name.'/'.$weeklyTicket->phone }}</td>
+                                        <td>{{ $weeklyTicket->booked_on }}</td>
+                                        <td>{{ $weeklyTicket->from }}</td>
+                                        <td>{{ $weeklyTicket->to }}</td>
+                                        <td>{{ 'Rs'.'. '.$weeklyTicket->price }}</td>
+                                    </tr>
+                                    @endforeach
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="8"><strong>Total</strong></td>
+                                            <td><strong>{{ 'Rs'.'. '.$sumWeekly }}</strong></td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
                             </div>  
                         </div>
                         <!-- /.box -->
+
+                        <div class="box">
+                            <div class="box-header">
+                                <div class="box-title"> Income Monthly Report</div>
+                            </div>
+                            <div class="box-body">
+                                <table id="example1" class="table vendor-table table-striped">
+                                    <thead class="vendor-head">
+                                        <tr>
+                                            <th>S.N.</th>
+                                            <th>Bus Name</th>
+                                            <th>Bus No</th>
+                                            <th>Seat No. </th>
+                                            <th>Booked By/Phone</th>
+                                            <th>Booked Date</th>
+                                            <th>From</th>
+                                            <th>To</th>
+                                            <th>Price</th>
+                                            <!-- <th>Action</th> -->
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($monthlyTickets as $key=>$monthlyTicket)
+                                    <tr>
+                                        <td>{{ $key+1 }}</td>
+                                        <td>{{ $monthlyTicket->bus->bus_name }}</td>
+                                        <td>{{ $monthlyTicket->bus->bus_number }}</td>
+                                        <td>{{ $monthlyTicket->seat_id }}</td>
+                                        <td>{{ $monthlyTicket->name.'/'.$weeklyTicket->phone }}</td>
+                                        <td>{{ $monthlyTicket->booked_on }}</td>
+                                        <td>{{ $monthlyTicket->from }}</td>
+                                        <td>{{ $monthlyTicket->to }}</td>
+                                        <td>{{ 'Rs'.'. '.$monthlyTicket->price }}</td>
+                                    </tr>
+                                    @endforeach
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="8"><strong>Total</strong></td>
+                                            <td><strong>{{ 'Rs'.'. '.$sumMonthly }}</strong></td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>  
+                        </div>
                     </div>
                 </div>
             </section>
@@ -56,137 +130,33 @@
 @endsection
 @push('script')
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
-<script type="text/javascript">
-    var week_days = <?php echo json_encode($week_days);?>;
-    var month_days = <?php echo json_encode($month_days);?>;
-    var weekly_income_total = <?php echo json_encode($weekly_income_total);?>;
-    var monthly_income_total = <?php echo json_encode($monthly_income_total);?>;
+@push('script')
+
+  <script>
+   $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+   $('#nepaliDate1').nepaliDatePicker({
+    onFocus: false,
+    ndpTriggerButton: true,
+    ndpTriggerButtonText: 'Date',
+    ndpTriggerButtonClass: 'btn btn-primary btn-sm'
+});
+   $('#nepaliDate2').nepaliDatePicker({
+    onFocus: false,
+    ndpTriggerButton: true,
+    ndpTriggerButtonText: 'Date',
+    ndpTriggerButtonClass: 'btn btn-primary btn-sm',
+    dateFormat: "%y-%m-%d",
+    closeOnDateSelect: true,
+});
+   
 
 
-    if ($("#total_passengers_week").length) { 
-    var f = document.getElementById("total_passengers_week");
-    new Chart(f, { type: "bar",
-    data: { labels: week_days['date'], 
-    datasets: 
-        [
-            { 
-                label: "Income", 
-                data: weekly_income_total, 
-                backgroundColor: [
-                    "#4bc0c0",
-                    "#4bc0c0",
-                    "#4bc0c0",
-                    "#4bc0c0",
-                    "#4bc0c0",
-                    "#4bc0c0",
-                    "#daa520"
-                    ],
-               /* backgroundColor: [*/
-                    /*"#36a2eb", 
-                    "#ff6384", 
-                    "#ff9f40", 
-                    "#ffcd56", 
-                    "#4bc0c0", */
-
-                    /*"#1d69d2",*/
-
-                    /*"#4c3344",
-                    "#687eda",
-                    "#708488",
-                    "ff0000",
-                    "#ffd700",
-                    "#40e0d0",
-                    "#ff7373",
-                    "#800000",
-                    "#800080",
-                    "#00ff00",
-                    "#333333",
-                    "#ff7f50",
-                    "#c0d6e4",
-                    "#808080",
-                    "#ffff66",
-                    "#3399ff",
-                    "#ff4444",*/
-
-                    /*],*/
-            }
-        ] 
-
-    }, 
-        options: 
-        { scales: 
-            { 
-                yAxes: 
-                [{ 
-                    ticks: { 
-                        beginAtZero: !0 
-                    } 
-                }] 
-            } 
-        } 
-
-    }) 
-}
-if ($("#total_passengers").length) { 
-    var f = document.getElementById("total_passengers");
-    new Chart(f, { type: "bar",
-    data: { labels: month_days['date'],
-    datasets: 
-        [
-            { 
-                label: "Income", 
-                data: monthly_income_total, 
-                backgroundColor: "#daa520",
-               /* backgroundColor: [*/
-                    /*"#36a2eb", 
-                    "#ff6384", 
-                    "#ff9f40", 
-                    "#ffcd56", 
-                    "#4bc0c0", */
-
-                    /*"#1d69d2",*/
-
-                    /*"#4c3344",
-                    "#687eda",
-                    "#708488",
-                    "ff0000",
-                    "#ffd700",
-                    "#40e0d0",
-                    "#ff7373",
-                    "#800000",
-                    "#800080",
-                    "#00ff00",
-                    "#333333",
-                    "#ff7f50",
-                    "#c0d6e4",
-                    "#808080",
-                    "#ffff66",
-                    "#3399ff",
-                    "#ff4444",*/
-
-                    /*],*/
-            }
-        ] 
-
-    }, 
-        options: {
-                scales: {
-                    xAxes: [{
-                        stacked: false,
-                        beginAtZero: true,
-                        scaleLabel: {
-                            labelString: 'Month'
-                        },
-                        ticks: {
-                            stepSize: 1,
-                            min: 0,
-                            autoSkip: false
-                        }
-                    }]
-                }
-            }
-
-    }) 
-}
-</script>
+  
+    
+    </script>
+@endpush
 @endpush

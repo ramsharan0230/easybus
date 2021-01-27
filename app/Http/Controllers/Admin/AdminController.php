@@ -48,6 +48,12 @@ class AdminController extends Controller
         $buses=$counter->counter_bus()->where('acceptance_status',1)->where('reject_status',0)->get();
         return view('admin.admin.counterTicketIssued',compact('bookings','counter','buses'));
     }
+    public function allBuses(){
+        $details=$this->bus->orderBy('created_at','desc')->get();
+        $busCategories = BusCategory::orderBy('created_at','desc')->get();
+
+        return view('admin.admin.allBuses', compact('details', 'busCategories'));
+    }
     public function newBuses(){
         $details=$this->bus->where('status','new')->orderBy('created_at','desc')->get();
         return view('admin.admin.newBuses',compact('details'));
@@ -87,6 +93,12 @@ class AdminController extends Controller
         $bus->save();
         return redirect()->back()->with('message','Bus Rejected');
     }
+
+    public function suspendBus($id){
+        $bus=$this->bus->findOrFail($id)->update(['status'=>'suspended']);
+        return redirect()->back()->with('message','Bus Suspended');
+    }
+
     public function busTicketHistory($id){
         // dd(Carbon::now());
         // dd(NepaliCalendar::today());

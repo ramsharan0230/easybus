@@ -164,9 +164,10 @@
                         </span>
                     </a>
                     <ul class="treeview-menu">
+                        <li><a href="{{route('allbuses')}}"><i class="fa fa-list"></i>All Buses</a></li>
                         <li><a href="{{route('newBuses')}}"><i class="fa fa-plus"></i>New Buses</a></li>
-                        <li><a href="{{route('approvedBuses')}}"><i class="fa fa-eye"></i>Approved Bus</a></li>  
-                        <li><a href="{{route('rejectedBus')}}"><i class="fa fa-eye"></i>Rejected Bus</a></li> 
+                        <li><a href="{{route('approved-buses')}}"><i class="fa fa-check"></i>Approved Bus</a></li>  
+                        <li><a href="{{route('rejectedBus')}}"><i class="fa fa-exclamation"></i>Rejected Bus</a></li> 
                         <li><a href="{{route('suspendedBus')}}"><i class="fa fa-eye"></i>Suspended Bus</a></li>  
                     </ul>
                 </li>
@@ -231,7 +232,7 @@
                 
                  <li class="treeview">
                     <a href="#">
-                        <i class="fa fa-calendar"></i> <span>Reports</span>
+                        <i class="fa fa-calendar"></i> <span>Income Reports</span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
                         </span>
@@ -244,8 +245,20 @@
                         <li>
                             <a href="{{route('bookingReport')}}"><i class="fa fa-ticket"></i> Booked Seats</a>
                         </li>
-                        <li>
-                            <a href="{{route('incomeReport')}}"><i class="fa fa-dollar"></i> Income Report</a>
+                        <li class="treeview">
+                            <a href="#"><i class="fa fa-calendar"></i> <span>Reports</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li>
+                                    <a href="{{route('income-reports.weekly-income-reports')}}"><i class="fa fa-users"></i> Weekly<small class="label pull-right bg-red">{{$dashboard_approved_bus}}</small></a>
+                                </li>
+                                <li>
+                                    <a href="{{route('income-reports.monthly-income-reports')}}"><i class="fa fa-users"></i> Monthly<small class="label pull-right bg-red">{{$dashboard_approved_bus}}</small></a>
+                                </li>
+                            </ul>
                         </li>
                         <li>
                             <a href="{{route('vendorReport')}}"><i class="fa fa-user-circle"></i> Vendor Report</a>

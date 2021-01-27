@@ -32,24 +32,23 @@
 						<thead class="vendor-head">
 							<tr>
 								<th>S.N.</th>
-								<th>Bus No</th>
-								<th>Bus Name</th>
-								<!-- <th>Date</th> -->
-								<th>Status</th>
+								<th>Bus No/ Bus Name</th>
 								<th>Driver</th>
+								<th>Status</th>
+								<th>Bus Type</th>
 								<th>Booking Status</th>
+								<th>Profile</th>
 								<th>Action</th>
 								<th>Ticket History</th>
                                 <!-- <th>Action</th> -->
 							</tr>
 						</thead>
 						<tbody>
-						@php($i=1)
-                        @foreach($details as $detail)
-                        <?php
-
+                        @foreach($details as $key => $detail)
+						<?php
+						// dd($detail->busCategory->name);
                         if($detail->busBooking){
-                            $booked=count($detail->busBooking()->where('date',$check_date)->get());
+                            $booked=count($detail->busBooking()->where('date', $check_date)->get());
                         }else{
                             $booked=0;
                         }
@@ -61,21 +60,16 @@
                         
                         ?>
                         <tr>
-                        	<td>{{$i++}}</td>
-				            <td>{{$detail->bus_number}}</td>
-				            <!-- <td>@if($detail->image)
-								<img src="{{asset('images/listing/'.$detail->image)}}">
-								@else
-								<p>N/A</p>
-								@endif
-				            </td> -->
-				            <td>{{$detail->bus_name}}</td>
-				            <td>{{$detail->status}}</td>
-				            <td>{{@$detail->driver->name}}</td>
+                        	<td>{{$key+1}}</td>
+				            <td>{{$detail->bus_number}}/{{$detail->bus_name}}</td>
+							<td>{{ @$detail->driver->name }}</td>
+							<td>{{$detail->status}}</td>
+							<td>{{ $detail->busCategory->name }}</td>
 				            <td>
-				            	Booked:{{$booked}}<br>
-				            	Available:{{$available}}
-				            </td>
+				            	<strong>Booked:<span style="color:red"> {{$booked}}</span><br></strong>
+								<strong>Available:<span style="color:green"> {{$available}}</span></strong>
+							</td>
+							<td><a class="btn vendor-busses profile" href="{{route('bus-detail', $detail->id)}}" title="Edit">Profile</a></td>
 				            <td>
 				            	<ul class="display_inline">
 				            		<li>
@@ -96,16 +90,12 @@
 		               					<button type="submit" class="btn  vendor-busses" style="display:inline">Delete</button>
 		               				    </form>
 		               				    @endif
-				            			
 				            		</li>
-
                				    </ul>
-               				  
 				            </td>
 				            <td><a href="{{route('vendorBookingHistory',$detail->user_id)}}" class="btn btn-success">Ticket History</a></td>
 				            
                         </tr>
-                        @php($i++)
                         @endforeach
 						</tbody>
 					</table>

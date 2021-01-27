@@ -36,13 +36,14 @@ class VendorController extends Controller
         $check_date=$date_ne['y'].'-'.((strlen($date_ne['m']) == 2) ? $date_ne['m'] : "0".$date_ne['m']).'-'.$date_ne['d'];
         $buses = Auth::user()->buses;
         $routines = [];
+
         foreach($buses as $bus){
             $bus_routines = $bus->busRoutine()->where('date','>',$check_date)->get();
             foreach($bus_routines as $routine){
                 array_push($routines,$routine);
             }
         }
-        
+        // dd($routines, $check_date);
         return view('admin.vendor.dashboard',compact('routines','check_date'));
     }
     public function index()
@@ -474,5 +475,10 @@ class VendorController extends Controller
         $bookings = $this->booking->where('vendor_id',$id)->orderBy('date','desc')->get();
         return view('admin.vendor.bookingHistory',compact('bookings'));
 
+    }
+
+    public function busDetail($id){
+        $bus=$this->bus->findOrFail($id);
+        return view('admin.admin.busLayout',compact('bus'));
     }
 }

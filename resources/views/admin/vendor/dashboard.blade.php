@@ -35,9 +35,11 @@
 								<th>Bus No</th>
 								<th>Bus Name</th>
 								<th>Date</th>
+								<th>Shift</th>
+								<th>Time</th>
 								<th>Status</th>
-								<th>Driver</th>
 								<th>Booking Status</th>
+								<th>Driver</th>
 								<th>Action</th>
 								<!-- <th>Ticket History</th> -->
                                 <!-- <th>Action</th> -->
@@ -71,13 +73,15 @@
 								@endif
 				            </td> -->
 				            <td>{{$detail->bus_name}}</td>
-				            <td>{{$routine->date}}</td>
-				            <td>{{$detail->status}}</td>
-				            <td>{{@$detail->driver->name}}</td>
-				            <td>
+							<td>{{$routine->date}}</td>
+							<td>{{$routine->shift}}</td>
+							<td>{{$routine->time}}</td>
+							<td>{{$detail->status}}</td>
+							<td>
 				            	Booked:{{$booked}}<br>
 				            	Available:{{$available}}
 				            </td>
+				            <td>{{@$detail->driver->name}}</td>
 				            <td>
 				            	<ul class="display_inline">
 				            		<!-- <li>

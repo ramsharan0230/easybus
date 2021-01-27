@@ -47,10 +47,12 @@ Route::group(['namespace'=>'Admin','middleware'=>['auth'],'prefix'=>'admin'],fun
 		Route::resource('destination','DestinationController');
 		Route::get('counters','AdminController@allCounters')->name('adminCounter');
 		Route::get('new-buses','AdminController@newBuses')->name('newBuses');
+		Route::get('allbuses','AdminController@allBuses')->name('allbuses');
 		Route::get('approve-bus/{id}','AdminController@approveBus')->name('approveBus');
 		Route::get('reject-bus/{id}','AdminController@rejectBus')->name('rejectBus');
+		Route::get('suspend-bus/{id}','AdminController@suspendBus')->name('suspendBus');
 		Route::get('bus-detail/{id}','AdminController@busDetail')->name('busDetail');
-		Route::get('approved-buses','AdminController@approvedBuses')->name('approvedBuses');
+		Route::get('approved-buses','AdminController@approvedBuses')->name('approved-buses');
 		Route::get('approved-bus-tickets/{id}','ReportController@approvedBusTickets')->name('approvedBusTicket');
 		Route::post('individual-bus-tickets','ReportController@individualBusTickets')->name('individualBustickets');
 		Route::get('advertisement/{bus_id}','AdminController@busAdvertisement')->name('busAdvertisemet');
@@ -98,6 +100,12 @@ Route::group(['namespace'=>'Admin','middleware'=>['auth'],'prefix'=>'admin'],fun
 		Route::get('vendor-of-counter/{id}','ReportController@vendor_of_counters')->name('vendorOfCounter');
 		Route::get('counter-bus-list/{id}','ReportController@counter_bus_list')->name('counterBusList');
 		Route::get('counter-bus-tickets/{id}','ReportController@counterBusTickets')->name('counterBusTickets');
+		// income reports
+		Route::get('income-reports/weekly-income-reports', 'ReportController@weeklyIncomeReport')->name('income-reports.weekly-income-reports');
+		Route::get('income-reports/monthly-income-reports', 'ReportController@monthlyIncomeReport')->name('income-reports.monthly-income-reports');
+		Route::get('income-reports/weekly-income-reports.pdf', 'ReportController@weeklyIncomeReportPDF')->name('income-reports.weekly-income-reports.pdf');
+		Route::get('income-reports/monthly-income-reports/pdf', 'ReportController@monthlyReportPDF')->name('income-reports.monthly-income-reports.pdf');
+
 		Route::get('client','ClientController@allClients')->name('client.index');
 		Route::get('client/{id}/edit','ClientController@editClient')->name('client.edit');
 		Route::delete('client/{id}/delete','ClientController@deleteClient')->name('client.delete');
@@ -138,6 +146,7 @@ Route::group(['namespace'=>'Admin','middleware'=>['auth'],'prefix'=>'admin'],fun
 		Route::get('rejected-bus-list','BusController@rejectedBusList')->name('rejectedBusList');
 		Route::post('reject-request','VendorController@rejectRequest')->name('rejectRequest');
 		Route::get('all-counters','VendorController@allCounters')->name('allCounters');
+		Route::get('bus-detail/{id}','VendorController@busDetail')->name('bus-detail');
 		
 		Route::get('ticket-sale/{id}','VendorController@ticketSale')->name('ticketSale');
 		Route::post('update-vendor-info/{id}','VendorController@updateInfo')->name('updateVendorInfo');

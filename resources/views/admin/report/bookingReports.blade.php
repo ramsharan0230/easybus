@@ -66,6 +66,7 @@
 								<th>S.N.</th>
 								<th>Booked By</th>
 								<th>Bus</th>
+								<th>Seat No.</th>
 								<th>From</th>
 								<th>To</th>
 								<th>Price</th>
@@ -77,15 +78,15 @@
 							</tr>
 						</thead>
 						<tbody>
-							@php($i=1)
-							@foreach($bookingReports as $report)
+							@foreach($bookingReports as $key => $report)
 							<tr>
-								<td>{{$i}}</td>
+								<td>{{$key+1}}</td>
 								<td>
 									{{$report->name}}<br>
 									({{$report->phone}})
 								</td>
 								<td>{{$report->bus->bus_name}}({{$report->bus->bus_number}})</td>
+								<td>{{$report->seat_id}}</td>
 								<td>{{$report->from}}</td>
 								<td>@if($report->sub_destination)
 									{{$report->sub_destination}}
@@ -99,7 +100,6 @@
 								<td>{{$report->booked_on}}</td>
 
 							</tr>
-							@php($i++)
 							@endforeach
 						</tbody>
 					</table>

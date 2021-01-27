@@ -53,20 +53,13 @@
 				            </td> -->
 
 				            <td>{{$detail->bus_name}}</td>
-				            <td>{{$detail->status}}</td>
+				            <td><strong><button class="btn btn-outline-success">{{ucfirst($detail->status)}}</button></strong></td>
 				            <!-- <td>{{$detail->publish==1? 'active':'inactive'}}</td> -->
 				            <td>
-				            	<a class="btn vendor-busses edit" href="{{route('busDetail',$detail->id)}}" title="Edit">Bus Layout</a>
-				            	
-				            	
+				            	<a class="btn vendor-busses edit" href="{{route('bus-detail',$detail->id)}}" title="Edit">Bus Layout</a>
 				            </td>
 				            <td>
-				            	
-				            	<a class="btn vendor-busses edit" href="#" title="Edit" disabled="true">Rejected</a>
 				            	<a class="btn vendor-busses edit" href="{{route('approveBus',$detail->id)}}" title="Edit">Approve</a>
-				            	
-				            	
-				            	
 				            </td>
 				            
                         </tr>

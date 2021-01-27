@@ -14,8 +14,6 @@
             
             <!-- Main content -->
             <section class="content">
-                 
-
                 <form action="" class="form form-horizontal form-responsive" method="post" >
                     <div class="row equal_height">
                         <div class="col-lg-6 col-sm-12 col-xs-12 m_t20 bus_detail">
@@ -24,7 +22,6 @@
                         <div class="col-lg-6 col-sm-12 col-xs-12 m_t20 bus_detail">
                             <img src="{{asset('images/main/'.$bus->image_2)}}" alt="">
                         </div>
-
                         
                         <div class="col-lg-12 col-sm-12 col-xs-12 m_t20">
                             <div class="row equal_height">
@@ -64,7 +61,7 @@
                                                 </ul>
                                             </div>
                                         </div>
-                               
+                                        
                                         <div class="box box-primary bus-layout-wrapp-main">
                                             <div class="box-body box-profile">
                                                 <h3 class="profile-username">Made Year</h3>
@@ -72,6 +69,18 @@
                                                     <li>
                                                         <i class="fa fa-calendar"></i>
                                                         <span>{{$bus->made_year}}</span>
+                                                    </li>
+                                                </ul>   
+                                            </div>
+                                        </div>
+
+                                        <div class="box box-primary bus-layout-wrapp-main">
+                                            <div class="box-body box-profile">
+                                                <h3 class="profile-username">Bus Type</h3>
+                                                <ul class="seat_info">
+                                                    <li>
+                                                        <i class="fa fa-calendar"></i>
+                                                        <span>{{$bus->busCategory->name}}</span>
                                                     </li>
                                                 </ul>   
                                             </div>
@@ -86,6 +95,42 @@
                                                         <span>{{$bus->manufacturer}}</span>
                                                     </li>
                                                 </ul>  
+                                            </div>
+                                        </div>
+
+                                        <div class="box box-primary bus-layout-wrapp-main">
+                                            <div class="box-body box-profile">
+                                                <h3 class="profile-username">Bus Facilitiess</h3>
+                                                <ul class="seat_info">
+                                                    <li>
+                                                        <i class="fa fa-calendar"></i>
+                                                        <span>{{$bus->facilities}}</span>
+                                                    </li>
+                                                </ul>   
+                                            </div>
+                                        </div>
+
+                                        <div class="box box-primary bus-layout-wrapp-main">
+                                            <div class="box-body box-profile">
+                                                <h3 class="profile-username">Bus Driver/ Phone</h3>
+                                                <ul class="seat_info">
+                                                    <li>
+                                                        <i class="fa fa-calendar"></i>
+                                                        <span>{{@$bus->driver->name}}/ {{@$bus->driver->phone}}</span>
+                                                    </li>
+                                                </ul>   
+                                            </div>
+                                        </div>
+
+                                        <div class="box box-primary bus-layout-wrapp-main">
+                                            <div class="box-body box-profile">
+                                                <h3 class="profile-username">Bus Conductor/ Phone</h3>
+                                                <ul class="seat_info">
+                                                    <li>
+                                                        <i class="fa fa-calendar"></i>
+                                                        <span>{{@$bus->conductor->name}}/ {{@$bus->conductor->phone}}</span>
+                                                    </li>
+                                                </ul>   
                                             </div>
                                         </div>
                       
@@ -248,6 +293,8 @@
                         
                     </div>
                 </form>
+
+                <a class="btn btn-primary btn-sm" href="{{ route('bus.index') }}"><i class="fa fa-arrow-back"></i> Back</a>
             </section>
             <!-- /.content -->      
 @endsection

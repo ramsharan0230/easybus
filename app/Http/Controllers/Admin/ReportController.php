@@ -10,11 +10,15 @@ use App\Repositories\User\UserRepository;
 use App\Models\BookingPaymentDetails;
 use App\Repositories\Bus\BusRepository;
 use App\Repositories\BusCategory\BusCategoryRepository;
-use Carbon;
+use Illuminate\Support\Facades\Input;
+use Carbon\Carbon;
+use DateTime;
+
 use Auth;
 use App\User;
 use App\Models\Bus;
 use DB;
+use PDF;
 
 class ReportController extends Controller
 {
@@ -52,33 +56,131 @@ class ReportController extends Controller
     	return view('admin.report.vendorReport');
     }
     public function incomeReport(){
-        $week_days=$this->dates_of_week();
+    	$week_days=$this->dates_of_week();
     	$month_days=$this->dates_of_month();
-    	// dd($month_days);
     	$weekly_income_total=[];
-    	$monthly_income_total=[];
+        $monthly_income_total=[];
+        
+        $currentDate = Carbon::now();
+        $agoDate = $currentDate->subDays($currentDate->dayOfWeek)->subWeek();
+        $agoDate->format('Y-m-d');
+        $dateOneMonthAgo = Carbon::now()->subMonth()->format('Y-m-d');
+
     	foreach($week_days['date'] as $date){
-            $tickets=$this->booking->whereDate('created_at',$date)->get();
-           print_r($tickets);
-    		$sum=0;
-    		foreach($tickets as $ticket){
-    			$sum+=$ticket->bus->price;
+            $weeklyTickets=$this->booking->where('created_at', '>=', $agoDate->format('Y-m-d'))->get();
+            // dd('week_data', $weekTickets);
+    		$sumWeekly=0;
+    		foreach($weeklyTickets as $ticket){
+                $sumWeekly+=$ticket->price;
     		}
-    		array_push($weekly_income_total, $sum);
+    		array_push($weekly_income_total, $sumWeekly);
     	}
     	foreach($month_days['date'] as $date){
-    		$tickets=$this->booking->whereDate('created_at',$date)->get();
-    		$sum=0;
-    		foreach($tickets as $ticket){
-    			$sum+=$ticket->bus->price;
-    		}
-    		array_push($monthly_income_total, $sum);
+            $monthlyTickets=$this->booking->where('created_at','>=', $dateOneMonthAgo)->get();
+            $sumMonthly = 0;
+    		foreach($monthlyTickets as $ticket){
+                $sumMonthly+=$ticket->price;
+            }
+    		array_push($monthly_income_total, $sumMonthly);
         }
-        
-    	return view('admin.report.incomeReport',compact('week_days','month_days','weekly_income_total','monthly_income_total'));
+
+        return view('admin.report.incomeReport',compact('week_days', 'sumMonthly', 'sumWeekly', 'month_days','weekly_income_total','monthly_income_total', 'monthlyTickets', 'weeklyTickets'));
     }
+
+    public function weeklyIncomeReport(Request $request){
+        $date = $request->date; 
+        $sumWeekly = 0;
+
+        if($date !=null){
+            $newDate = date('Y-m-d', strtotime($date. ' + 7 days'));
+            $todayDate = $request->input('date');
+            $dayOneWeekAgo = $newDate;
+            $weeklyTickets = $this->booking->whereBetween('created_at', [$date, $newDate])->get();
+        }
+        else{
+            $weeklyTickets=$this->booking->whereBetween('created_at', [Carbon::now()->subWeek()->toDateString(), Carbon::now()->toDateString()])->get();
+            // month name
+            $todayDate =  Carbon::now()->toDateString();
+            $dayOneWeekAgo = Carbon::now()->subWeek()->toDateString();
+        }
+
+        foreach($weeklyTickets as $ticket){
+            $sumWeekly+=$ticket->price;
+        }
+        return view('admin.report.weekly-income-report',compact('sumWeekly', 'weeklyTickets', 'todayDate', 'dayOneWeekAgo'));
+    }
+
+    public function monthlyIncomeReport(Request $request){
+        $monthly_income_total=[];
+        $sumMonthly = 0;
+
+        if($request->input('month') !=null){
+            $date = $request->input('month');
+            $monthlyTickets =  $this->explodeDate($date);
+        }
+        else{
+            $monthlyTickets=$this->currentMonthTickets();
+        }
+
+        foreach($monthlyTickets as $ticket){
+            $sumMonthly+=$ticket->price;
+        }
+
+        array_push($monthly_income_total, $sumMonthly);
+
+        return view('admin.report.monthly-income-report',compact('sumMonthly', 'monthly_income_total', 'monthlyTickets'));
+    }
+
+    public function monthlyReportPDF(Request $request){
+        $monthly_income_total=[];
+        $sumMonthly = 0;
+
+        if($request->input('date') !=null){
+            $date = $request->input('date');
+            $monthlyTickets =  $this->explodeDate($date);
+        }
+        else{
+            $monthlyTickets=$this->currentMonthTickets();
+        }
+
+        foreach($monthlyTickets as $ticket){
+            $sumMonthly+=$ticket->price;
+        }
+
+        array_push($monthly_income_total, $sumMonthly);
+        // month name
+        $rowNewDate = $this->getMonthName($request->input('date')?$request->input('date'):Carbon::now()->format('Y-m'));
+        // end month name
+        $pdf = PDF::loadView('admin.report.pdf.monthly-report-pdf', compact('sumMonthly', 'monthly_income_total', 'monthlyTickets', 'rowNewDate'))->setPaper('a4', 'landscape');
+        return $pdf->stream();
+    }
+
+    public function weeklyIncomeReportPDF(Request $request){
+        $date = $request->date; 
+        $sumWeekly = 0;
+
+        if($request->input('date') !=null){
+            $newDate = date('Y-m-d', strtotime($date. ' + 7 days'));
+            $weeklyTickets = $this->booking->whereBetween('created_at', [$date, $newDate])->get();
+        }
+        else{
+            $weeklyTickets=$this->booking->whereBetween('created_at', [Carbon::now()->subWeek()->toDateString(), Carbon::now()->toDateString()])->get();
+        }
+
+        foreach($weeklyTickets as $ticket){
+            $sumWeekly+=$ticket->price;
+        }
+        // month name
+        $todayDate =  Carbon::now()->toDateString();
+        $dayOneWeekAgo = Carbon::now()->subWeek()->toDateString();
+        // end month name
+        $pdf = PDF::loadView('admin.report.pdf.weekly-report-pdf', compact('sumWeekly', 'weeklyTickets', 'todayDate', 'dayOneWeekAgo'))->setPaper('a4', 'landscape');
+        return $pdf->stream();
+    }
+
+
     public function dates_of_week(){
-    	$date = Carbon\Carbon::today();
+    	$date = Carbon::today();
     	$num=date('N');
     	// parse about any English textual datetime description into a Unix timestamp 
 		$ts = strtotime($date);
@@ -99,7 +201,7 @@ class ReportController extends Controller
 		return $data=['day'=>$day_name,'date'=>$day_date];	
     }
     public function dates_of_month(){
-    	$date = Carbon\Carbon::today();
+    	$date = Carbon::today();
     	$num=date('m');
     	$month = date('m');
 		$year = date('Y');
@@ -209,11 +311,11 @@ class ReportController extends Controller
     }
     public function vendorsAssistant($id){
 
-        $details=User::with(['assistants'=>function($query){
+        $detail=User::with(['assistants'=>function($query){
             $query->get();
         }])->findOrFail($id);
-        
-        return view('admin.report.vendorsAssistant',compact('details'));
+
+        return view('admin.report.vendorsAssistant',compact('detail'));
     }
     public function vendorTickets($id){
         $details=User::with('vendor_bookings')->findOrFail($id);
@@ -314,5 +416,28 @@ class ReportController extends Controller
             $query->orderBy('date','desc')->where('counter_id','!=',null)->with('bus','counter')->get();
         }])->findOrFail($id);
         return view('admin.report.counterBusTicket',compact('bus'));
+    }
+
+    public function explodeDate($date){
+        $dateArray = explode('-', $date);
+        $year = $dateArray[0];
+        $month = $dateArray[1];
+        $monthlyTickets = $this->booking->whereYear('created_at', $year)->whereMonth('created_at', $month)->get();
+
+        return $monthlyTickets;
+    }
+
+    public function currentMonthTickets(){
+        $dateOneMonthAgo = Carbon::now()->subMonth()->format('Y-m-d');
+        return $this->booking->where('created_at','>=', $dateOneMonthAgo)->get();
+    }
+
+    public function getMonthName($dateMonthNumeric){
+        $dateValue = $dateMonthNumeric;
+        $time=strtotime($dateValue);
+        $month=date("F",$time);
+        $year=date("Y",$time);
+
+        return [$month, $year];
     }
 }

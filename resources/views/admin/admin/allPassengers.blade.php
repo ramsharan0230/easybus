@@ -60,6 +60,7 @@
                                             <th>SN</th>
                                             <th> Name</th>
                                             <th>Bus</th>
+                                            <th>Seat Number</th>
                                             <th>Date</th>
                                             <th>Time</th>
                                             <th>Seat</th>
@@ -78,6 +79,7 @@
                                             <td>{{$detail->bus->bus_name}}<br>
                                                 ({{$detail->bus->bus_number}})
                                             </td>
+                                            <td>{{ $detail->seat_id }}</td>
                                             <td>{{$detail->date}}</td>
                                             <td>{{$detail->time}}</td>
                                             <td>{{$detail->seat->seat_name}}</td>

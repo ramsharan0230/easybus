@@ -1,12 +1,12 @@
 @extends('layouts.admin')
 @section('title')
-All Assistants of vendor {{$details->name}}
+All Assistants of vendor {{$detail->name}}
 @endsection
 @section('content')
-
+            <?php //dd($detail) ?>
             <!-- Content Header (Page header) -->
             <section class="content-header">
-                <h1>All Assistants of vendor {{$details->name}}<small>EASYBUS</small></h1>
+                <h1>All Assistants of vendor {{$detail->name}}<small>EASYBUS</small></h1>
                 <ol class="breadcrumb">
                     <li><a href="./"><i class="fa fa-dashboard"></i> Home</a></li>
                     <li><a href="#">User Management</a></li>
@@ -39,30 +39,30 @@ All Assistants of vendor {{$details->name}}
                                             <th>Assistant Full Name</th> 
                                             <th><i class="fa fa-mobile"></i> Contact No.</th>
                                             <th><i class="fa fa-map-marker"></i> Address</th>
+                                            <th><i class="fa fa-list"></i> Role</th>
+                                            <th><i class="fa fa-list"></i> Citizenship</th>
                                             <!-- <th><i class="fa fa-bus"></i> Bus No.:</th> -->
                                             
                                             <!-- <th>Action</th> -->
                                         </tr>
                                     </thead>
                                     <tbody class="text-uppercase">
-                                        @if(isset($details->assistants))
-                                                @php($i=1)
-                                                @foreach($details->assistants as $detail)
+                                        @if(isset($detail->assistants))
+                                                @foreach($detail->assistants as $key=>$asdetail)
                                                 <tr>
-                                                    <td>{{$i}}.</td>
-                                                    <td> {{$detail->name}}</td>
-                                                    <td>{{$detail->phone}}</td>
-                                                    <td>{{$detail->address}}</td>
-                                                    
-                                                     
-                                                    
-                                                  
+                                                     <?php //dd($asdetail) ?>
+                                                    <td>{{$key +1}}.</td>
+                                                    <td> {{$asdetail->name}}</td>
+                                                    <td>{{$asdetail->phone}}</td>
+                                                    <td>{{$asdetail->address}}</td>
+                                                    <td>{{$asdetail->role}}</td>
+                                                    <td>
+                                                        <img src="{{ asset('citizen_front/').$asdetail->citizen_front }}" alt="" srcset=""> 
+                                                        <img src="{{ asset('citizen_front/').$asdetail->citizen_back }}" alt="" srcset=""> 
+                                                    </td>
                                                 </tr>
-                                                @php($i++)
                                                 @endforeach
                                         @endif
-                                    	
-                                       
                                     </tbody>
                                 </table> 
                             </div>  

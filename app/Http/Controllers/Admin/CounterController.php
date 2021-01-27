@@ -133,8 +133,6 @@ class CounterController extends Controller
     }
     public function busList(){
         $allBuses=Auth::user()->counter_bus()->where('acceptance_status',1)->where('reject_status',0)->get();
-
-        
         return view('admin.counter.allBusList',compact('allBuses'));
     }
     public function bookedView($id){
@@ -555,17 +553,19 @@ class CounterController extends Controller
     }
     public function busSearchCounter(Request $request){
 
+        // dd($request->all())
+;
         $this->validate($request,['from'=>'required','to'=>'required','date'=>'required','shift'=>'required']);
         $date=explode('-',$request->date);
         $check_date=date('Y-m-d');
         
         $end_date=$this->calendar->get_eng_date($date[0],$date[1],$date[2]);
         $nepali_form_date=$end_date['y'].'-'.$end_date['m'].'-'.$end_date['d'];
+        // dd($nepali_form_date, $check_date);
         
         if($nepali_form_date<$check_date){
             return redirect()->back()->with('message','Booking cannot be made for past');
         }else{
-            
             if(session()->get('jointable')){
 
                 session()->forget('jointable');
@@ -577,6 +577,7 @@ class CounterController extends Controller
             session()->put('shift',$request->shift); 
             session()->forget('sub_destination'); 
             $session_date_set=session()->get('check_date');
+
             if($session_date_set!=null){
                 // dd($request->shift);
             $counterBus=Auth::user()->counter_bus()->where('acceptance_status',1)->where('reject_status',0)->get();
@@ -590,20 +591,21 @@ class CounterController extends Controller
                 }
                 
             }
-
             $value['facilities'] ='';
             $busroutine=[];
             if($buses){
 
                 foreach($buses as $bus){
-
-                $routine=$bus->busRoutine->where('from',$request->from)->where('to',$request->to)->where('date',$request->date)->where('shift',$request->shift)->first();
-                if($routine){
-                    array_push($busroutine,$routine);
-
-                }
+                    $routine=$bus->busRoutine->where('from',$request->from)->where('to',$request->to)->where('date', '<=', $request->date)->where('shift', 'like', '%'.$request->shift.'%')->first();
+                    var_dump($routine);
+                    if($routine){
+                        array_push($busroutine,$routine);
+                    }
                 }
             }
+            // where('name', 'lilke', '%'.$data . '%')
+
+            // dd($busroutine);
 
             $from=$request->from;
             $to=$request->to;
