@@ -52,7 +52,7 @@ Route::group(['namespace'=>'Admin','middleware'=>['auth'],'prefix'=>'admin'],fun
 		Route::get('reject-bus/{id}','AdminController@rejectBus')->name('rejectBus');
 		Route::get('suspend-bus/{id}','AdminController@suspendBus')->name('suspendBus');
 		Route::get('bus-detail/{id}','AdminController@busDetail')->name('busDetail');
-		Route::get('approved-buses','AdminController@approvedBuses')->name('approvedBuses');
+		Route::get('approved-buses','AdminController@approvedBuses')->name('approved-buses');
 		Route::get('approved-bus-tickets/{id}','ReportController@approvedBusTickets')->name('approvedBusTicket');
 		Route::post('individual-bus-tickets','ReportController@individualBusTickets')->name('individualBustickets');
 		Route::get('advertisement/{bus_id}','AdminController@busAdvertisement')->name('busAdvertisemet');
@@ -146,6 +146,7 @@ Route::group(['namespace'=>'Admin','middleware'=>['auth'],'prefix'=>'admin'],fun
 		Route::get('rejected-bus-list','BusController@rejectedBusList')->name('rejectedBusList');
 		Route::post('reject-request','VendorController@rejectRequest')->name('rejectRequest');
 		Route::get('all-counters','VendorController@allCounters')->name('allCounters');
+		Route::get('bus-detail/{id}','VendorController@busDetail')->name('bus-detail');
 		
 		Route::get('ticket-sale/{id}','VendorController@ticketSale')->name('ticketSale');
 		Route::post('update-vendor-info/{id}','VendorController@updateInfo')->name('updateVendorInfo');

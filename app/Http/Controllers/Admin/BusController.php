@@ -219,6 +219,7 @@ class BusController extends Controller
         $bus_request=Auth::user()->bus_request()->where('reject_status',1)->get();
         return view('admin.vendor.rejectedBusList',compact('bus_request'));
     }
+
     public function bookingDetail($id){
         $year_en = date("Y",time());
         $month_en = date("m",time());
@@ -226,7 +227,7 @@ class BusController extends Controller
         $date_ne = $this->calendar->get_nepali_date($year_en, $month_en, $day_en);
         $check_date=$date_ne['y'].'-'.((strlen($date_ne['m']) == 2) ? $date_ne['m'] : "0".$date_ne['m']).'-'.$date_ne['d'];
         $bookings=$this->booking->where('bus_id',$id)->where('date',$check_date)->orderBy('date','desc')->get();
-        
+
         if($bookings){
             $booked = $bookings->count();
             // dd($booking);
@@ -239,8 +240,6 @@ class BusController extends Controller
         }else{
             $available = 0;
         }
-
-        
 
         return view('admin.bus.bookingDetail',compact('bookings','booked','available'));
     }

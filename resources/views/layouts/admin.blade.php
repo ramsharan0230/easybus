@@ -166,7 +166,7 @@
                     <ul class="treeview-menu">
                         <li><a href="{{route('allbuses')}}"><i class="fa fa-list"></i>All Buses</a></li>
                         <li><a href="{{route('newBuses')}}"><i class="fa fa-plus"></i>New Buses</a></li>
-                        <li><a href="{{route('approvedBuses')}}"><i class="fa fa-check"></i>Approved Bus</a></li>  
+                        <li><a href="{{route('approved-buses')}}"><i class="fa fa-check"></i>Approved Bus</a></li>  
                         <li><a href="{{route('rejectedBus')}}"><i class="fa fa-exclamation"></i>Rejected Bus</a></li> 
                         <li><a href="{{route('suspendedBus')}}"><i class="fa fa-eye"></i>Suspended Bus</a></li>  
                     </ul>

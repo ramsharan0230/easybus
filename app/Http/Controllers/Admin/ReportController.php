@@ -311,11 +311,11 @@ class ReportController extends Controller
     }
     public function vendorsAssistant($id){
 
-        $details=User::with(['assistants'=>function($query){
+        $detail=User::with(['assistants'=>function($query){
             $query->get();
         }])->findOrFail($id);
-        
-        return view('admin.report.vendorsAssistant',compact('details'));
+
+        return view('admin.report.vendorsAssistant',compact('detail'));
     }
     public function vendorTickets($id){
         $details=User::with('vendor_bookings')->findOrFail($id);

@@ -30,7 +30,7 @@
 					<div class="row">
 						<div class="col-sm-3"></div>
 						<div class="col-sm-8">
-							<form class="form-inline" method="GET" action="{{ route('approvedBuses') }}">
+							<form class="form-inline" method="GET" action="{{ route('approved-buses') }}">
 								<div class="form-group mb-2">
 									<label for="staticEmail2" class="sr-only">Email</label>
 									<select name="bus-type" id="bus-type" class="form-control">
@@ -77,7 +77,7 @@
 				            <td>{{$detail->bus_name}}</td>
 				            <!-- <td>{{$detail->publish==1? 'active':'inactive'}}</td> -->
 				            <td>
-				            	<a class="btn vendor-busses edit" href="{{route('busDetail',$detail->id)}}" title="Edit">Bus Layout</a>
+				            	<a class="btn vendor-busses edit" href="{{route('bus-detail',$detail->id)}}" title="Edit">Bus Layout</a>
 							</td>
                             <td>{{ $detail->busCategory->name }}</td>
                             <td>
