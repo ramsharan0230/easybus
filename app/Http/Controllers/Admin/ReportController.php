@@ -10,6 +10,7 @@ use App\Repositories\User\UserRepository;
 use App\Models\BookingPaymentDetails;
 use App\Repositories\Bus\BusRepository;
 use App\Repositories\BusCategory\BusCategoryRepository;
+use App\Repositories\nepalicalendar\nepali_date;
 use Illuminate\Support\Facades\Input;
 use Carbon\Carbon;
 use DateTime;
@@ -22,11 +23,12 @@ use PDF;
 
 class ReportController extends Controller
 {
-	public function __construct(BookingRepository $booking,UserRepository $user,BusRepository $bus,BusCategoryRepository $bus_category){
+	public function __construct(BookingRepository $booking,UserRepository $user,BusRepository $bus,BusCategoryRepository $bus_category, nepali_date $calendar){
 		$this->booking=$booking;
 		$this->user=$user;
         $this->bus=$bus;
         $this->bus_category=$bus_category;
+        $this->calendar=$calendar;
 	}
     public function passengerReport(){
     	
@@ -401,8 +403,25 @@ class ReportController extends Controller
             array_push($vendors, $vendor);
 
         }
+
         return view('admin.report.counterVendors',compact('vendors','counter'));
     }
+
+    public function bookingToVendors($id){
+        // dd($id);
+        $year_en = date("Y",time());
+        $month_en = date("m",time());
+        $day_en = date("d",time());
+        $date_ne = $this->calendar->get_nepali_date($year_en, $month_en, $day_en);
+        $check_date=$date_ne['y'].'-'.((strlen($date_ne['m']) == 2) ? $date_ne['m'] : "0".$date_ne['m']).'-'.$date_ne['d'];
+        // dd($this->booking->where('vendor_id',$id)->where('date', '>=', $check_date)->orderBy('date','desc')->paginate(150));
+        $bookings = $this->booking->where('vendor_id',$id)->orderBy('date','desc')->paginate(150);
+        $from='';
+        $to='';
+        $payment_status='';
+        return view('admin.admin.bookingToVendors',compact('bookings','id','check_date','from','to','payment_status'));
+    }
+
     public function counter_bus_list($id){
         $allBuses=User::with(['counter_bus'=>function($query){
             $query->where('acceptance_status',1)->where('reject_status',0)->get();
