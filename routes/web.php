@@ -89,6 +89,7 @@ Route::group(['namespace'=>'Admin','middleware'=>['auth'],'prefix'=>'admin'],fun
 		Route::get('bus-list-report/{id}','ReportController@busListReport')->name('busListReport');
 		Route::get('counter-booked-seat','ReportController@counterBookedSeats')->name('counterBookedSeats');
 		Route::get('online-booked-seat','ReportController@onlineBookedSeats')->name('onlineBookedSeats');
+		Route::get('bus-seat-layout/{id}', 'AdminController@busSeatLayout')->name('bus-seat-layout');
 		Route::get('counters-of-vendor/{id}','ReportController@counter_of_vendor')->name('counterOfVendor');
 		Route::get('vendor-buses/{id}','ReportController@vendorBuses')->name('vendorBusesReport');
 		Route::get('vendor-bus-tickets/{id}','ReportController@vendorBusTickets')->name('vendorBusTickets');

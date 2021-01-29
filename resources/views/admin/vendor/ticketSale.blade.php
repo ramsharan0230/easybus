@@ -64,17 +64,17 @@
                                         @php($i=1)
                                         @foreach($bookingDetails as $detail)
                                         <tr >
-                                            <tr >
+                                            <?php //dd(DB::table('bus_bookings')->where('id', $detail->booking_id)->first()) ?>
                                             <td>{{$i}}</td>
-                                            <td>{{$detail->booking->name}} <br> 
-                                                <small>{{$detail->booking->phone}}</small></td>
-                                            <td>{{$detail->booking->bus->bus_number}}</td>
+                                            <td>{{@$detail->booking->from}} <br> 
+                                                <small>{{ @$detail->booking->phone}}</small></td>
+                                            <td>{{ @$detail->booking->bus->bus_number}}</td>
                                             <!-- <td> 2075-12-12 <br>
                                                 <small>12:55:00 PM</small>
                                             </td> -->
-                                            <td>{{$detail->booking->date}}</td>
+                                            <td>{{ @$detail->booking->date}}</td>
                                             <td>
-                                                From: {{$detail->booking->pickup_station}} <br> To: {{$detail->booking->drop_station}}
+                                                From: {{ @$detail->booking->pickup_station}} <br> To: {{ @$detail->booking->drop_station}}
                                             </td>
                                            
                                             
