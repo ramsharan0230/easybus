@@ -47,7 +47,6 @@ class CounterController extends Controller
     public function busSearchView(){
         
         $destinations=$this->destination->get();
-        dd($destinations);
     	return view('admin.counter.searchBus',compact('destinations'));
     }
     public function searchBus(Request $request){
@@ -404,6 +403,7 @@ class CounterController extends Controller
                                 $data['price']=$routine->price;
                                 $data['sub_destination']=null;
                                 $data['online_payment']=0;
+                                $data['paid'] = $request->paid=="on"?1:0;
                                 $data['drop_station']=$request->drop_station;
                                 if($sub_destination_price){
 
