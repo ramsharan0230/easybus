@@ -57,9 +57,7 @@ class CounterController extends Controller
     	return view('admin.counter.searchBusResult',compact('buses','destinations','from','to'));
     }
     public function searchBusByNumber(Request $request){
-        
-        
-        $buses=$this->bus->where('bus_number',$request->number)->where('status','approved')->get();
+        $buses=$this->bus->where('bus_number', 'like', "%{$request->number}%")->orWhere('bus_name', 'like', "%{$request->number}%")->where('status','approved')->get();
         return view('admin.counter.searchBusByNumberResult',compact('buses'));
 
     }

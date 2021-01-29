@@ -51,6 +51,7 @@
                                         <tr>
                                             <th>Sn</th>
                                             <th>Booking No.:</th>
+                                            <th>Bus Name</th>
                                             <th>
                                                 <span class="fa fa-user"></span> Passenger Name & No.
                                             </th>
@@ -67,6 +68,8 @@
                                             <th> 
                                                 <i class="fa fa-street-view"></i> Passenger Station
                                             </th>
+                                            <th>Time</th>
+                                            <th>Shift</th>
                                             <!-- <th> 
                                                 <i class="fa fa-user-circle"></i> Assestant 1
                                             </th>
@@ -79,8 +82,10 @@
                                         @php($i=1)
                                         @foreach($bookings as $booking)
                                         <tr >
+                                            <?php //dd($booking) ?>
                                             <td>{{$i}}</td>
                                             <td>{{$booking->seat->seat_name}}</td>
+                                            <td>{{ $booking->bus->bus_name }}</td>
                                             <td>{{$booking->name}} <br> 
                                                 <small>{{$booking->phone}}</small></td>
                                             <td>{{$booking->bus->bus_number}}</td>
@@ -91,6 +96,8 @@
                                             <td>
                                                 From: {{$booking->pickup_station}} <br> To: {{$booking->drop_station}}
                                             </td>
+                                            <td>{{ $booking->time }}</td>
+                                            <td>{{ $booking->shift }}</td>
                                            
                                             
                                         </tr>
