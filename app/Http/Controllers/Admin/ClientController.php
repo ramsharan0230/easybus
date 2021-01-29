@@ -21,11 +21,11 @@ class ClientController extends Controller
     }
 
     public function editClient($id){
-        return $id;
+        return $this->client->findOrFail($id)->first();
     }
 
     public function deleteClient($id){
-        return $id;
+        return $details=$this->client->findOrFail($id)->first();
     }
 
     public function showBookings($id){

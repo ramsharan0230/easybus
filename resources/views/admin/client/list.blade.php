@@ -4,7 +4,6 @@
 @section('content')
 <section class="content-header">
 	<h1>Client <small>List</small></h1>
-	<a href="{{route('bus.create')}}" class="btn btn-success">Add Client</a>
 	<ol class="breadcrumb">
 		<li><a href=""><i class="fa fa-dashboard"></i>Dashboard</a></li>
 		<li><a href="">Client</a></li>
@@ -51,17 +50,6 @@
 							<td>{{$detail->address}}</td>
 				            <td>
 				            	<ul class="display_inline">
-				            		<li>
-					            		<a class="btn vendor-busses" href="{{route('client.edit', $detail->id)}}" title="Edit">Edit</a>
-				            		</li>
-				            		<li>
-					            		<form method= "post" action="{{route('client.delete',$detail->id)}}" class="delete">
-                                            {{csrf_field()}}
-                                            <input type="hidden" name="_method" value="DELETE">
-                                            <button type="submit" class="btn  btn-sm btn-danger" style="display:inline">Delete</button>
-                                        </form>
-									</li>
-									
 									<li>
 										<a class="btn vendor-busses" href="{{route('client.show.booking', $detail->id)}}" title="Edit">View Bookings</a>
 									</li>
