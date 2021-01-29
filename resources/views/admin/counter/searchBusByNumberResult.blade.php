@@ -38,7 +38,7 @@
                                             <div class="col-md-10">
                                                 <div class="form-group">
                                                    <!--  <label>Bus Number</label> -->
-                                                    <input type="text" name="number" class="form-control" placeholder="Bus Number">
+                                                    <input type="text" name="number" class="form-control" placeholder="Bus Number, Bus Name.... ">
                                                 </div>
                                                 
                                             </div>
