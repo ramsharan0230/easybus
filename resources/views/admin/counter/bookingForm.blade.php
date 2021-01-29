@@ -61,11 +61,17 @@
 							<div class="col-lg-8 col-md-6 col-12">
 								<input type="text" name="price" id="price" class="form-control form-control-sm rounded-0" value="{{$total_price}}" readonly="">
 							</div>
+							
+							<div class="form-group">
+							    <label class="col-lg-4 col-md-6 col-12 font_14 ml-1">Paid</label>
+								<div class="col-lg-8 col-md-6 col-12">
+								<input type="checkbox" name="paid" id="paid"  readonly="">
+							</div>
+							</div>
 						</div>
 
 
 						<div class="row form-group ">
-							<label class="col-lg-4 col-md-6 col-12"></label>
 							<div class="col-lg-8 col-md-6 col-12 text-center">
 								<button type="submit"  class="btn btn-info">Make Payment</button>
 							</div>
