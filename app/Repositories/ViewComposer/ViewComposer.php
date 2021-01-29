@@ -27,9 +27,6 @@ class ViewComposer {
 		}else{
 			$view->with(['dashboard_nepali_date'=>$newNepaliDate]);
 		}
-		
-        
-		
 	}
 	
 }

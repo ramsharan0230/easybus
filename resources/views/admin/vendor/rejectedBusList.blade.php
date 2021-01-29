@@ -44,13 +44,13 @@
                                         @foreach($bus_request as $request)
                                         <tr >
                                             <td>1.</td>
-                                            <td>{{$request->bus->bus_name}}</td>
+                                            <td>{{@$request->bus->bus_name}}</td>
                                            
-                                            <td>{{$request->bus->bus_number}}</td>
+                                            <td>{{@$request->bus->bus_number}}</td>
                                             <td>
-                                               {{$request->requestSender->company_name}}
+                                               {{@$request->requestSender->company_name}}
                                             </td>
-                                            <td>{{$request->bus->driver->name}}</td>
+                                            <td>{{@$request->bus->driver->name}}</td>
                                             
                                             <td>
                                                <!--  <a href="bus-detail.php" class="btn btn-info"> <span class="fa fa-eye"></span> View</a> -->
