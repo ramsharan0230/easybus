@@ -50,14 +50,14 @@
                                     </thead>
                                     <tbody class="text-uppercase">
                                         @php($i=1)
-                                        @foreach($allBuses->counter_bus as $bus)
+                                        @foreach($allBuses->counter_bus as $key=>$bus)
                                         <tr >
-                                            <td>1.</td>
+                                            <td>{{ $key+1 }}</td>
                                             <td>{{$bus->bus->bus_name}}</td>
                                            
                                             <td>{{$bus->bus->bus_number}}</td>
                                             <td>
-                                                <a href="{{route('bus-detail',$bus->bus->id)}}" class="btn vendor-busses"> <span class="fa fa-bus"></span> Bus Layout</a>
+                                                <a href="{{route('bus-seat-layout', $bus->bus->id)}}" class="btn vendor-busses"> <span class="fa fa-bus"></span> Bus Layout</a>
                                                 <!-- <div class="btn  btn-danger">
                                                     <form method= "post" action="" class="delete">
                                                         <input type="hidden" name="_method" value="DELETE">

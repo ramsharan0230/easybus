@@ -54,7 +54,7 @@
 				            <td>{{$detail->bus_name}}</td>
 				            <!-- <td>{{$detail->publish==1? 'active':'inactive'}}</td> -->
 				            <td>
-				            	<a class="btn vendor-busses edit" href="{{route('bus-detail',$detail->id)}}" title="Edit">Bus Layout</a>
+				            	<a class="btn vendor-busses edit" href="{{route('bus-seat-layout', $detail->id)}}" title="Edit">Bus Layout</a>
 				            </td>
 				            <td>
 				            	<a class="btn vendor-busses edit" href="#" title="Edit" disabled="true">Rejected</a>
