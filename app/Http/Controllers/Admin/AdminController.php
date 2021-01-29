@@ -52,7 +52,6 @@ class AdminController extends Controller
     public function allBuses(){
         $details=$this->bus->orderBy('created_at','desc')->get();
         $busCategories = BusCategory::orderBy('created_at','desc')->get();
-
         return view('admin.admin.allBuses', compact('details', 'busCategories'));
     }
     public function newBuses(){
@@ -80,6 +79,11 @@ class AdminController extends Controller
         $bus=$this->bus->findOrFail($id);
         return view('admin.admin.busLayout',compact('bus'));
     }
+    public function busSeatLayout($id){
+        $bus=$this->bus->findOrFail($id);
+        return view('admin.admin.busLayout',compact('bus'));
+    }
+    
     public function rejectedBus(){
         $details=$this->bus->where('status','rejected')->orderBy('created_at','desc')->get();
         return view('admin.admin.rejectedBus',compact('details'));

@@ -55,6 +55,7 @@
 								<th>Bus No</th>
 								<th>Bus Name</th>
 								<th>Bus Layout</th>
+								<th>Vendor</th>
 								<th>Bus Category</th>
                                 <th>Status</th>
                                 <th>Actions</th>
@@ -77,8 +78,9 @@
 				            <td>{{$detail->bus_name}}</td>
 				            <!-- <td>{{$detail->publish==1? 'active':'inactive'}}</td> -->
 				            <td>
-				            	<a class="btn vendor-busses edit" href="{{route('bus-detail',$detail->id)}}" title="Edit">Bus Layout</a>
+				            	<a class="btn vendor-busses edit" href="{{route('bus-seat-layout', $detail->id)}}" title="Edit">Bus Layout</a>
 							</td>
+							<td>{{ $detail->user->company_name }}</td>
                             <td>{{ $detail->busCategory->name }}</td>
                             <td>
                                 <strong>{{ ucfirst($detail->status) }}</strong>
