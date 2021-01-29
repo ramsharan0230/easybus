@@ -47,7 +47,6 @@ class CounterController extends Controller
     public function busSearchView(){
         
         $destinations=$this->destination->get();
-        dd($destinations);
     	return view('admin.counter.searchBus',compact('destinations'));
     }
     public function searchBus(Request $request){
