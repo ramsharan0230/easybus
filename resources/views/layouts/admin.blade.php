@@ -240,7 +240,7 @@
                     <ul class="treeview-menu">
                         <!-- <li><a href="#"><i class="fa fa-circle-o"></i>Passenger Report</a></li> -->
                         <li>
-                            <a href="{{route('registeredVehicles')}}"><i class="fa fa-users"></i> Registered Vehicles<small class="label pull-right bg-red">{{$dashboard_approved_bus}}</small></a>
+                            <a href="{{route('registeredVehicles')}}"><i class="fa fa-users"></i> Registered Vehicles</a>
                         </li>
                         <li>
                             <a href="{{route('bookingReport')}}"><i class="fa fa-ticket"></i> Booked Seats</a>
