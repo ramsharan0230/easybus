@@ -158,7 +158,7 @@
                 </li>
                 <li class="treeview">
                     <a href="#">
-                        <i class="fa fa-user"></i> <span>Bus Management</span>
+                        <i class="fa fa-user"></i> <span>Bus </span>
                         <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
                         </span>
@@ -253,10 +253,10 @@
                             </a>
                             <ul class="treeview-menu">
                                 <li>
-                                    <a href="{{route('income-reports.weekly-income-reports')}}"><i class="fa fa-users"></i> Weekly<small class="label pull-right bg-red">{{$dashboard_approved_bus}}</small></a>
+                                    <a href="{{route('income-reports.weekly-income-reports')}}"><i class="fa fa-list"></i> Weekly</a>
                                 </li>
                                 <li>
-                                    <a href="{{route('income-reports.monthly-income-reports')}}"><i class="fa fa-users"></i> Monthly<small class="label pull-right bg-red">{{$dashboard_approved_bus}}</small></a>
+                                    <a href="{{route('income-reports.monthly-income-reports')}}"><i class="fa fa-list"></i> Monthly</a>
                                 </li>
                             </ul>
                         </li>
