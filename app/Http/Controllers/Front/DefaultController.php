@@ -448,7 +448,11 @@ class DefaultController extends Controller
             $buses=[];
             if($busRoutine){
                 foreach($busRoutine as $routine){
-                    $bus=$routine->bus()->where('bus_category',$request->id)->where('status','approved')->first();
+                    if($request->id)
+                        $bus=$routine->bus()->where('bus_category',$request->id)->where('status','approved')->first();
+                    else
+                        $bus=$routine->bus()->where('status','approved')->first();
+                        
                     if($bus){
                         array_push($buses,$bus);
                     }

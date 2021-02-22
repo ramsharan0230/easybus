@@ -78,18 +78,23 @@
 					  			<div class="col-lg-12 col-md-12 col-12 p_tb40">
 									<div class="category-list-wrapper">
 										<ul class="category_option">
-											@foreach($busCategories as $category)
+											@forelse($busCategories as $category)
 											<li>
 												<button class="btn category_button bus_category" data-id={{$category->id}}>{{$category->name}}</button>
 											</li>
-											@endforeach
+											@empty
+												
+											@endforelse
+											<li>
+												<button class="btn all_category_button category_button bus_category" >All</button>
+											</li>
 										</ul>
 									</div>
 								</div>
 								<div class="col-lg-12 col-md-12 col-12 append">
 									<div class="accordion" id="accordionExample">
 
-										@foreach($buses as $key=>$bus)
+										@forelse($buses as $key=>$bus)
 										
 										<?php
 											$date=Session::get('check_date');
@@ -305,7 +310,11 @@
 										      	</div>
 										    </div>
   										</div> 
-  										@endforeach
+  										@empty
+										  <div class="card">
+											  <div class="no-vehicle-found"></div>
+										  </div>
+										@endforelse
 									</div>
 								</div>				
 					  		</div>
@@ -506,13 +515,46 @@
     			async: true,
     			data: { id: id,from:from,to:to,shift:shift,date:date},
     			success:function(data){
-    				console.log(data);
-    				$('.accordion').remove();
-    				 $('.append').html(data);
+    				if(data.length > 0){
+						$('.accordion').remove();
+    					$('.append').html(data);
+					}else{
+						$('.no-vehicle-found').text("No Search Found!")
+					}
+    				
+    			}
+			});
+		});
+
+		//all_category_button
+
+		$('.all_category_button').click(function(){
+			debugger
+			id=$(this).data('id');
+			$('.bus_category').removeClass('category_active');
+			$(this).addClass('category_active');
+			from=$('#from').find(":selected").val();
+			to=$('#to').find(":selected").val();
+			shift=$("input[name='shift']:checked").val();
+			date=$('#SelectDate').val();
+
+			$.ajax({
+				url: "{{route('selectBusByCategory')}}",
+   				method: 'post',
+    			async: true,
+    			data: { from:from,to:to,shift:shift,date:date},
+    			success:function(data){
+    				if(data.length > 0){
+						$('.accordion').remove();
+    					$('.append').html(data);
+					}else{
+						$('.no-vehicle-found').text("No Search Found!")
+					}
     				
     			}
 			});
 		});
 	});
+
 </script>
 @endpush
