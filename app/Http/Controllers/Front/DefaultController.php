@@ -40,12 +40,12 @@ class DefaultController extends Controller
         session()->forget('id');
         session()->forget('jointable');
     	$destinations=$this->destination->all();
-        return view('front.index',compact('destinations'));
+        return view('front.index', compact('destinations'));
     	// return view('front.index',compact('destinations'))->withCookie('cookieName');
     }
     public function busSearch(Request $request){
         session()->forget('sub_destination');
-        $this->validate($request,['from'=>'required','to'=>'required','date'=>'required','shift'=>'required']);
+        $this->validate($request, ['from'=>'required','to'=>'required','date'=>'required','shift'=>'required']);
 
         $date=explode('-',$request->date);
         $check_date=date('Y-m-d');
@@ -66,7 +66,11 @@ class DefaultController extends Controller
             session()->put('to',$request->to); 
             session()->put('shift',$request->shift);   
             // dd($request->shift);
-            $busRoutine=$this->busroutine->where('from',$request->from)->where('to',$request->to)->where('date',$request->date)->where('shift',$request->shift)->get();
+            if($request->shift === 'Both')
+                $busRoutine=$this->busroutine->where('from', $request->from)->where('to', $request->to)->where('date', $request->date)->get();
+            else
+                $busRoutine=$this->busroutine->where('from', $request->from)->where('to', $request->to)->where('date', $request->date)->where('shift', $request->shift)->get();
+            
             $buses=[];
             foreach($busRoutine as $routine){
                 $bus=$routine->bus;

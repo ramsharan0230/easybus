@@ -90,6 +90,15 @@
 									  		</div>
 										</div>
 									</li>
+
+									<li>
+										<div class="input-group input-group-sm ">
+										  	<input type="radio"  name="shift" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" value="Both">
+									  		<div class="input-group-append">
+									    		<span class="input-group-text index-shift-text" id="inputGroup-sizing-sm">Both</span>
+									  		</div>
+										</div>
+									</li>
 									 
 								</ul>
 								  

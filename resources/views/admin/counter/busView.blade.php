@@ -25,13 +25,6 @@
                             <img src="{{asset('images/main/'.$bus->image_2)}}" alt="">
                         </div>
 
-
-
-
-
-
-
-                        
                         <div class="col-lg-12 col-sm-12 col-xs-12 m_t20">
                             <div class="row equal_height">
                                 <div class="col-lg-6 col-md-6 col-12 busview-wrapper">

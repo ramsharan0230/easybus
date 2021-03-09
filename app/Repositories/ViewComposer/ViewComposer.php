@@ -23,6 +23,9 @@ class ViewComposer {
 				$approved_buses=$this->bus->where('status','approved')->count();
 				$view->with(['dashboard_nepali_date'=>$newNepaliDate,'dashboard_approved_bus'=>$approved_buses]);
 			}
+			else{
+				$view->with(['dashboard_nepali_date'=>$newNepaliDate]);
+			}
 			
 		}else{
 			$view->with(['dashboard_nepali_date'=>$newNepaliDate]);

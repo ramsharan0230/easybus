@@ -38,9 +38,6 @@ class AssistantController extends Controller
         if($bus){
             $bookings=$bus->busBooking()->orderBy('date','desc')->get();
         }
-    	
-        
-
     	return view('admin.assistant.passengerList',compact('bus','user','bookings'));
     }
     public function busview(){
@@ -50,6 +47,10 @@ class AssistantController extends Controller
     	}else{
     		$bus=$user->conductor_bus;	
     	}
+
+        // $date_ne = $this->calendar->get_nepali_date($year_en, $month_en, $day_en);
+        // $nepali_today=$date_ne['y'].'-'.$date_ne['m'].'-'.$date_ne['d'];
+
     	return view('admin.assistant.busView',compact('bus'));
     }
     public function changeDetail(){

@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class BusBooking extends Model
 {
-    protected $fillable=['bus_id','date','booked','seat_id','name','phone','pickup_station','drop_station','client_id','bus_no','book_no','from','to','booked_on','time','price','shift','token','routine_id','paid','vendor_id','sub_destination','online_payment','counter_id'];
+    protected $fillable=['bus_id','date','booked','seat_id','name','phone','pickup_station','drop_station','client_id','bus_no','book_no','from','to','booked_on',
+    'time','price','shift','token','routine_id','paid','vendor_id','sub_destination','online_payment','counter_id'];
     protected $table='bus_bookings';
 
     public function bus(){
