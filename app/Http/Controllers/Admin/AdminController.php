@@ -129,7 +129,7 @@ class AdminController extends Controller
 
     public function busAdvertisement($bus_id){
         $busid=$bus_id;
-        return view('admin.admin.advertCreate',compact('busid'));
+        return view('admin.admin.advertCreate', compact('busid'));
     }
     public function saveAdvertisement(Request $request){
         $this->validate($request,['title'=>'required']);
@@ -166,12 +166,13 @@ class AdminController extends Controller
             $data['image']=$filename;
             
         }
-        dd($request->bus_id);
+        // dd($request->bus_id);
         $this->advertisement->update($data,$advertid);
         return redirect()->route('advertisementList',$request->bus_id)->with('message','Advertisement Updated Successfully');
 
     }
-    public function deleteAdvertisement(Request $request,$id){
+    public function deleteAdvertisement(Request $request){
+        dd($id);
         $advert=$this->advertisement->findOrFail($id);
         $advert->delete();
         return redirect()->back()->with('message','Advertisement Deleted Sccessfully');

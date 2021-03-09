@@ -143,6 +143,21 @@
                         <li><a href="{{route('user.index')}}"><i class="fa fa-eye"></i>All Admin</a></li>  
                     </ul>
                 </li>
+                {{-- advertisement management --}}
+                <li class="treeview">
+                    <a href="#">
+                        <i class="fa fa-user"></i> <span>Advertisement Management</span>
+                        <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </span>
+                    </a>
+                    <ul class="treeview-menu">
+                        <li><a href="{{route('advertisement.create')}}"><i class="fa fa-plus"></i>Add Advertisement</a></li>
+                        <li><a href="{{route('advertisement.index')}}"><i class="fa fa-eye"></i>All Advertisements</a></li>  
+                    </ul>
+                </li>
+                {{-- advertisement management end --}}
+
                 <li class="treeview">
                     <a href="#">
                         <i class="fa fa-user-circle"></i> <span>Vendor Management</span>
