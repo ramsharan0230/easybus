@@ -30,18 +30,36 @@
                             <div class="box-body ">
                                 <form action="{{route('saveAdvertisemet')}}" method="post" enctype="multipart/form-data">
                                     {{csrf_field()}}
-                                <input type="hidden" name="bus_id" value="{{$busid}}">
-                                <div class="form-group">
-                                    <label>Title</label>
-                                    <input type="text" name="title" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label>Image</label>
-                                    <input type="file" name="image" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <input type="submit" name="submit" value="submit" class="btn btn-success">
-                                </div>
+                                    @if($busid !=null)
+                                    <input type="hidden" name="bus_id" value="{{$busid}}">
+                                    @else
+                                    <div class="form-group">
+                                        <label for="bus_id">Select Bus</label>
+                                        <select name="bus_id" id="bus_id" class="form-control form-control-sm">
+                                            <option value="" selected>Choose Bus</option>
+                                            @forelse ($buses as $bus)
+                                                <option value="{{ $bus->id }}">{{ $bus->bus_name }}</option>
+                                            @empty
+                                                <option value="">No bus found!</option>
+                                            @endforelse
+                                        </select>
+                                    </div>
+                                    
+                                    @endif
+
+                                    <div class="form-group">
+                                        <label>Title</label>
+                                        <input type="text" name="title" class="form-control">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label>Image</label>
+                                        <input type="file" name="image" class="form-control">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <input type="submit" name="submit" value="submit" class="btn btn-success">
+                                    </div>
                             </form>
                             </div>  
                         </div>

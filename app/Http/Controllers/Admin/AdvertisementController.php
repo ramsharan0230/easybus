@@ -14,7 +14,8 @@ class AdvertisementController extends Controller
      */
     public function index()
     {
-        //
+        $details = \DB::table('advertisements')->get();
+        return view('admin.admin.advertisementList', compact('details'));
     }
 
     /**
@@ -24,7 +25,9 @@ class AdvertisementController extends Controller
      */
     public function create()
     {
-        //
+        $busid = null;
+        $buses = \DB::table('buses')->whereStatus('approved')->get();
+        return view('admin.admin.advertCreate', compact('buses', 'busid'));
     }
 
     /**
@@ -81,5 +84,14 @@ class AdvertisementController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function deleteAdvertisement(Request $request){
+        $deleteAdvertisement = \DB::table('advertisements')->where('id', $request->advertisement_id)->delete();
+        if($deleteAdvertisement)
+            return redirect()->route('advertisement.index')->with(['message'=>'Advertisement has been deleted successfully!']);
+        else
+            abort(304);
+
     }
 }

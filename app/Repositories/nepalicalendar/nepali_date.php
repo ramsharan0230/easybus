@@ -176,9 +176,9 @@ class nepali_date
 		$validate = $this->validate_en($year, $month, $day);
 
 		if($validate !== TRUE)
-			{
-				die($validate);
-			}
+		{
+			die($validate);
+		}
 
 		$date = $year.'-'.$month.'-'.$day;
 		$dayname = $this->get_week_ne($year, $month, $day);

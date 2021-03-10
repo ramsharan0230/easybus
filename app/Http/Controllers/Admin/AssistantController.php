@@ -25,6 +25,7 @@ class AssistantController extends Controller
         $year_en = date("Y",time());
         $month_en = date("m",time());
         $day_en = date("d",time());
+
         $date_ne = $this->calendar->get_nepali_date($year_en, $month_en, $day_en);
         $nepali_today=$date_ne['y'].'-'.$date_ne['m'].'-'.$date_ne['d'];
         // dd($nepali_today);
@@ -33,12 +34,15 @@ class AssistantController extends Controller
     		$bus=$user->driver_bus;
     	}else{
     		$bus=$user->conductor_bus;	
-    	}
+    	} 
+          
         $bookings=[];
         if($bus){
             $bookings=$bus->busBooking()->orderBy('date','desc')->get();
         }
-    	return view('admin.assistant.passengerList',compact('bus','user','bookings'));
+        
+        $todayBookings = $bus->busBooking()->orderBy('date','desc')->where('date', $nepali_today)->get();
+    	return view('admin.assistant.passengerList',compact('bus','user','bookings', 'todayBookings'));
     }
     public function busview(){
     	$user=Auth::user();
@@ -47,7 +51,6 @@ class AssistantController extends Controller
     	}else{
     		$bus=$user->conductor_bus;	
     	}
-
         // $date_ne = $this->calendar->get_nepali_date($year_en, $month_en, $day_en);
         // $nepali_today=$date_ne['y'].'-'.$date_ne['m'].'-'.$date_ne['d'];
 

@@ -420,7 +420,6 @@
 				// Count total no. of days in-terms of date
 				$total_eDays += $dd;
 
-
 				$i           = 0;
 				$j           = $def_nmm;
 				$total_nDays = $def_ndd;
@@ -461,7 +460,6 @@
 					
 					$total_eDays--;
 				}
-
 				$numDay = $day;
 
 				$this->_nep_date['year']    = $y;

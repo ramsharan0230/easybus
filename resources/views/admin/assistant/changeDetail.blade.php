@@ -44,10 +44,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                        @php($i=1)
-                        @foreach($busroutines as $detail)
+                        @foreach($busroutines as $key=>$detail)
                         <tr>
-                            <td>{{$i++}}</td>
+                            <td>{{$key+1}}.</td>
                             <td>{{$detail->from}}</td>
                             
                             <td>{{$detail->to}}</td>
@@ -59,12 +58,8 @@
                                 <a class="btn btn-info edit" href="{{route('editAssistantBusRoutine',$detail->id)}}" title="Edit">Edit</a>
                                 <a class="btn btn-danger" href="{{route('deleteAsistantRoutine',$detail->id)}}" title="Edit" onclick="return confirm('Are you sure?')">Delete</a>
                                 <a class="btn btn-warning" href="{{route('smsViewAssistant',$detail->id)}}" title="Edit" >SendSms</a>
-                                
-                               
                             </td>
-                            
                         </tr>
-                        @php($i++)
                         @endforeach
                         </tbody>
                     </table>

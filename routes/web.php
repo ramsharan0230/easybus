@@ -61,6 +61,11 @@ Route::group(['namespace'=>'Admin','middleware'=>['auth'],'prefix'=>'admin'],fun
 		Route::post('update-advertisement/{advert_id}','AdminController@updateAdvertisement')->name('updateAdvertisement');	
 		Route::get('advertisement-list/{bus_id}','AdminController@advertisementList')->name('advertisementList');
 		Route::delete('delete-advertisement/{bus_id}','AdminController@advertisementList')->name('deleteAdvertisement');
+
+		Route::get('advertisement_create', 'AdvertisementController@create')->name('advertisement.create');
+		Route::get('advertisement_index', 'AdvertisementController@index')->name('advertisement.index');
+		Route::post('advertisement_delete', 'AdvertisementController@deleteAdvertisement')->name('advertisement.delete');
+
 		Route::get('rejected-bus','AdminController@rejectedBus')->name('rejectedBus');
 		Route::get('suspended-bus','AdminController@suspendedBus')->name('suspendedBus');
 		Route::get('bus/{id}/ticketHistory','AdminController@busTicketHistory')->name('bus.ticketHistory');

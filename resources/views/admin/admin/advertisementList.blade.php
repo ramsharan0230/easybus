@@ -52,13 +52,12 @@
                                                 @endif
                                             </td>
                                             
-                                             
-                                            
                                             <td>
-                                                <a href="{{route('editAdvertisement',$detail->id)}}" class="btn btn-info">Edit</a>
+                                                <a href="{{route('editAdvertisement', $detail->id)}}" class="btn btn-info">Edit</a>
                                                 <div class="btn  btn-danger">
-                                                    <form method= "post" action="{{route('deleteAdvertisement',$detail->id)}}" class="delete">
-                                                        <input type="hidden" name="_method" value="DELETE">
+                                                    <form method="post" action="{{route('advertisement.delete')}}" class="delete">
+                                                        <input type="hidden" name="_token" value="{{ csrf_token() }}"/>
+                                                        <input type="hidden" value="{{ $detail->id }}" name="advertisement_id">
                                                         <button type="submit" class="btn-delete" style="display:inline"><span class="fa fa-trash"></span> Delete</button>
                                                     </form>
                                                 </div>

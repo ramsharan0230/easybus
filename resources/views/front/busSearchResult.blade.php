@@ -121,7 +121,6 @@
 										        			</div>
 										        			<div class="col-lg-9 col-md-8 col-12">
 												        		<ul class="main_info">
-												          		 
 												          			<li>
 												          				<p>{{$bus->bus_number}}  </p>
 												          				<!-- <p>	4480</p> -->
@@ -529,7 +528,6 @@
 		//all_category_button
 
 		$('.all_category_button').click(function(){
-			debugger
 			id=$(this).data('id');
 			$('.bus_category').removeClass('category_active');
 			$(this).addClass('category_active');

@@ -24,9 +24,8 @@
                         </div>
                     </div>
                 </div> -->
-
                 <div class="row equal_height">
-                    @foreach($bus->busRoutine()->where('date',$dashboard_nepali_date)->get() as $routine)
+                    @foreach($bus->busRoutine()->where('date', '$dashboard_nepali_date')->get() as $routine)
                     <div class="col-md-3 col-sm-12 col-xs-12">
 
                         <!-- Profile Image -->
