@@ -25,8 +25,8 @@ class AssistantController extends Controller
         $year_en = date("Y",time());
         $month_en = date("m",time());
         $day_en = date("d",time());
+
         $date_ne = $this->calendar->get_nepali_date($year_en, $month_en, $day_en);
-        dd($date_ne);
         $nepali_today=$date_ne['y'].'-'.$date_ne['m'].'-'.$date_ne['d'];
         // dd($nepali_today);
     	$user=Auth::user();
@@ -42,8 +42,7 @@ class AssistantController extends Controller
         }
         
         $todayBookings = $bus->busBooking()->orderBy('date','desc')->where('date', $nepali_today)->get();
-        $yesterdayBookings = $bus->busBooking()->orderBy('date','desc')->where('date', $nepali_today)->get();
-    	return view('admin.assistant.passengerList',compact('bus','user','bookings', 'todayBookings', 'yesterdayBookings'));
+    	return view('admin.assistant.passengerList',compact('bus','user','bookings', 'todayBookings'));
     }
     public function busview(){
     	$user=Auth::user();
