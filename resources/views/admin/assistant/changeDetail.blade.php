@@ -59,7 +59,6 @@
                                 <a class="btn btn-danger" href="{{route('deleteAsistantRoutine',$detail->id)}}" title="Edit" onclick="return confirm('Are you sure?')">Delete</a>
                                 <a class="btn btn-warning" href="{{route('smsViewAssistant',$detail->id)}}" title="Edit" >SendSms</a>
                             </td>
-                            
                         </tr>
                         @endforeach
                         </tbody>
