@@ -51,7 +51,6 @@ class AssistantController extends Controller
     	}else{
     		$bus=$user->conductor_bus;	
     	}
-
         // $date_ne = $this->calendar->get_nepali_date($year_en, $month_en, $day_en);
         // $nepali_today=$date_ne['y'].'-'.$date_ne['m'].'-'.$date_ne['d'];
 
