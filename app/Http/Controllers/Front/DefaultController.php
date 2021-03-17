@@ -281,7 +281,6 @@ class DefaultController extends Controller
         if(preg_match('/([9][8][46][0-9]{7})/', $request->phone) || preg_match('/([9][8][0-2][0-9]{7})/', $request->phone) || preg_match('/([9][6][0-9]{8}|[9][8][8][0-9]{7})/', $request->phone) || preg_match('/([9][8][5][0-9]{7})/', $request->phone)){
                     
             $id=Session::get('id');
-
             $value=Session::get('jointable');
             $routine=$this->busroutine->find($id);
             $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyz';
@@ -294,7 +293,6 @@ class DefaultController extends Controller
             $sub_destination_name='';
             if($sub_destination){
                 foreach($sub_destination as $key=>$sub){
-                    
                     $check_routine_id=$key;
                     $sub_destination_price=$sub->sub_price;
                     $sub_destination_name=$sub->sub_destination;
@@ -305,7 +303,7 @@ class DefaultController extends Controller
             Session::put('token',$randomNumber);
             Cookie::make('_lkghg',$randomNumber,0);
             if($routine && $value){
-                    Session::put('id',$id);
+                    Session::put('id', $id);
                     $total_price=0;
                     $seatName='';
 
@@ -383,7 +381,7 @@ class DefaultController extends Controller
                                         $payment['date']=$result->date;
                                         
                                         BookingPaymentDetails::create($payment);
-                                        // $this->tempbooking->create($data);
+                                        $this->tempbooking->create($data);
 
                                     }else{
                                         return redirect()->route('home');
@@ -398,10 +396,10 @@ class DefaultController extends Controller
                 session()->forget('date');
                 session()->forget('id');
                 session()->forget('jointable');
-                $booking=$this->tempbooking->where('token',$randomNumber)->sum('price');
-                $newPrice=$booking;
-                return redirect()->route('home')->with('message','booking made successfully');
-                // return redirect()->route('payment')->with(['amount'=>$newPrice,'booking'=>$booking]);
+                $booking=$this->tempbooking->where('token', $randomNumber)->sum('price');
+                $newPrice = $booking;
+                // return redirect()->route('home')->with('message','booking made successfully');
+                return redirect()->route('payment')->with(['amount'=>$newPrice, 'booking'=>$data]);
             }else{
                 session()->forget('date');
                 session()->forget('id');
@@ -756,12 +754,12 @@ class DefaultController extends Controller
         $token_responses = $this->getToken($amount,$refId);
         $token_response = json_decode($token_responses);
 
-        // ImeTransaction::create([
-        //     'MerchantCode' => self::$merchantcode,
-        //     'TranAmount' => $token_response->Amount,
-        //     'RefId' => $token_response->RefId,
-        //     'TokenId' => $token_response->TokenId,
-        // ]); //store in table
+        ImeTransaction::create([
+            'MerchantCode' => self::$merchantcode,
+            'TranAmount' => $token_response->Amount,
+            'RefId' => $token_response->RefId,
+            'TokenId' => $token_response->TokenId,
+        ]); //store in table
         $merch_code = 'EASYBUS';
         return view('front.imePay', compact('token_response', 'merch_code'));
         //khalti

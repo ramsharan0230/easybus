@@ -26,12 +26,14 @@ class ImeController extends Controller
 	}
     public static function index(Request $request){
         $amount=Session::get('amount');
+
     	$permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyz';
         $refId='inv-'.time();
 
         $token_responses = static::getToken($amount,$refId);
 
         $token_response = json_decode($token_responses);
+
         ImeTransaction::create([
             'MerchantCode' => self::$merchantcode,
             'TranAmount' => $token_response->Amount,
@@ -42,8 +44,6 @@ class ImeController extends Controller
       
         $merch_code = self::$merchantcode;
         return view('front.imePay', compact('token_response', 'merch_code'));
-
-
     }
     private static function getToken($amt,$ref_id){
         $data = ["MerchantCode" => self::$merchantcode, "Amount" => $amt, "RefId" => $ref_id];

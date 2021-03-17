@@ -26,6 +26,13 @@
 							</div>
 						</div>
 
+						<div class="row form-group">
+							<label class="col-lg-4 col-md-6 col-12 font_14">Email :</label>
+							<div class="col-lg-8 col-md-6 col-12">
+								<input type="text" name="email" id="email" class="form-control form-control-sm rounded-0">
+							</div>
+						</div>
+
 						<div class="row form-group ">
 							<label class="col-lg-4 col-md-6 col-12 font_14">Contact No.:</label>
 							<div class="col-lg-8 col-md-6 col-12">
