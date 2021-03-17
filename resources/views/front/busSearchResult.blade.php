@@ -181,7 +181,7 @@
 										        			
 										        		</div>
 										        	</div>
-										        	<ul class="checklist-wrapper main_info feature-color m_t15 featuresList">
+										        	<ul class="checklist-wrapper main_info feature-color m_t15 featuresList" id="subdestinations">
 										        		
 										        		@foreach($routine->subDestinations as $key=>$sub_dest)
 										        		<li>
@@ -189,6 +189,7 @@
 										        		</li>
 										        		
 										        		@endforeach
+														<input type="checkbox" id="selectOption">
 										        		
 										        	</ul>
 										        	<div class="row margin-manager">
@@ -329,6 +330,14 @@
 @endsection
 @push('scripts')
 <script type="text/javascript">
+	$('#selectOption').change(function(){
+		$("input[name=subdest]").prop( "checked", false );
+	})
+	$("input[name=subdest]").change(function(){
+		$('#selectOption').prop( "checked", false );
+	})
+
+
 	$.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
