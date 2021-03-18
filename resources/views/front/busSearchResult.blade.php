@@ -306,16 +306,17 @@
 																	<p>{!!$routine->notice!!}</p>
 																</div>
 																<div class="row ad-section">
+																	@forelse ($advertisements as $advertisement)
 																	<div class="col-lg-6 col-md-6 col-12">
-																		<a href="{{asset('front/images/ime-pay-300x150.webp')}}" class="ad-wrapper">
-																			<img src="{{asset('front/images/ime-pay-300x150.webp')}}">
+																		<a href="{{asset('document').'/'.$advertisement->image}}" class="ad-wrapper">
+																			<img src="{{asset('document').'/'.$advertisement->image}}">
 																		</a>
 																	</div>
+																	@empty
 																	<div class="col-lg-6 col-md-6 col-12">
-																		<a href="{{asset('front/images/bus3.jpg')}}" class="ad-wrapper">
-																			<img src="{{asset('front/images/300x250.gif')}}">
-																		</a>
+																		<p>No Advertisement Found!</p>
 																	</div>
+																	@endforelse
 																</div>
 															</div>
 										        		</div> 

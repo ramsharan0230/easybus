@@ -13,6 +13,7 @@ use App\Repositories\nepalicalendar\nepali_date;
 use App\Repositories\User\UserRepository;
 use App\Repositories\BusRoutine\BusRoutineRepository;
 use App\Repositories\TempBooking\TempBookingRepository;
+use App\Repositories\Advertisement\AdvertisementRepository;
 use App\Models\BookingPaymentDetails;
 use Image;
 use Session;
@@ -22,7 +23,7 @@ use Auth;
 class DefaultController extends Controller
 {
 	private $destination;
-	public function __construct(DestinationRepository $destination,BusRepository $bus,BookingRepository $booking,BusCategoryRepository $buscategory,nepali_date $calendar,UserRepository $user,BusRoutineRepository $busroutine,TempBookingRepository $tempbooking){
+	public function __construct(DestinationRepository $destination, AdvertisementRepository $advertisement, BusRepository $bus,BookingRepository $booking,BusCategoryRepository $buscategory,nepali_date $calendar,UserRepository $user,BusRoutineRepository $busroutine,TempBookingRepository $tempbooking){
 		$this->destination=$destination;
         
 		$this->bus=$bus;
@@ -32,7 +33,7 @@ class DefaultController extends Controller
         $this->user=$user;
         $this->busroutine=$busroutine;
         $this->tempbooking=$tempbooking;
-        
+        $this->advertisement = $advertisement;
 	}
     public function index(){
         // Cookie::queue(Cookie::make('cookieName', 'value', 1));
@@ -88,9 +89,10 @@ class DefaultController extends Controller
             
             $shift=$request->shift;
             // dd($buses);
+            $advertisements = $this->advertisement->orderBy('created_at', 'desc')->limit(2)->get();
             $busCategories=$this->buscategory->all();
             $destinations=$this->destination->all();
-            return view('front.busSearchResult',compact('buses','busCategories','from','to','shift','destinations'));
+            return view('front.busSearchResult',compact('buses','busCategories','from','to','shift','destinations', 'advertisements'));
         }
 
         
