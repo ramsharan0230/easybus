@@ -58,6 +58,15 @@
 									  		</div>
 										</div>
 									</li>
+
+									<li>
+										<div class="input-group input-group-sm mb-3">
+										  	<input type="radio" class="form-control" name="shift" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" {{$shift=='Both'?'checked':''}} value="Both">
+									  		<div class="input-group-append" >
+									    		<span class="input-group-text" id="inputGroup-sizing-sm">Both</span>
+									  		</div>
+										</div>
+									</li>
 									 
 								</ul>
 								  
@@ -98,8 +107,12 @@
 										
 										<?php
 											$date=Session::get('check_date');
-											$routine=$bus->busRoutine()->where('from',$from)->where('to',$to)->where('date',$date)->where('shift',$shift)->first();
-												$facilities=explode(',',$bus->facilities);
+											if($shift != 'Both')
+												$routine = $bus->busRoutine()->where('from',$from)->where('to',$to)->where('date',$date)->where('shift',$shift)->first();
+											else 
+												$routine = $bus->busRoutine()->where('from',$from)->where('to',$to)->where('date',$date)->first();
+											
+											$facilities=explode(',',$bus->facilities);
 											$facilities=explode(',',$bus->facilities);
 
 										?>
@@ -139,7 +152,7 @@
 												          			</li>
 												          			<li>
 												          				<?php
-				          													$date=Session::get('check_date');
+				          													$date = Session::get('check_date');
 				          													
 				          													$booked=count($bus->busBooking()->where('date',$date)->where('routine_id',$routine->id)->get());
 	    																	$available=count($bus->busseat)-$booked;
